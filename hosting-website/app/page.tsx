@@ -6,7 +6,8 @@ export default function Home() {
           I get your website live online, ready for customers.
         </h1>
         <p className="mt-4 max-w-3xl text-base text-slate-600 sm:text-lg">
-          Freelancer service. Your website will be online in 1-2 days.
+          Freelancer service. Your website will be online in 1-2 days with a
+          domain like brand.site.
         </p>
         <div className="mt-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-center gap-2">
