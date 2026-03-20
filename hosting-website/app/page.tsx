@@ -5,6 +5,9 @@ export default function Home() {
         <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
           I get your website live online, ready for customers.
         </h1>
+        <p className="mt-4 max-w-3xl text-base text-slate-600 sm:text-lg">
+          Freelancer service. Your website will be online in 1-2 days.
+        </p>
         <div className="mt-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="rounded-full border border-cyan-300 bg-cyan-50 px-3 py-1 text-sm font-semibold text-cyan-800 shadow-sm">
@@ -43,7 +46,10 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-10 grid w-full max-w-4xl gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 shadow-md shadow-fuchsia-100">
+          <a
+            href="#start-your-order"
+            className="block rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 text-left shadow-md shadow-fuchsia-100 transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
             <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
               Hosting Plan
             </p>
@@ -52,9 +58,15 @@ export default function Home() {
             <p className="mt-3 text-sm font-semibold text-fuchsia-800">
               Best for landing pages and business websites
             </p>
-          </div>
+            <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+              Choose Hosting Plan - $9.99/mo
+            </span>
+          </a>
 
-          <div className="rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 shadow-md shadow-fuchsia-100">
+          <a
+            href="#start-your-order"
+            className="block rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 text-left shadow-md shadow-fuchsia-100 transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
             <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
               Full Stack Plan
             </p>
@@ -65,10 +77,13 @@ export default function Home() {
             <p className="mt-3 text-sm font-semibold text-fuchsia-800">
               Great for web apps with frontend, backend, and database
             </p>
-          </div>
+            <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+              Choose Full Stack - $19.99/mo
+            </span>
+          </a>
         </div>
         <a
-          href="mailto:hello@yourhosting.com"
+          href="#start-your-order"
           className="mt-10 inline-flex rounded-full bg-fuchsia-700 px-8 py-3 text-base font-semibold text-white transition hover:bg-fuchsia-600"
         >
           Let's Launch Your Site
@@ -121,12 +136,16 @@ export default function Home() {
                   PREPARE
                 </span>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">Prepare Your Website</h3>
+              <h3 className="mt-4 text-xl font-semibold">
+                Prepare Your Website
+              </h3>
               <p className="mt-3 text-slate-600">
                 You bring your existing website. I do not build the site, but I
                 make sure it is ready to connect to a domain and go live.
               </p>
-              <p className="mt-4 text-sm text-slate-600">Result: your site is ready</p>
+              <p className="mt-4 text-sm text-slate-600">
+                Result: your site is ready
+              </p>
             </article>
 
             <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
@@ -138,9 +157,7 @@ export default function Home() {
                   DOMAIN
                 </span>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">
-                Set Up Your Domain
-              </h3>
+              <h3 className="mt-4 text-xl font-semibold">Set Up Your Domain</h3>
               <p className="mt-3 text-slate-600">
                 I help you choose and register the right domain for your brand,
                 then connect it to your website correctly.
@@ -159,10 +176,12 @@ export default function Home() {
                   HOSTING
                 </span>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">Host It On a Server</h3>
+              <h3 className="mt-4 text-xl font-semibold">
+                Host It On a Server
+              </h3>
               <p className="mt-3 text-slate-600">
-                I deploy your website on a reliable server so people can open
-                it online anytime, from anywhere.
+                I deploy your website on a reliable server so people can open it
+                online anytime, from anywhere.
               </p>
               <p className="mt-4 text-sm text-slate-600">
                 Result: visible to everyone
@@ -218,7 +237,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
+      <section
+        id="start-your-order"
+        className="border-t border-slate-200 bg-white"
+      >
         <div className="mx-auto w-full max-w-4xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Start Your Order
@@ -321,6 +343,9 @@ export default function Home() {
               It is a fair monthly service, not a hidden-fee offer. You get
               direct support, clear communication, domain setup, and reliable
               hosting from one person.
+            </p>
+            <p className="mt-3 text-sm font-medium text-slate-700">
+              Business: LUȚA D. L. GHEORGHE PERSOANĂ FIZICĂ AUTORIZATĂ
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
