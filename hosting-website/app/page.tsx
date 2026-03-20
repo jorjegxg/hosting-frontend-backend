@@ -1,3 +1,5 @@
+import ContactBubble from "../components/ContactBubble";
+
 export default function Home() {
   return (
     <main className="w-full bg-linear-to-b from-stone-100 to-slate-50 text-slate-800">
@@ -87,7 +89,7 @@ export default function Home() {
           href="#start-your-order"
           className="mt-10 inline-flex rounded-full bg-fuchsia-700 px-8 py-3 text-base font-semibold text-white transition hover:bg-fuchsia-600"
         >
-          Let's Launch Your Site
+          Let&apos;s Launch Your Site
         </a>
       </section>
 
@@ -424,6 +426,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <ContactBubble />
     </main>
   );
 }
