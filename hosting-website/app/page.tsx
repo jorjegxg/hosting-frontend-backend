@@ -141,8 +141,8 @@ export default function Home() {
                 Prepare Your Website
               </h3>
               <p className="mt-3 text-slate-600">
-                You bring your existing website. I do not build the site, but I
-                make sure it is ready to connect to a domain and go live.
+                You bring your website, and I prepare it properly to connect to
+                your domain and launch online smoothly.
               </p>
               <p className="mt-4 text-sm text-slate-600">
                 Result: your site is ready
@@ -194,19 +194,19 @@ export default function Home() {
             <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
               Website Ready
             </span>
-            <span className="text-slate-400">-&gt;</span>
+            <span className="text-slate-400">•</span>
             <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
               Domain Setup
             </span>
-            <span className="text-slate-400">-&gt;</span>
+            <span className="text-slate-400">•</span>
             <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
               Live Hosting
             </span>
           </div>
 
           <div className="mt-8 rounded-2xl border-2 border-fuchsia-300 bg-fuchsia-50 p-5 text-fuchsia-900">
-            Your project gets a dependable home online, with clear support and
-            no confusing process.
+            Pick your plan, send your project, and I handle the full setup so
+            your website goes live fast with clear support.
           </div>
         </div>
       </section>
@@ -320,6 +320,49 @@ export default function Home() {
                 />
               </label>
             </div>
+
+            <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
+              <legend className="px-2 text-sm font-semibold text-slate-700">
+                Choose payment plan
+              </legend>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-fuchsia-400">
+                  <input
+                    type="radio"
+                    name="paymentPlan"
+                    value="hosting-9-99"
+                    required
+                    className="mt-1 h-4 w-4 accent-fuchsia-700"
+                  />
+                  <span>
+                    <span className="block text-sm font-semibold text-slate-800">
+                      Hosting Plan - $9.99/mo
+                    </span>
+                    <span className="block text-xs text-slate-600">
+                      Ideal for landing pages and business sites.
+                    </span>
+                  </span>
+                </label>
+
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-fuchsia-400">
+                  <input
+                    type="radio"
+                    name="paymentPlan"
+                    value="full-stack-19-99"
+                    required
+                    className="mt-1 h-4 w-4 accent-fuchsia-700"
+                  />
+                  <span>
+                    <span className="block text-sm font-semibold text-slate-800">
+                      Full Stack Plan - $19.99/mo
+                    </span>
+                    <span className="block text-xs text-slate-600">
+                      Best for web apps with frontend, backend, and database.
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
 
             <button
               type="submit"
