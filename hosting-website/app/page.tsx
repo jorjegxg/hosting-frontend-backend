@@ -1,0 +1,379 @@
+export default function Home() {
+  return (
+    <main className="w-full bg-linear-to-b from-stone-100 to-slate-50 text-slate-800">
+      <section className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+        <p className="mb-4 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-800">
+          Service: Domain Setup + Website Hosting
+        </p>
+        <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+          I get your website online with domain and hosting included
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
+          For non-developers: I handle your domain name setup (.site or .store)
+          and host your website on a secure server.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
+          <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 font-semibold text-blue-800">
+            I set up your domain
+          </span>
+          <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 font-semibold text-blue-800">
+            I host your website
+          </span>
+          <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 font-semibold text-blue-800">
+            I keep it live online
+          </span>
+        </div>
+        <div className="mt-10 grid w-full max-w-4xl gap-6 md:grid-cols-2">
+          <div className="rounded-2xl border-2 border-blue-300 bg-white px-8 py-8 shadow-md shadow-blue-100">
+            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+              Hosting Plan
+            </p>
+            <p className="mt-2 text-5xl font-extrabold text-slate-800">$9.99</p>
+            <p className="mt-1 text-slate-600">per month, all work included</p>
+            <p className="mt-3 text-sm font-semibold text-blue-800">
+              Service included: Domain connection + frontend hosting
+            </p>
+          </div>
+
+          <div className="rounded-2xl border-2 border-blue-300 bg-white px-8 py-8 shadow-md shadow-blue-100">
+            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+              Full Stack Plan
+            </p>
+            <p className="mt-2 text-5xl font-extrabold text-slate-800">
+              $19.99
+            </p>
+            <p className="mt-1 text-slate-600">per month, full service</p>
+            <p className="mt-3 text-sm font-semibold text-blue-800">
+              Service included: Domain connection + frontend + backend +
+              database hosting
+            </p>
+          </div>
+        </div>
+        <a
+          href="mailto:hello@yourhosting.com"
+          className="mt-10 inline-flex rounded-full bg-slate-800 px-8 py-3 text-base font-semibold text-white transition hover:bg-slate-700"
+        >
+          Start Hosting With Me
+        </a>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/80">
+        <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-3">
+          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-xl font-semibold">Full Setup Service</h2>
+            <p className="mt-3 text-slate-600">
+              I handle the setup and launch process so your website is online
+              quickly and correctly.
+            </p>
+          </article>
+          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-xl font-semibold">Always Online</h2>
+            <p className="mt-3 text-slate-600">
+              Stable hosting with performance monitoring to keep your site
+              available for visitors.
+            </p>
+          </article>
+          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-xl font-semibold">Direct Support</h2>
+            <p className="mt-3 text-slate-600">
+              Need updates or help? You get direct communication and fast
+              response.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            How Your Website Goes Live
+          </h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            No technical knowledge needed. I handle each step for you, from
+            setting up your domain name and hosting it on
+            a server so people can visit it online.
+          </p>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
+              <div className="flex items-center justify-between">
+                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
+                  01
+                </p>
+                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
+                  PREPARE
+                </span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold">Prepare Your Website</h3>
+              <p className="mt-3 text-slate-600">
+                You bring your existing website. I do not build the site, but I
+                make sure it is ready to connect to a domain and go live.
+              </p>
+              <p className="mt-4 text-sm text-slate-600">Result: your site is ready</p>
+            </article>
+
+            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
+              <div className="flex items-center justify-between">
+                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
+                  02
+                </p>
+                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
+                  DOMAIN
+                </span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold">Get a .site or .store Domain</h3>
+              <p className="mt-3 text-slate-600">
+                I help you choose and register a domain ending in .site or
+                .store, then connect it to your website correctly.
+              </p>
+              <p className="mt-4 text-sm text-slate-600">
+                Result: your name points to your site
+              </p>
+            </article>
+
+            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
+              <div className="flex items-center justify-between">
+                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
+                  03
+                </p>
+                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
+                  HOSTING
+                </span>
+              </div>
+              <h3 className="mt-4 text-xl font-semibold">Host It On a Server</h3>
+              <p className="mt-3 text-slate-600">
+                I deploy your website on a reliable server so people can open
+                it online anytime, from anywhere.
+              </p>
+              <p className="mt-4 text-sm text-slate-600">
+                Result: visible to everyone
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
+            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
+              Website Ready
+            </span>
+            <span className="text-slate-400">-&gt;</span>
+            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
+              Domain Setup
+            </span>
+            <span className="text-slate-400">-&gt;</span>
+            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
+              Live Hosting
+            </span>
+          </div>
+
+          <div className="mt-8 rounded-2xl border-2 border-blue-300 bg-blue-50 p-5 text-blue-900">
+            I provide the service of setting up your .site or .store domain and
+            hosting your website on a server, so your site stays visible online
+            for everyone.
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            Presentation Video
+          </h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            Watch a quick overview of the hosting service, pricing, and how I
+            can get your website online fast.
+          </p>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+            <video
+              controls
+              preload="metadata"
+              className="h-auto w-full"
+              poster="https://dummyimage.com/1280x720/0f172a/94a3b8&text=Presentation+Video"
+            >
+              <source
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto w-full max-w-4xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            Make Order
+          </h2>
+          <p className="mt-3 text-slate-600">
+            Send your details and files. I will contact you and start the
+            domain + hosting setup.
+          </p>
+
+          <form className="mt-8 space-y-6 rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm">
+            <div className="grid gap-5 md:grid-cols-2">
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                  Name
+                </span>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your full name"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-slate-700">
+                  Email
+                </span>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                />
+              </label>
+            </div>
+
+            <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
+              <legend className="px-2 text-sm font-semibold text-slate-700">
+                Project Upload (same block)
+              </legend>
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">
+                  ZIP file or project folder
+                </span>
+                <input
+                  type="file"
+                  name="projectUpload"
+                  accept=".zip,application/zip"
+                  webkitdirectory=""
+                  directory=""
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
+                />
+              </label>
+              <span className="mt-3 block text-xs text-slate-500">
+                Use one button to upload either a single ZIP file or your whole
+                project folder.
+              </span>
+            </fieldset>
+
+            <fieldset>
+              <legend className="mb-2 text-sm font-semibold text-slate-700">
+                Domain preference
+              </legend>
+              <p className="mb-3 text-sm text-slate-600">
+                I will check availability and secure the best available option
+                based on your preferences.
+              </p>
+              <div className="grid gap-3 md:grid-cols-3">
+                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
+                  <input type="radio" name="domainChoice" value=".site" />
+                  <span className="text-slate-700">.site</span>
+                </label>
+                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
+                  <input type="radio" name="domainChoice" value=".store" />
+                  <span className="text-slate-700">.store</span>
+                </label>
+                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
+                  <input
+                    type="radio"
+                    name="domainChoice"
+                    value="i-have-my-own-domain"
+                  />
+                  <span className="text-slate-700">I have my own domain</span>
+                </label>
+              </div>
+              <div className="mt-4 grid gap-4">
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-700">
+                    Preferred domain name
+                  </span>
+                  <input
+                    type="text"
+                    name="preferredDomainName"
+                    placeholder="examplebrand"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="mb-2 block text-sm font-medium text-slate-700">
+                    Backup domain ideas (optional)
+                  </span>
+                  <textarea
+                    name="backupDomainIdeas"
+                    rows={3}
+                    placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
+                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                  />
+                </label>
+              </div>
+              <span className="mt-3 block text-xs text-slate-500">
+                Domain availability depends on live registry status at time of
+                registration, so exact names cannot be guaranteed.
+              </span>
+            </fieldset>
+
+            <button
+              type="submit"
+              className="inline-flex rounded-full bg-slate-800 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+            >
+              Send Order
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <div className="rounded-3xl border-2 border-amber-200 bg-amber-50 p-8 md:p-10">
+            <p className="inline-flex rounded-full border border-amber-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-amber-800">
+              Trust & Transparency
+            </p>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
+              Too good to be true?
+            </h2>
+            <p className="mt-4 max-w-3xl text-slate-700">
+              It is a fair monthly service, not a hidden-fee offer. You get
+              direct support, clear communication, domain setup, and reliable
+              hosting from one person.
+            </p>
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <article className="rounded-xl border border-amber-200 bg-white p-5">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  No hidden charges
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  Monthly pricing is clear before we start.
+                </p>
+              </article>
+
+              <article className="rounded-xl border border-amber-200 bg-white p-5">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  Real human support
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  You talk directly to me when you need help.
+                </p>
+              </article>
+
+              <article className="rounded-xl border border-amber-200 bg-white p-5">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  Reliable service
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  Your domain and hosting are managed properly so your website
+                  stays online.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
