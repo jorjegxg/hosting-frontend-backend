@@ -9,8 +9,8 @@ export default function Home() {
           I get your website online with domain and hosting included
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
-          For non-developers: I handle your domain name setup (.site or .store)
-          and host your website on a secure server.
+          For non-developers: I handle your domain name setup and host your
+          website on a secure server.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">
           <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 font-semibold text-blue-800">
@@ -121,10 +121,12 @@ export default function Home() {
                   DOMAIN
                 </span>
               </div>
-              <h3 className="mt-4 text-xl font-semibold">Get a .site or .store Domain</h3>
+              <h3 className="mt-4 text-xl font-semibold">
+                Set Up Your Domain
+              </h3>
               <p className="mt-3 text-slate-600">
-                I help you choose and register a domain ending in .site or
-                .store, then connect it to your website correctly.
+                I help you choose and register the right domain for your brand,
+                then connect it to your website correctly.
               </p>
               <p className="mt-4 text-sm text-slate-600">
                 Result: your name points to your site
@@ -166,9 +168,8 @@ export default function Home() {
           </div>
 
           <div className="mt-8 rounded-2xl border-2 border-blue-300 bg-blue-50 p-5 text-blue-900">
-            I provide the service of setting up your .site or .store domain and
-            hosting your website on a server, so your site stays visible online
-            for everyone.
+            I provide domain setup and hosting on a server, so your site stays
+            visible online for everyone.
           </div>
         </div>
       </section>
@@ -254,68 +255,33 @@ export default function Home() {
                   className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
                 />
               </label>
-              <span className="mt-3 block text-xs text-slate-500">
-                Use one button to upload either a single ZIP file or your whole
-                project folder.
-              </span>
             </fieldset>
 
-            <fieldset>
-              <legend className="mb-2 text-sm font-semibold text-slate-700">
-                Domain preference
-              </legend>
-              <p className="mb-3 text-sm text-slate-600">
-                I will check availability and secure the best available option
-                based on your preferences.
-              </p>
-              <div className="grid gap-3 md:grid-cols-3">
-                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
-                  <input type="radio" name="domainChoice" value=".site" />
-                  <span className="text-slate-700">.site</span>
-                </label>
-                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
-                  <input type="radio" name="domainChoice" value=".store" />
-                  <span className="text-slate-700">.store</span>
-                </label>
-                <label className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-3">
-                  <input
-                    type="radio"
-                    name="domainChoice"
-                    value="i-have-my-own-domain"
-                  />
-                  <span className="text-slate-700">I have my own domain</span>
-                </label>
-              </div>
-              <div className="mt-4 grid gap-4">
-                <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">
-                    Preferred domain name
-                  </span>
-                  <input
-                    type="text"
-                    name="preferredDomainName"
-                    placeholder="examplebrand"
-                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                  />
-                </label>
+            <div className="grid gap-4">
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">
+                  Preferred domain name
+                </span>
+                <input
+                  type="text"
+                  name="preferredDomainName"
+                  placeholder="examplebrand"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                />
+              </label>
 
-                <label className="block">
-                  <span className="mb-2 block text-sm font-medium text-slate-700">
-                    Backup domain ideas (optional)
-                  </span>
-                  <textarea
-                    name="backupDomainIdeas"
-                    rows={3}
-                    placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
-                    className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                  />
-                </label>
-              </div>
-              <span className="mt-3 block text-xs text-slate-500">
-                Domain availability depends on live registry status at time of
-                registration, so exact names cannot be guaranteed.
-              </span>
-            </fieldset>
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">
+                  Backup domain ideas (optional)
+                </span>
+                <textarea
+                  name="backupDomainIdeas"
+                  rows={3}
+                  placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                />
+              </label>
+            </div>
 
             <button
               type="submit"
