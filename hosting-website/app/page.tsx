@@ -312,6 +312,18 @@ export default function Home() {
 
               <label className="block">
                 <span className="mb-2 block text-sm font-medium text-slate-700">
+                  Message / Project details
+                </span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  placeholder="Share your goals, required features, and a GitHub link (or other project link)."
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-sm font-medium text-slate-700">
                   Backup domain ideas (optional)
                 </span>
                 <textarea
