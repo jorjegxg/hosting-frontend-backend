@@ -22,3 +22,15 @@ export async function checkDatabaseConnection(): Promise<void> {
     connection.release();
   }
 }
+
+export async function ensureMessagesTable(): Promise<void> {
+  await dbPool.query(`
+    CREATE TABLE IF NOT EXISTS contact_messages (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      source VARCHAR(50) NOT NULL DEFAULT 'chat_bubble',
+      question TEXT NOT NULL,
+      answer TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+}

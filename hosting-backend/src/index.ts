@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { checkDatabaseConnection, dbPool } from "./db";
+import { checkDatabaseConnection, dbPool, ensureMessagesTable } from "./db";
 
 const app = express();
 const port = Number(process.env.PORT ?? 4000);
@@ -35,7 +35,7 @@ app.options("/ask", (_req, res) => {
   return res.sendStatus(204);
 });
 
-app.post("/ask", (req, res) => {
+app.post("/ask", async (req, res) => {
   const questionRaw = req.body?.question;
 
   if (typeof questionRaw !== "string" || !questionRaw.trim()) {
@@ -59,6 +59,17 @@ app.post("/ask", (req, res) => {
       "Yes, I can help you choose and set up a domain that matches your brand.";
   }
 
+  try {
+    await dbPool.execute(
+      "INSERT INTO contact_messages (source, question, answer) VALUES (?, ?, ?)",
+      ["chat_bubble", questionRaw, answer],
+    );
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to save message";
+    return res.status(500).json({ status: "error", message });
+  }
+
   return res.json({
     status: "ok",
     question: questionRaw,
@@ -66,6 +77,29 @@ app.post("/ask", (req, res) => {
   });
 });
 
+app.get("/messages", async (_req, res) => {
+  try {
+    const [rows] = await dbPool.query(
+      "SELECT id, source, question, answer, created_at FROM contact_messages ORDER BY id DESC LIMIT 100",
+    );
+    res.json({ status: "ok", messages: rows });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to fetch messages";
+    res.status(500).json({ status: "error", message });
+  }
+});
+
 app.listen(port, () => {
+  ensureMessagesTable()
+    .then(() => {
+      console.log("contact_messages table is ready");
+    })
+    .catch((error) => {
+      const message =
+        error instanceof Error ? error.message : "Unknown table init error";
+      console.error(`Failed to prepare contact_messages table: ${message}`);
+    });
+
   console.log(`Backend listening on http://localhost:${port}`);
 });

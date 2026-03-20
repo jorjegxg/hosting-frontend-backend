@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbPool = void 0;
 exports.checkDatabaseConnection = checkDatabaseConnection;
+exports.ensureMessagesTable = ensureMessagesTable;
 const dotenv_1 = __importDefault(require("dotenv"));
 const promise_1 = __importDefault(require("mysql2/promise"));
 dotenv_1.default.config();
@@ -26,5 +27,16 @@ async function checkDatabaseConnection() {
     finally {
         connection.release();
     }
+}
+async function ensureMessagesTable() {
+    await exports.dbPool.query(`
+    CREATE TABLE IF NOT EXISTS contact_messages (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      source VARCHAR(50) NOT NULL DEFAULT 'chat_bubble',
+      question TEXT NOT NULL,
+      answer TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
 }
 //# sourceMappingURL=db.js.map
