@@ -14,82 +14,51 @@ export default function Home() {
           I get your website live online, ready for customers.
         </h1>
 
-        <div className="mt-6 grid w-full max-w-5xl gap-4 text-left sm:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur-sm">
-            <div className="flex items-center gap-3">
-              <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <Image
-                  src="/steps/local.svg"
-                  alt="Website running on your computer"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Your site on your computer
-                </p>
-                <p className="text-sm text-slate-600">
-                  It works locally. You send it to me.
-                </p>
-              </div>
+        <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+              1. Your website on your computer
+            </p>
+            <div className="relative aspect-5/4 w-full">
+              <Image
+                src="/steps/browser_localhost_3000-02.svg"
+                alt="Website running on your computer"
+                fill
+                className="object-contain p-1"
+                priority
+              />
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur-sm">
-            <div className="flex items-center gap-3">
-              <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <Image
-                  src="/steps/server.svg"
-                  alt="Website deployed to a server"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  I deploy it to a server
-                </p>
-                <p className="text-sm text-slate-600">
-                  Hosting, SSL, and going live handled.
-                </p>
-              </div>
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+              2. I upload it to a server
+            </p>
+            <div className="relative aspect-5/4 w-full">
+              <Image
+                src="/steps/upload_to_server.svg"
+                alt="Website deployed to a server"
+                fill
+                className="object-contain p-1"
+              />
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm backdrop-blur-sm">
-            <div className="flex items-center gap-3">
-              <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <Image
-                  src="/steps/domain.svg"
-                  alt="Domain name setup"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  I set up your domain
-                </p>
-                <p className="text-sm text-slate-600">
-                  Buy/connect a name like brand.site.
-                </p>
-              </div>
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+              3. I connect your domain name
+            </p>
+            <div className="relative aspect-5/4 w-full">
+              <Image
+                src="/steps/browser_your-brand-02.svg"
+                alt="Domain name setup"
+                fill
+                className="object-contain p-1"
+              />
             </div>
           </div>
         </div>
 
-        <p className="mt-5 max-w-3xl text-base font-medium text-slate-700 sm:text-lg">
-          From localhost to{" "}
-          <span className="whitespace-nowrap rounded-md bg-slate-200 px-2 py-0.5 font-mono text-sm text-slate-900 sm:text-base">
-            https://your-brand.site
-          </span>
-          — no tech talk required.
-        </p>
-        <p className="mt-4 max-w-3xl text-base text-slate-600 sm:text-lg">
-          Freelancer service. Your website will be online in 1-2 days with a
-          domain like brand.site.
-        </p>
         <div className="mt-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-center gap-2">
             <span className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-800 shadow-sm">
@@ -127,49 +96,78 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className="mt-10 grid w-full max-w-4xl gap-6 md:grid-cols-2">
-          <a
-            href="#start-your-order"
-            className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 text-left shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-              Hosting Plan
-            </p>
-            <p className="mt-2 text-5xl font-extrabold text-slate-800">$9.99</p>
-            <p className="mt-1 text-slate-600">per month, simple and solid</p>
-            <p className="mt-3 text-sm font-semibold text-slate-800">
-              Best for landing pages and business websites
-            </p>
-            <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Choose Hosting Plan - $9.99/mo
-            </span>
-          </a>
+      </section>
 
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
+          <div className="mx-auto grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
+            <a
+              href="#start-your-order"
+              className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                Hosting Plan
+              </p>
+              <p className="mt-2 text-5xl font-extrabold text-slate-800">$9.99</p>
+              <p className="mt-1 text-slate-600">per month, simple and solid</p>
+              <p className="mt-3 text-sm font-semibold text-slate-800">
+                Best for landing pages and business websites
+              </p>
+              <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Choose Hosting Plan - $9.99/mo
+              </span>
+            </a>
+
+            <a
+              href="#start-your-order"
+              className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+                Full Stack Plan
+              </p>
+              <p className="mt-2 text-5xl font-extrabold text-slate-800">
+                $19.99
+              </p>
+              <p className="mt-1 text-slate-600">per month, full power</p>
+              <p className="mt-3 text-sm font-semibold text-slate-800">
+                Great for web apps with frontend, backend, and database
+              </p>
+              <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+                Choose Full Stack - $19.99/mo
+              </span>
+            </a>
+          </div>
           <a
             href="#start-your-order"
-            className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 text-left shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
+            className="mt-10 inline-flex rounded-full bg-slate-900 px-8 py-3 text-base font-semibold text-white transition hover:bg-slate-800"
           >
-            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-              Full Stack Plan
-            </p>
-            <p className="mt-2 text-5xl font-extrabold text-slate-800">
-              $19.99
-            </p>
-            <p className="mt-1 text-slate-600">per month, full power</p>
-            <p className="mt-3 text-sm font-semibold text-slate-800">
-              Great for web apps with frontend, backend, and database
-            </p>
-            <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Choose Full Stack - $19.99/mo
-            </span>
+            Let&apos;s Launch Your Site
           </a>
+          <p className="mx-auto mt-6 max-w-3xl text-base font-medium text-slate-700 sm:text-lg">
+            From localhost to{" "}
+            <span className="whitespace-nowrap rounded-md bg-slate-200 px-2 py-0.5 font-mono text-sm text-slate-900 sm:text-base">
+              https://your-brand.site
+            </span>
+            — no tech talk required.
+          </p>
+          <p className="mx-auto mt-3 max-w-3xl text-base text-slate-600 sm:text-lg">
+            Freelancer service. Your website will be online in 1-2 days with a
+            domain like brand.site.
+          </p>
+          <div className="mx-auto mt-6 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-5 text-left shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-700">
+              What I handle for you
+            </p>
+            <div className="mt-4 grid gap-2 sm:grid-cols-2">
+              <p className="text-sm text-slate-700">- Domain name setup</p>
+              <p className="text-sm text-slate-700">- SSL certificate (HTTPS)</p>
+              <p className="text-sm text-slate-700">- Server and hosting setup</p>
+              <p className="text-sm text-slate-700">- Website deployment</p>
+              <p className="text-sm text-slate-700">- DNS configuration</p>
+              <p className="text-sm text-slate-700">- Launch support</p>
+            </div>
+          </div>
         </div>
-        <a
-          href="#start-your-order"
-          className="mt-10 inline-flex rounded-full bg-slate-900 px-8 py-3 text-base font-semibold text-white transition hover:bg-slate-800"
-        >
-          Let&apos;s Launch Your Site
-        </a>
       </section>
 
       <section className="border-t border-slate-200 bg-slate-50/80">
