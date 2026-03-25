@@ -1,9 +1,11 @@
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
+import FloatingStartButton from "../components/FloatingStartButton";
 
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
+      <FloatingStartButton />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
         <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
