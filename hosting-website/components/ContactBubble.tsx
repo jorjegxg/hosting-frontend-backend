@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -17,6 +17,18 @@ export default function ContactBubble() {
       text: "Need your site online fast? Send your question here.",
     },
   ]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 640px)");
+    setIsOpen(mediaQuery.matches);
+
+    function onChange(event: MediaQueryListEvent) {
+      setIsOpen(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
 
   const backendUrl = useMemo(
     () => process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000",
@@ -88,7 +100,7 @@ export default function ContactBubble() {
                 className={`rounded-xl px-3 py-2 text-sm ${
                   message.role === "assistant"
                     ? "bg-slate-100 text-slate-700"
-                    : "bg-fuchsia-100 text-fuchsia-900"
+                    : "bg-slate-900 text-white"
                 }`}
               >
                 {message.text}
@@ -106,12 +118,12 @@ export default function ContactBubble() {
               value={question}
               onChange={(event) => setQuestion(event.target.value)}
               placeholder="Type your question..."
-              className="w-full resize-none rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-fuchsia-500"
+              className="w-full resize-none rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="mt-2 w-full rounded-lg bg-fuchsia-700 px-3 py-2 text-sm font-semibold text-white hover:bg-fuchsia-600 disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-2 w-full rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isLoading ? "Sending..." : "Send"}
             </button>
@@ -121,7 +133,7 @@ export default function ContactBubble() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="rounded-full bg-fuchsia-700 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-fuchsia-600"
+          className="relative rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-lg transition will-change-transform hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white active:translate-y-0 active:scale-[0.99] after:absolute after:-right-0.5 after:-top-0.5 after:h-3 after:w-3 after:rounded-full after:bg-emerald-400 after:ring-2 after:ring-white after:animate-pulse"
         >
           Contact
         </button>
