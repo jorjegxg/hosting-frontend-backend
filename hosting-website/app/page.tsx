@@ -2,18 +2,30 @@ import ContactBubble from "../components/ContactBubble";
 
 export default function Home() {
   return (
-    <main className="w-full bg-linear-to-b from-stone-100 to-slate-50 text-slate-800">
-      <section className="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+    <main className="relative w-full overflow-hidden bg-linear-to-b from-slate-100 via-slate-50 to-white text-slate-800">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/18 blur-3xl" />
+        <div className="absolute -top-10 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/12 blur-3xl" />
+        <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-300/10 blur-3xl" />
+      </div>
+      <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
           I get your website live online, ready for customers.
         </h1>
+        <p className="mt-5 max-w-3xl text-base font-medium text-slate-700 sm:text-lg">
+          From localhost to{" "}
+          <span className="whitespace-nowrap rounded-md bg-sky-100 px-2 py-0.5 font-mono text-sm text-sky-900 sm:text-base">
+            https://your-brand.site
+          </span>
+          — no tech talk required.
+        </p>
         <p className="mt-4 max-w-3xl text-base text-slate-600 sm:text-lg">
           Freelancer service. Your website will be online in 1-2 days with a
           domain like brand.site.
         </p>
         <div className="mt-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full border border-cyan-300 bg-cyan-50 px-3 py-1 text-sm font-semibold text-cyan-800 shadow-sm">
+            <span className="rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-sm font-semibold text-sky-800 shadow-sm">
               WordPress
             </span>
             <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
@@ -28,7 +40,7 @@ export default function Home() {
             <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
               Lovable
             </span>
-            <span className="rounded-full border border-cyan-300 bg-cyan-50 px-3 py-1 text-sm font-semibold text-cyan-800 shadow-sm">
+            <span className="rounded-full border border-sky-300 bg-sky-50 px-3 py-1 text-sm font-semibold text-sky-800 shadow-sm">
               Cursor
             </span>
             <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
@@ -51,14 +63,14 @@ export default function Home() {
         <div className="mt-10 grid w-full max-w-4xl gap-6 md:grid-cols-2">
           <a
             href="#start-your-order"
-            className="block rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 text-left shadow-md shadow-fuchsia-100 transition hover:-translate-y-0.5 hover:shadow-lg"
+            className="block rounded-2xl border-2 border-sky-300 bg-white px-8 py-8 text-left shadow-md shadow-sky-100 transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
               Hosting Plan
             </p>
             <p className="mt-2 text-5xl font-extrabold text-slate-800">$9.99</p>
             <p className="mt-1 text-slate-600">per month, simple and solid</p>
-            <p className="mt-3 text-sm font-semibold text-fuchsia-800">
+            <p className="mt-3 text-sm font-semibold text-sky-800">
               Best for landing pages and business websites
             </p>
             <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
@@ -68,7 +80,7 @@ export default function Home() {
 
           <a
             href="#start-your-order"
-            className="block rounded-2xl border-2 border-fuchsia-300 bg-white px-8 py-8 text-left shadow-md shadow-fuchsia-100 transition hover:-translate-y-0.5 hover:shadow-lg"
+            className="block rounded-2xl border-2 border-sky-300 bg-white px-8 py-8 text-left shadow-md shadow-sky-100 transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
               Full Stack Plan
@@ -77,7 +89,7 @@ export default function Home() {
               $19.99
             </p>
             <p className="mt-1 text-slate-600">per month, full power</p>
-            <p className="mt-3 text-sm font-semibold text-fuchsia-800">
+            <p className="mt-3 text-sm font-semibold text-sky-800">
               Great for web apps with frontend, backend, and database
             </p>
             <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
@@ -87,7 +99,7 @@ export default function Home() {
         </div>
         <a
           href="#start-your-order"
-          className="mt-10 inline-flex rounded-full bg-fuchsia-700 px-8 py-3 text-base font-semibold text-white transition hover:bg-fuchsia-600"
+          className="mt-10 inline-flex rounded-full bg-sky-700 px-8 py-3 text-base font-semibold text-white transition hover:bg-sky-600"
         >
           Let&apos;s Launch Your Site
         </a>
@@ -206,7 +218,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="mt-8 rounded-2xl border-2 border-fuchsia-300 bg-fuchsia-50 p-5 text-fuchsia-900">
+          <div className="mt-8 rounded-2xl border-2 border-sky-300 bg-sky-50 p-5 text-sky-900">
             Pick your plan, send your project, and I handle the full setup so
             your website goes live fast with clear support.
           </div>
@@ -340,13 +352,13 @@ export default function Home() {
                 Choose payment plan
               </legend>
               <div className="mt-3 grid gap-3 md:grid-cols-2">
-                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-fuchsia-400">
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-sky-400">
                   <input
                     type="radio"
                     name="paymentPlan"
                     value="hosting-9-99"
                     required
-                    className="mt-1 h-4 w-4 accent-fuchsia-700"
+                    className="mt-1 h-4 w-4 accent-sky-700"
                   />
                   <span>
                     <span className="block text-sm font-semibold text-slate-800">
@@ -358,13 +370,13 @@ export default function Home() {
                   </span>
                 </label>
 
-                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-fuchsia-400">
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-sky-400">
                   <input
                     type="radio"
                     name="paymentPlan"
                     value="full-stack-19-99"
                     required
-                    className="mt-1 h-4 w-4 accent-fuchsia-700"
+                    className="mt-1 h-4 w-4 accent-sky-700"
                   />
                   <span>
                     <span className="block text-sm font-semibold text-slate-800">
@@ -380,7 +392,7 @@ export default function Home() {
 
             <button
               type="submit"
-              className="inline-flex rounded-full bg-fuchsia-700 px-7 py-3 text-sm font-semibold text-white transition hover:bg-fuchsia-600"
+              className="inline-flex rounded-full bg-sky-700 px-7 py-3 text-sm font-semibold text-white transition hover:bg-sky-600"
             >
               Send Order
             </button>
@@ -390,8 +402,8 @@ export default function Home() {
 
       <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <div className="rounded-3xl border-2 border-amber-200 bg-amber-50 p-8 md:p-10">
-            <p className="inline-flex rounded-full border border-amber-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-amber-800">
+          <div className="rounded-3xl border-2 border-sky-200 bg-sky-50 p-8 md:p-10">
+            <p className="inline-flex rounded-full border border-sky-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-sky-800">
               Trust & Transparency
             </p>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -407,7 +419,7 @@ export default function Home() {
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <article className="rounded-xl border border-amber-200 bg-white p-5">
+              <article className="rounded-xl border border-sky-200 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   No hidden charges
                 </h3>
@@ -416,7 +428,7 @@ export default function Home() {
                 </p>
               </article>
 
-              <article className="rounded-xl border border-amber-200 bg-white p-5">
+              <article className="rounded-xl border border-sky-200 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Real human support
                 </h3>
@@ -425,7 +437,7 @@ export default function Home() {
                 </p>
               </article>
 
-              <article className="rounded-xl border border-amber-200 bg-white p-5">
+              <article className="rounded-xl border border-sky-200 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Reliable service
                 </h3>
