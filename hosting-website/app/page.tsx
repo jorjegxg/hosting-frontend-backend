@@ -5,14 +5,14 @@ import FloatingStartButton from "../components/FloatingStartButton";
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
-      <FloatingStartButton />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
-        <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
-        <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
-      </div>
-      <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+        <FloatingStartButton />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
+          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
+          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
+        </div>
+        <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
           I get your website live online, ready for customers.
         </h1>
@@ -97,6 +97,59 @@ export default function Home() {
             <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
               Others
             </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/70">
+        <div className="mx-auto w-full max-w-6xl px-6 py-12">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.16em] text-slate-600">
+            Launch Checks
+          </p>
+          <h2 className="mt-2 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Everything verified before your site goes live
+          </h2>
+          <div className="mx-auto mt-8 grid w-full max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
+                ✓
+              </span>
+              <span className="text-sm font-semibold text-slate-800">
+                Fast SSD/NVMe storage
+              </span>
+            </div>
+            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
+                ✓
+              </span>
+              <span className="text-sm font-semibold text-slate-800">
+                99.9% uptime guarantee
+              </span>
+            </div>
+            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
+                ✓
+              </span>
+              <span className="text-sm font-semibold text-slate-800">
+                Free SSL & backups
+              </span>
+            </div>
+            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
+                ✓
+              </span>
+              <span className="text-sm font-semibold text-slate-800">
+                Domain registration
+              </span>
+            </div>
+            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm sm:col-span-2 lg:col-span-1">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
+                ✓
+              </span>
+              <span className="text-sm font-semibold text-slate-800">
+                Premium support included
+              </span>
+            </div>
           </div>
         </div>
       </section>

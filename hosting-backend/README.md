@@ -5,7 +5,7 @@
 1. Start MySQL:
 
 ```bash
-docker run -d --name hosting-db -e MYSQL_ROOT_PASSWORD=mysecretpassword -e MYSQL_DATABASE=myappdb -p 3306:3306 mysql:latest
+docker run -d --name hosting-db -e MYSQL_ROOT_PASSWORD=mysecretpassword -e MYSQL_DATABASE=myappdb -p 3308:3306 mysql:latest
 ```
 
 2. Install dependencies:

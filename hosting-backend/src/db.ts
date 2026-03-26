@@ -1,11 +1,21 @@
+import fs from "node:fs";
+import path from "node:path";
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
 
-dotenv.config();
+// Always load environment variables from the repo root `.env`,
+// regardless of where `npm run dev` is executed from.
+const rootEnvPath = path.resolve(__dirname, "../../.env");
+if (fs.existsSync(rootEnvPath)) {
+  dotenv.config({ path: rootEnvPath, override: true });
+} else {
+  dotenv.config(); // fallback to local `.env` if root is missing
+}
 
 export const dbPool = mysql.createPool({
   host: process.env.DB_HOST ?? "127.0.0.1",
-  port: Number(process.env.DB_PORT ?? 3306),
+  // Docker maps host `DB_PORT` -> container 3306 (see root `docker-compose.yml`)
+  port: Number(process.env.DB_PORT ?? 3308),
   user: process.env.DB_USER ?? "root",
   password: process.env.DB_PASSWORD ?? "mysecretpassword",
   database: process.env.DB_NAME ?? "myappdb",
