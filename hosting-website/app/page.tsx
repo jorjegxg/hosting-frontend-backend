@@ -10,13 +10,13 @@ export default function Home() {
           <a href="#hero-title" className="flex items-center gap-3">
             <Image
               src="/hosting-logo.svg"
-              alt="your-site.online logo"
+              alt="Your site online logo"
               width={36}
               height={36}
               className="h-9 w-9"
             />
             <span className="text-sm font-extrabold tracking-wide text-slate-900 sm:text-base">
-              your-site.online
+              Your site online
             </span>
           </a>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
@@ -507,7 +507,7 @@ export default function Home() {
               hosting from one person.
             </p>
             <p className="mt-3 text-sm font-medium text-slate-700">
-              Brand: your-site.online
+              Brand: Your site online
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -543,8 +543,8 @@ export default function Home() {
         </div>
       </section>
       <footer className="border-t border-slate-200 bg-slate-950">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} your-site.online. All rights reserved.</p>
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Your site online. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
             <a href="#faq" className="transition hover:text-white">
               FAQ
