@@ -1,12 +1,43 @@
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
-import FloatingStartButton from "../components/FloatingStartButton";
 import ScrollToOrderButton from "../components/ScrollToOrderButton";
 
 export default function Home() {
   return (
     <main className="relative w-full bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
-      <FloatingStartButton />
+      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+          <a href="#hero-title" className="flex items-center gap-3">
+            <Image
+              src="/hosting-logo.svg"
+              alt="your-site.online logo"
+              width={36}
+              height={36}
+              className="h-9 w-9"
+            />
+            <span className="text-sm font-extrabold tracking-wide text-slate-900 sm:text-base">
+              your-site.online
+            </span>
+          </a>
+          <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
+            <a href="#pricing" className="transition hover:text-slate-900">
+              Pricing
+            </a>
+            <a href="#faq" className="transition hover:text-slate-900">
+              FAQ
+            </a>
+            <a href="#start-your-order" className="transition hover:text-slate-900">
+              Contact
+            </a>
+          </nav>
+          <a
+            href="#start-your-order"
+            className="inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+          >
+            Launch My Site
+          </a>
+        </div>
+      </header>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0"
@@ -113,7 +144,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
+      <section className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            Presentation Video
+          </h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            Watch a quick overview of the hosting service, pricing, and how I
+            can get your website online fast.
+          </p>
+
+          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+            <video
+              controls
+              preload="metadata"
+              className="h-auto w-full"
+              poster="https://dummyimage.com/1280x720/0f172a/94a3b8&text=Presentation+Video"
+            >
+              <source
+                src="https://www.w3schools.com/html/mov_bbb.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="pricing"
+        className="scroll-mt-28 border-t border-slate-200 bg-white"
+      >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <div className="mx-auto grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
             <a
@@ -160,34 +221,6 @@ export default function Home() {
           >
             Let&apos;s Launch Your Site
           </a>
-          <p className="mx-auto mt-6 max-w-3xl text-base font-medium text-slate-700 sm:text-lg">
-            From localhost to{" "}
-            <span className="whitespace-nowrap rounded-md bg-slate-200 px-2 py-0.5 font-mono text-sm text-slate-900 sm:text-base">
-              https://your-brand.site
-            </span>
-            — no tech talk required.
-          </p>
-          <p className="mx-auto mt-3 max-w-3xl text-base text-slate-600 sm:text-lg">
-            Freelancer service. Your website will be online in 1-2 days with a
-            domain like brand.site.
-          </p>
-          <div className="mx-auto mt-6 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-5 text-left shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-700">
-              What I handle for you
-            </p>
-            <div className="mt-4 grid gap-2 sm:grid-cols-2">
-              <p className="text-sm text-slate-700">- Domain name setup</p>
-              <p className="text-sm text-slate-700">
-                - SSL certificate (HTTPS)
-              </p>
-              <p className="text-sm text-slate-700">
-                - Server and hosting setup
-              </p>
-              <p className="text-sm text-slate-700">- Website deployment</p>
-              <p className="text-sm text-slate-700">- DNS configuration</p>
-              <p className="text-sm text-slate-700">- Launch support</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -217,130 +250,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Your Launch Journey
-          </h2>
-          <p className="mt-3 max-w-3xl text-slate-600">
-            No technical knowledge needed. I handle each step clearly and keep
-            you updated from first upload to launch day.
-          </p>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
-                  01
-                </p>
-                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
-                  PREPARE
-                </span>
-              </div>
-              <h3 className="mt-4 text-xl font-semibold">
-                Prepare Your Website
-              </h3>
-              <p className="mt-3 text-slate-600">
-                You bring your website, and I prepare it properly to connect to
-                your domain and launch online smoothly.
-              </p>
-              <p className="mt-4 text-sm text-slate-600">
-                Result: your site is ready
-              </p>
-            </article>
-
-            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
-                  02
-                </p>
-                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
-                  DOMAIN
-                </span>
-              </div>
-              <h3 className="mt-4 text-xl font-semibold">Set Up Your Domain</h3>
-              <p className="mt-3 text-slate-600">
-                I help you choose and register the right domain for your brand,
-                then connect it to your website correctly.
-              </p>
-              <p className="mt-4 text-sm text-slate-600">
-                Result: your name points to your site
-              </p>
-            </article>
-
-            <article className="relative rounded-2xl border border-slate-300 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <p className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
-                  03
-                </p>
-                <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-700">
-                  HOSTING
-                </span>
-              </div>
-              <h3 className="mt-4 text-xl font-semibold">
-                Host It On a Server
-              </h3>
-              <p className="mt-3 text-slate-600">
-                I deploy your website on a reliable server so people can open it
-                online anytime, from anywhere.
-              </p>
-              <p className="mt-4 text-sm text-slate-600">
-                Result: visible to everyone
-              </p>
-            </article>
-          </div>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
-            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
-              Website Ready
-            </span>
-            <span className="text-slate-400">•</span>
-            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
-              Domain Setup
-            </span>
-            <span className="text-slate-400">•</span>
-            <span className="rounded-full border border-slate-300 bg-white px-3 py-1">
-              Live Hosting
-            </span>
-          </div>
-
-          <div className="mt-8 rounded-2xl border-2 border-slate-300 bg-slate-100 p-5 text-slate-900">
-            Pick your plan, send your project, and I handle the full setup so
-            your website goes live fast with clear support.
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-slate-200 bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Presentation Video
-          </h2>
-          <p className="mt-3 max-w-3xl text-slate-600">
-            Watch a quick overview of the hosting service, pricing, and how I
-            can get your website online fast.
-          </p>
-
-          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
-            <video
-              controls
-              preload="metadata"
-              className="h-auto w-full"
-              poster="https://dummyimage.com/1280x720/0f172a/94a3b8&text=Presentation+Video"
-            >
-              <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </section>
-
       <section
         id="start-your-order"
-        className="border-t border-slate-200 bg-white"
+        className="scroll-mt-28 border-t border-slate-200 bg-white"
       >
         <div className="mx-auto w-full max-w-4xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -486,6 +398,98 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-t border-slate-200 bg-slate-50/80">
+        <div className="mx-auto w-full max-w-5xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            What clients say
+          </h2>
+          <div className="mt-8 rounded-2xl border border-slate-300 bg-white p-8 shadow-sm">
+            <p className="text-lg leading-relaxed text-slate-700">
+              &ldquo;I thought hosting a website would be complicated. It
+              wasn&apos;t. I just sent my files and it was online the next
+              day.&rdquo;
+            </p>
+            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">
+              David. H
+            </p>
+            <a
+              href="https://www.linkedin.com/in/david-horobet-563541232/"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-900 hover:underline"
+            >
+              View LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="scroll-mt-28 border-t border-slate-200 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            Clear answers for non-technical business owners.
+          </p>
+
+          <div className="mt-8 space-y-4">
+            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+              <h3 className="text-base font-semibold text-slate-900">
+                What is hosting?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Hosting is internet space where your website lives so people can
+                access it online 24/7.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+              <h3 className="text-base font-semibold text-slate-900">
+                Do I need a domain name?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Yes. A domain is your website address (like yourbusiness.com). I
+                can help you pick and connect it.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+              <h3 className="text-base font-semibold text-slate-900">
+                What is SSL / HTTPS?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                It is the security lock shown in browsers. I set up SSL so your
+                website opens with HTTPS by default.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+              <h3 className="text-base font-semibold text-slate-900">
+                I built my website with AI. Can you host it?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Yes. Send your files and I handle deployment, domain connection,
+                and launch.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+              <h3 className="text-base font-semibold text-slate-900">
+                How fast can my site go live?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Most websites are live within 24 hours after I receive your
+                files and domain details.
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-10">
+            <a
+              href="#start-your-order"
+              className="inline-flex rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Start Your Order Now
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="rounded-3xl border-2 border-slate-300 bg-slate-100 p-8 md:p-10">
@@ -501,7 +505,7 @@ export default function Home() {
               hosting from one person.
             </p>
             <p className="mt-3 text-sm font-medium text-slate-700">
-              Business: LUȚA D. L. GHEORGHE PERSOANĂ FIZICĂ AUTORIZATĂ
+              Brand: your-site.online
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -536,6 +540,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <footer className="border-t border-slate-200 bg-slate-950">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} your-site.online. All rights reserved.</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <a href="#faq" className="transition hover:text-white">
+              FAQ
+            </a>
+            <a href="#start-your-order" className="transition hover:text-white">
+              Contact
+            </a>
+            <a href="#hero-title" className="transition hover:text-white">
+              Back to top
+            </a>
+          </div>
+        </div>
+      </footer>
       <ContactBubble />
     </main>
   );
