@@ -4,7 +4,7 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 
 export default function Home() {
   return (
-    <main className="relative w-full bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
+    <main className="w-full bg-white text-slate-800">
       <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <a href="#hero-title" className="flex items-center gap-3">
@@ -38,16 +38,17 @@ export default function Home() {
           </a>
         </div>
       </header>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
-      >
-        <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
-        <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
-        <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
-      </div>
-      <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+      <section className="relative overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+        >
+          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
+          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
+          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
+        </div>
+        <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1
           id="hero-title"
           className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl"
@@ -141,6 +142,7 @@ export default function Home() {
               Others
             </span>
           </div>
+        </div>
         </div>
       </section>
 
