@@ -1,21 +1,30 @@
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
 import FloatingStartButton from "../components/FloatingStartButton";
+import ScrollToOrderButton from "../components/ScrollToOrderButton";
 
 export default function Home() {
   return (
     <main className="relative w-full overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
-        <FloatingStartButton />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
-          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
-          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
-        </div>
-        <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+      <FloatingStartButton />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+      >
+        <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
+        <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
+        <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
+        <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
+      </div>
+      <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
-          I get your website live online, ready for customers.
+          Your website, live in 24 hours
         </h1>
+        <ScrollToOrderButton
+          id="hero-launch-button"
+          label="Launch my website"
+          className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        />
 
         <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
@@ -164,7 +173,9 @@ export default function Home() {
               <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
                 Hosting Plan
               </p>
-              <p className="mt-2 text-5xl font-extrabold text-slate-800">$9.99</p>
+              <p className="mt-2 text-5xl font-extrabold text-slate-800">
+                $9.99
+              </p>
               <p className="mt-1 text-slate-600">per month, simple and solid</p>
               <p className="mt-3 text-sm font-semibold text-slate-800">
                 Best for landing pages and business websites
@@ -216,8 +227,12 @@ export default function Home() {
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <p className="text-sm text-slate-700">- Domain name setup</p>
-              <p className="text-sm text-slate-700">- SSL certificate (HTTPS)</p>
-              <p className="text-sm text-slate-700">- Server and hosting setup</p>
+              <p className="text-sm text-slate-700">
+                - SSL certificate (HTTPS)
+              </p>
+              <p className="text-sm text-slate-700">
+                - Server and hosting setup
+              </p>
               <p className="text-sm text-slate-700">- Website deployment</p>
               <p className="text-sm text-slate-700">- DNS configuration</p>
               <p className="text-sm text-slate-700">- Launch support</p>

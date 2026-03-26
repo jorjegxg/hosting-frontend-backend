@@ -35,12 +35,23 @@ export async function checkDatabaseConnection(): Promise<void> {
 
 export async function ensureMessagesTable(): Promise<void> {
   await dbPool.query(`
+    CREATE TABLE IF NOT EXISTS contact_conversations (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      client_email VARCHAR(255) NOT NULL UNIQUE,
+      source VARCHAR(50) NOT NULL DEFAULT 'chat_bubble',
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )
+  `);
+
+  await dbPool.query(`
     CREATE TABLE IF NOT EXISTS contact_messages (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      source VARCHAR(50) NOT NULL DEFAULT 'chat_bubble',
-      question TEXT NOT NULL,
-      answer TEXT NOT NULL,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      conversation_id INT NOT NULL,
+      sender_type ENUM('client', 'owner', 'assistant') NOT NULL,
+      content TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (conversation_id) REFERENCES contact_conversations(id) ON DELETE CASCADE
     )
   `);
 }
