@@ -5,7 +5,7 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 
 export default function Home() {
   return (
-    <main className="relative w-full overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
+    <main className="relative w-full overflow-x-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
       <FloatingStartButton />
       <div
         aria-hidden="true"
@@ -17,7 +17,10 @@ export default function Home() {
         <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
       </div>
       <section className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
-        <h1 className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+        <h1
+          id="hero-title"
+          className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl"
+        >
           Your website, live in 24 hours
         </h1>
         <ScrollToOrderButton
@@ -29,14 +32,14 @@ export default function Home() {
         <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
             <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
-              1. Your website on your computer
+              1. Upload zip file of your website
             </p>
             <div className="relative aspect-5/4 w-full">
               <Image
-                src="/steps/browser_localhost_3000-02.svg"
-                alt="Website running on your computer"
+                src="/project_upload_exact_sqare.svg"
+                alt="Project upload step"
                 fill
-                className="object-contain p-1"
+                className="object-contain object-center p-2"
                 priority
               />
             </div>
@@ -106,59 +109,6 @@ export default function Home() {
             <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
               Others
             </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-slate-200 bg-slate-50/70">
-        <div className="mx-auto w-full max-w-6xl px-6 py-12">
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.16em] text-slate-600">
-            Launch Checks
-          </p>
-          <h2 className="mt-2 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Everything verified before your site goes live
-          </h2>
-          <div className="mx-auto mt-8 grid w-full max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
-                ✓
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
-                Fast SSD/NVMe storage
-              </span>
-            </div>
-            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
-                ✓
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
-                99.9% uptime guarantee
-              </span>
-            </div>
-            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
-                ✓
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
-                Free SSL & backups
-              </span>
-            </div>
-            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
-                ✓
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
-                Domain registration
-              </span>
-            </div>
-            <div className="flex items-center gap-3 rounded-full border border-emerald-200 bg-white px-4 py-3 shadow-sm sm:col-span-2 lg:col-span-1">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-sm text-emerald-700">
-                ✓
-              </span>
-              <span className="text-sm font-semibold text-slate-800">
-                Premium support included
-              </span>
-            </div>
           </div>
         </div>
       </section>
@@ -430,11 +380,11 @@ export default function Home() {
 
             <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
               <legend className="px-2 text-sm font-semibold text-slate-700">
-                Project Upload (same block)
+                Project Upload
               </legend>
               <label className="block">
                 <span className="mb-2 block text-sm font-medium text-slate-700">
-                  ZIP file or project folder
+                  ZIP file
                 </span>
                 <input
                   type="file"

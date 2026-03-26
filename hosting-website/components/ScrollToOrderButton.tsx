@@ -15,8 +15,8 @@ export default function ScrollToOrderButton({
     const target = document.getElementById("start-your-order");
     if (!target) return;
 
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.replaceState(null, "", window.location.pathname);
+    const y = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: y, behavior: "smooth" });
   }
 
   return (
