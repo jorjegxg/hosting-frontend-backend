@@ -93,7 +93,7 @@ export default function ContactBubble() {
             </button>
           </div>
 
-          <div className="max-h-72 space-y-3 overflow-y-auto px-4 py-4">
+          <div className="space-y-3 px-4 py-4">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}

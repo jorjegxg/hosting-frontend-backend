@@ -5,7 +5,7 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 
 export default function Home() {
   return (
-    <main className="relative w-full overflow-x-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
+    <main className="relative w-full bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50 text-slate-800">
       <FloatingStartButton />
       <div
         aria-hidden="true"
