@@ -1,10 +1,13 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useOrderPlanStore } from "../store/orderPlanStore";
 
 export default function StartOrderForm() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [hasSelectedZip, setHasSelectedZip] = useState(false);
   const [status, setStatus] = useState<{ type: "ok" | "error"; text: string } | null>(null);
   const isDev = process.env.NODE_ENV === "development";
@@ -12,7 +15,7 @@ export default function StartOrderForm() {
   const setSelectedPlan = useOrderPlanStore((state) => state.setSelectedPlan);
   const devDefaults = {
     name: "Test Client",
-    email: "client@example.com",
+    email: "gheorgheoff@gmail.com",
     preferredDomainName: "strelements-demo",
     message: "Please deploy my website from the attached ZIP and connect domain.",
     backupDomainIdeas: "strelements-demo-site, strelements-online",
@@ -60,23 +63,49 @@ export default function StartOrderForm() {
     }
 
     try {
-      const response = await fetch(`${backendUrl}/orders`, {
-        method: "POST",
-        body: formData,
+      setUploadProgress(0);
+      const data = await new Promise<{ message?: string }>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `${backendUrl}/orders`, true);
+
+        xhr.upload.onprogress = (progressEvent) => {
+          if (!progressEvent.lengthComputable) return;
+          const percent = Math.round(
+            (progressEvent.loaded / progressEvent.total) * 100,
+          );
+          setUploadProgress(percent);
+        };
+
+        xhr.onload = () => {
+          let parsed: { message?: string } = {};
+          try {
+            parsed = JSON.parse(xhr.responseText) as { message?: string };
+          } catch {
+            parsed = {};
+          }
+
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(parsed);
+            return;
+          }
+          reject(new Error(parsed.message ?? "Failed to send order."));
+        };
+
+        xhr.onerror = () => reject(new Error("Network error while uploading."));
+        xhr.send(formData);
       });
-      const data = (await response.json()) as { message?: string };
-      if (!response.ok) {
-        throw new Error(data.message ?? "Failed to send order.");
-      }
 
       formEl.reset();
       setHasSelectedZip(false);
+      setUploadProgress(0);
       setSelectedPlan(isDev ? "hosting-9-99" : "");
       setStatus({
         type: "ok",
         text: "Order sent successfully. I will contact you soon.",
       });
+      router.push("/order-sent");
     } catch (error) {
+      setUploadProgress(0);
       setStatus({
         type: "error",
         text: error instanceof Error ? error.message : "Unexpected error.",
@@ -228,6 +257,20 @@ export default function StartOrderForm() {
       >
         {isSubmitting ? "Sending..." : hasSelectedZip ? "Send Order" : "Upload ZIP first"}
       </button>
+
+      {isSubmitting && (
+        <div className="space-y-2">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+            <div
+              className="h-full rounded-full bg-blue-600 transition-all"
+              style={{ width: `${uploadProgress}%` }}
+            />
+          </div>
+          <p className="text-xs font-medium text-slate-600">
+            Uploading: {uploadProgress}%
+          </p>
+        </div>
+      )}
 
       {status && (
         <p
