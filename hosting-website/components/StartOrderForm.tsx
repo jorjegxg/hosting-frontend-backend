@@ -122,6 +122,7 @@ export default function StartOrderForm() {
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-slate-700">ZIP file</span>
           <input
+            id="project-upload-input"
             type="file"
             name="projectUpload"
             required
@@ -129,7 +130,7 @@ export default function StartOrderForm() {
             onChange={(event) =>
               setHasSelectedZip(Boolean(event.currentTarget.files?.length))
             }
-            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
+            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-blue-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
           />
         </label>
       </fieldset>
@@ -186,7 +187,7 @@ export default function StartOrderForm() {
               required
               checked={selectedPlan === "hosting-9-99"}
               onChange={() => setSelectedPlan("hosting-9-99")}
-              className="mt-1 h-4 w-4 accent-slate-700"
+              className="mt-1 h-4 w-4 accent-blue-600"
             />
             <span>
               <span className="block text-sm font-semibold text-slate-800">
@@ -206,7 +207,7 @@ export default function StartOrderForm() {
               required
               checked={selectedPlan === "full-stack-19-99"}
               onChange={() => setSelectedPlan("full-stack-19-99")}
-              className="mt-1 h-4 w-4 accent-slate-700"
+              className="mt-1 h-4 w-4 accent-blue-600"
             />
             <span>
               <span className="block text-sm font-semibold text-slate-800">
@@ -223,7 +224,7 @@ export default function StartOrderForm() {
       <button
         type="submit"
         disabled={isSubmitting || !hasSelectedZip}
-        className="inline-flex rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
+        className="inline-flex rounded-full bg-blue-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting ? "Sending..." : hasSelectedZip ? "Send Order" : "Upload ZIP first"}
       </button>

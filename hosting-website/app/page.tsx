@@ -6,18 +6,20 @@ import StartOrderForm from "../components/StartOrderForm";
 
 export default function Home() {
   return (
-    <main className="w-full bg-white text-slate-800">
-      <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
+    <main className="w-full bg-slate-50 text-slate-900">
+      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <a href="#hero-title" className="flex items-center gap-3">
-            <Image
-              src="/hosting-logo.svg"
-              alt="Strelements logo"
-              width={36}
-              height={36}
-              className="h-9 w-9"
-            />
-            <span className="font-serif text-base font-bold tracking-[0.08em] text-slate-900 sm:text-lg">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white">
+              <Image
+                src="/hosting-logo.svg"
+                alt="Strelements logo"
+                width={34}
+                height={34}
+                className="h-8 w-8"
+              />
+            </span>
+            <span className="font-serif text-lg font-bold tracking-[0.06em] text-slate-900 sm:text-xl">
               Strelements
             </span>
           </a>
@@ -34,52 +36,54 @@ export default function Home() {
           </nav>
           <a
             href="#start-your-order"
-            className="inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
+            className="inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
           >
             Launch My Site
           </a>
         </div>
       </header>
-      <section className="relative overflow-hidden bg-linear-to-b from-slate-100 via-blue-100/50 to-slate-50">
+      <section className="relative overflow-hidden bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0"
+          className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
         >
-          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-sky-200/35 via-transparent to-transparent" />
-          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-slate-300/30 blur-3xl" />
-          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-300/30 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-blue-400/25 blur-3xl" />
+          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-blue-400/20 via-transparent to-transparent" />
+          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl" />
+          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-400/15 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-indigo-500/10 blur-3xl" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1
           id="hero-title"
-          className="max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl"
+          className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
         >
           Your website, live in 24 hours
         </h1>
         <ScrollToOrderButton
           id="hero-launch-button"
           label="Launch my website"
-          className="mt-6 inline-flex items-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          className="mt-6 inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
         />
 
         <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
               1. Upload zip file of your website
             </p>
-            <div className="relative aspect-5/4 w-full">
-              <Image
-                src="/project_upload_exact_sqare.svg"
-                alt="Project upload step"
-                fill
-                className="object-contain object-center p-2"
-                priority
-              />
-            </div>
+            <a href="#start-your-order" className="block">
+              <div className="relative aspect-5/4 w-full cursor-pointer">
+                <Image
+                  src="/project_upload_exact_sqare.svg"
+                  alt="Project upload step"
+                  fill
+                  className="object-contain object-center p-2"
+                  priority
+                />
+              </div>
+            </a>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
               2. I upload it to a server
             </p>
@@ -93,7 +97,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
               3. I connect your domain name
             </p>
@@ -183,7 +187,7 @@ export default function Home() {
           <div className="mx-auto grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
             <PlanSelectLink
               plan="hosting-9-99"
-              className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="block rounded-2xl border border-slate-200 bg-white px-8 py-8 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
                 Hosting Plan
@@ -195,14 +199,14 @@ export default function Home() {
               <p className="mt-3 text-sm font-semibold text-slate-800">
                 Best for landing pages and business websites
               </p>
-              <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+              <span className="mt-6 inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
                 Choose Hosting Plan - $9.99/mo
               </span>
             </PlanSelectLink>
 
             <PlanSelectLink
               plan="full-stack-19-99"
-              className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
+              className="block rounded-2xl border border-slate-200 bg-white px-8 py-8 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
                 Full Stack Plan
@@ -214,21 +218,21 @@ export default function Home() {
               <p className="mt-3 text-sm font-semibold text-slate-800">
                 Great for web apps with frontend, backend, and database
               </p>
-              <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+              <span className="mt-6 inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
                 Choose Full Stack - $19.99/mo
               </span>
             </PlanSelectLink>
           </div>
           <a
             href="#start-your-order"
-            className="mt-10 inline-flex rounded-full bg-slate-900 px-8 py-3 text-base font-semibold text-white transition hover:bg-slate-800"
+            className="mt-10 inline-flex rounded-full bg-blue-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-blue-500"
           >
             Let&apos;s Launch Your Site
           </a>
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50/80">
+      <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-3">
           <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <h2 className="text-xl font-semibold">Done-For-You Setup</h2>
@@ -271,7 +275,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50/80">
+      <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             What clients say
@@ -305,7 +309,7 @@ export default function Home() {
           </p>
 
           <div className="mt-8 space-y-4">
-            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 What is hosting?
               </h3>
@@ -314,7 +318,7 @@ export default function Home() {
                 access it online 24/7.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 Do I need a domain name?
               </h3>
@@ -323,7 +327,7 @@ export default function Home() {
                 can help you pick and connect it.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 What is SSL / HTTPS?
               </h3>
@@ -332,7 +336,7 @@ export default function Home() {
                 website opens with HTTPS by default.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 I built my website with AI. Can you host it?
               </h3>
@@ -341,7 +345,7 @@ export default function Home() {
                 and launch.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-300 bg-slate-50 p-5">
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 How fast can my site go live?
               </h3>
@@ -355,7 +359,7 @@ export default function Home() {
           <div className="mt-10">
             <a
               href="#start-your-order"
-              className="inline-flex rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              className="inline-flex rounded-full bg-blue-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
             >
               Start Your Order Now
             </a>
@@ -365,7 +369,7 @@ export default function Home() {
 
       <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <div className="rounded-3xl border-2 border-slate-300 bg-slate-100 p-8 md:p-10">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 md:p-10 shadow-sm">
             <p className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-slate-800">
               Trust & Transparency
             </p>

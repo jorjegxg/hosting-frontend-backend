@@ -171,6 +171,21 @@ app.post("/orders", upload.single("projectUpload"), async (req, res) => {
             paymentPlan,
             storedPath,
         ]);
+        try {
+            const planLabel = paymentPlan === "full-stack-19-99"
+                ? "Full Stack Plan - $19.99/mo"
+                : "Hosting Plan - $9.99/mo";
+            const domainLine = preferredDomainName
+                ? `Preferred domain: ${preferredDomainName}\n`
+                : "";
+            await sendEmailToClient(email.toLowerCase(), "Order received - Strelements", `Hi ${name},\n\nYour order was received successfully.\n\nSelected plan: ${planLabel}\n${domainLine}Uploaded project: ${req.file.originalname}\n\nI will review your request and contact you shortly.\n\nThanks,\nStrelements\n`);
+        }
+        catch (emailError) {
+            const message = emailError instanceof Error
+                ? emailError.message
+                : "Failed to send order confirmation email";
+            console.error(message);
+        }
         return res.json({
             status: "ok",
             message: "Order received successfully.",

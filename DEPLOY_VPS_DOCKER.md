@@ -32,7 +32,7 @@ scp -r "D:\SERIOUS PROJECTS\hosting-frontend-backend\*" root@YOUR_SERVER_IP:/opt
 
 ```bash
 cd /opt/hosting-app
-cp .env.vps.example .env
+cp .env.example .env
 nano .env
 ```
 
