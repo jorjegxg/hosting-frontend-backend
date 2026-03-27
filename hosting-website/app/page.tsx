@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
+import PlanSelectLink from "../components/PlanSelectLink";
 import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
@@ -180,8 +181,8 @@ export default function Home() {
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <div className="mx-auto grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
-            <a
-              href="#start-your-order"
+            <PlanSelectLink
+              plan="hosting-9-99"
               className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
               <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
@@ -197,10 +198,10 @@ export default function Home() {
               <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
                 Choose Hosting Plan - $9.99/mo
               </span>
-            </a>
+            </PlanSelectLink>
 
-            <a
-              href="#start-your-order"
+            <PlanSelectLink
+              plan="full-stack-19-99"
               className="block rounded-2xl border-2 border-slate-300 bg-white px-8 py-8 shadow-md shadow-slate-200 transition hover:-translate-y-0.5 hover:shadow-lg"
             >
               <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
@@ -216,7 +217,7 @@ export default function Home() {
               <span className="mt-6 inline-flex rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
                 Choose Full Stack - $19.99/mo
               </span>
-            </a>
+            </PlanSelectLink>
           </div>
           <a
             href="#start-your-order"

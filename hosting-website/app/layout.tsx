@@ -28,7 +28,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
     >
-      <body className="flex min-h-dvh flex-col">{children}</body>
+      <body suppressHydrationWarning className="flex min-h-dvh flex-col">
+        {children}
+      </body>
     </html>
   );
 }

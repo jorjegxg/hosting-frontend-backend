@@ -1,11 +1,15 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useOrderPlanStore } from "../store/orderPlanStore";
 
 export default function StartOrderForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hasSelectedZip, setHasSelectedZip] = useState(false);
   const [status, setStatus] = useState<{ type: "ok" | "error"; text: string } | null>(null);
   const isDev = process.env.NODE_ENV === "development";
+  const selectedPlan = useOrderPlanStore((state) => state.selectedPlan);
+  const setSelectedPlan = useOrderPlanStore((state) => state.setSelectedPlan);
   const devDefaults = {
     name: "Test Client",
     email: "client@example.com",
@@ -18,6 +22,12 @@ export default function StartOrderForm() {
     [],
   );
 
+  useEffect(() => {
+    if (isDev && !selectedPlan) {
+      setSelectedPlan("hosting-9-99");
+    }
+  }, [isDev, selectedPlan, setSelectedPlan]);
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (isSubmitting) return;
@@ -27,6 +37,27 @@ export default function StartOrderForm() {
 
     const formEl = event.currentTarget;
     const formData = new FormData(formEl);
+    const uploadedFile = formData.get("projectUpload");
+    const file =
+      uploadedFile instanceof File && uploadedFile.size > 0 ? uploadedFile : null;
+
+    if (!file) {
+      setStatus({
+        type: "error",
+        text: "Please upload a ZIP file first.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!file.name.toLowerCase().endsWith(".zip")) {
+      setStatus({
+        type: "error",
+        text: "Only .zip files are allowed.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch(`${backendUrl}/orders`, {
@@ -39,6 +70,8 @@ export default function StartOrderForm() {
       }
 
       formEl.reset();
+      setHasSelectedZip(false);
+      setSelectedPlan(isDev ? "hosting-9-99" : "");
       setStatus({
         type: "ok",
         text: "Order sent successfully. I will contact you soon.",
@@ -93,6 +126,9 @@ export default function StartOrderForm() {
             name="projectUpload"
             required
             accept=".zip,application/zip,application/x-zip-compressed"
+            onChange={(event) =>
+              setHasSelectedZip(Boolean(event.currentTarget.files?.length))
+            }
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
           />
         </label>
@@ -148,7 +184,8 @@ export default function StartOrderForm() {
               name="paymentPlan"
               value="hosting-9-99"
               required
-              defaultChecked={isDev}
+              checked={selectedPlan === "hosting-9-99"}
+              onChange={() => setSelectedPlan("hosting-9-99")}
               className="mt-1 h-4 w-4 accent-slate-700"
             />
             <span>
@@ -167,6 +204,8 @@ export default function StartOrderForm() {
               name="paymentPlan"
               value="full-stack-19-99"
               required
+              checked={selectedPlan === "full-stack-19-99"}
+              onChange={() => setSelectedPlan("full-stack-19-99")}
               className="mt-1 h-4 w-4 accent-slate-700"
             />
             <span>
@@ -183,10 +222,10 @@ export default function StartOrderForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !hasSelectedZip}
         className="inline-flex rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {isSubmitting ? "Sending..." : "Send Order"}
+        {isSubmitting ? "Sending..." : hasSelectedZip ? "Send Order" : "Upload ZIP first"}
       </button>
 
       {status && (
