@@ -97,7 +97,32 @@ app.post("/stripe/webhook", express_1.default.raw({ type: "application/json" }),
                 ]);
                 const clientEmail = session.customer_details?.email;
                 if (clientEmail && emailRegex.test(clientEmail)) {
-                    await sendEmailToClient(clientEmail.toLowerCase(), "Payment received - Strelements", "Your subscription payment was received successfully. I will now continue with your order setup.");
+                    const [orderRowsRaw] = await db_1.dbPool.execute(`SELECT
+                 id,
+                 name,
+                 email,
+                 preferred_domain_name,
+                 message,
+                 backup_domain_ideas,
+                 payment_plan,
+                 project_zip_path,
+                 payment_status,
+                 stripe_checkout_session_id,
+                 stripe_subscription_id,
+                 payment_currency,
+                 paid_at,
+                 created_at
+               FROM order_requests
+               WHERE id = ?
+               LIMIT 1`, [orderId]);
+                    const orderRows = orderRowsRaw;
+                    const order = orderRows[0];
+                    const plainTextBody = order
+                        ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${node_path_1.default.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nStrelements`
+                        : "Your subscription payment was received successfully. I will now continue with your order setup.";
+                    await sendEmailToClient(clientEmail.toLowerCase(), "Order confirmed - Strelements", plainTextBody, order
+                        ? renderOrderConfirmationHtml(order)
+                        : renderEmailShell("Payment received", toHtmlParagraphs("Your subscription payment was received successfully.\nI will now continue with your order setup.")));
                 }
             }
         }
@@ -156,7 +181,7 @@ function buildAssistantAnswer(questionRaw) {
     }
     return answer;
 }
-async function sendEmailToClient(toEmail, subject, bodyText) {
+async function sendEmailToClient(toEmail, subject, bodyText, bodyHtml) {
     const host = process.env.SMTP_HOST;
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
@@ -183,6 +208,7 @@ async function sendEmailToClient(toEmail, subject, bodyText) {
             to: toEmail,
             subject,
             text: bodyText,
+            html: bodyHtml,
         });
         console.log(`[SMTP] Email sent successfully | to=${toEmail}`);
         return { sent: true };
@@ -196,6 +222,56 @@ async function sendEmailToClient(toEmail, subject, bodyText) {
         }
         return { sent: false, reason };
     }
+}
+function toHtmlParagraphs(text) {
+    const escaped = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    return escaped
+        .split("\n")
+        .filter((line) => line.trim().length > 0)
+        .map((line) => `<p style="margin:0 0 12px 0;line-height:1.5;">${line}</p>`)
+        .join("");
+}
+function renderEmailShell(title, bodyHtml) {
+    return `
+<div style="font-family:Arial,sans-serif;background:#f8fafc;padding:24px;color:#0f172a;">
+  <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;">
+    <h2 style="margin:0 0 16px 0;font-size:22px;color:#0f172a;">${title}</h2>
+    ${bodyHtml}
+    <p style="margin:20px 0 0 0;color:#64748b;font-size:12px;">Strelements</p>
+  </div>
+</div>`.trim();
+}
+function formatPlanLabel(paymentPlan) {
+    if (paymentPlan === "full-stack-19-99") {
+        return "Full Stack Plan - $19.99/mo";
+    }
+    if (paymentPlan === "hosting-9-99") {
+        return "Hosting Plan - $9.99/mo";
+    }
+    return paymentPlan;
+}
+function renderOrderConfirmationHtml(order) {
+    const planLabel = formatPlanLabel(order.payment_plan);
+    const paidAtText = order.paid_at
+        ? new Date(order.paid_at).toLocaleString("en-US")
+        : "Just now";
+    const domain = order.preferred_domain_name ?? "Not provided";
+    const uploadedFile = node_path_1.default.basename(order.project_zip_path);
+    return renderEmailShell("Order confirmed", `
+<p style="margin:0 0 12px 0;line-height:1.6;">Hi ${order.name}, your payment was successful and your order is now confirmed.</p>
+<p style="margin:0 0 16px 0;line-height:1.6;">I will review your project and contact you shortly with next steps.</p>
+<div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;background:#f8fafc;">
+  <p style="margin:0 0 8px 0;"><strong>Order ID:</strong> #${order.id}</p>
+  <p style="margin:0 0 8px 0;"><strong>Plan:</strong> ${planLabel}</p>
+  <p style="margin:0 0 8px 0;"><strong>Paid at:</strong> ${paidAtText}</p>
+  <p style="margin:0 0 8px 0;"><strong>Preferred domain:</strong> ${domain}</p>
+  <p style="margin:0;"><strong>Uploaded file:</strong> ${uploadedFile}</p>
+</div>
+<p style="margin:16px 0 0 0;line-height:1.6;">If any details are incorrect, reply to this email and I will update them.</p>
+`.trim());
 }
 async function getOrCreateConversation(clientEmail, source = "chat_bubble") {
     const [existingRowsRaw] = await db_1.dbPool.execute("SELECT id, client_email, source, created_at, updated_at FROM contact_conversations WHERE client_email = ? LIMIT 1", [clientEmail]);
@@ -224,7 +300,7 @@ app.get("/admin/test-email", requireAdmin, async (req, res) => {
     }
     console.log(`[TEST-EMAIL] Sending test email to ${to}`);
     const result = await sendEmailToClient(to, "Test email from Strelements backend", "If you can read this, SMTP is working correctly.\n\nSent at: " +
-        new Date().toISOString());
+        new Date().toISOString(), renderEmailShell("SMTP test email", toHtmlParagraphs(`If you can read this, SMTP is working correctly.\nSent at: ${new Date().toISOString()}`)));
     if (result.sent) {
         return res.json({ status: "ok", message: `Test email sent to ${to}` });
     }
@@ -594,7 +670,7 @@ app.post("/conversations/:conversationId/reply", async (req, res) => {
         await db_1.dbPool.execute("INSERT INTO contact_messages (conversation_id, sender_type, content) VALUES (?, 'owner', ?)", [conversationId, contentRaw.trim()]);
         await db_1.dbPool.execute("UPDATE contact_conversations SET updated_at = CURRENT_TIMESTAMP WHERE id = ?", [conversationId]);
         try {
-            await sendEmailToClient(conversation.client_email, "New reply about your hosting question", `Hi,\n\nI replied to your message:\n\n"${contentRaw.trim()}"\n\nYou can also continue chatting on the website.\n`);
+            await sendEmailToClient(conversation.client_email, "New reply about your hosting question", `Hi,\n\nI replied to your message:\n\n"${contentRaw.trim()}"\n\nYou can also continue chatting on the website.\n`, renderEmailShell("New reply about your hosting question", toHtmlParagraphs(`Hi,\nI replied to your message:\n"${contentRaw.trim()}"\nYou can also continue chatting on the website.`)));
         }
         catch (emailError) {
             const message = emailError instanceof Error

@@ -376,7 +376,7 @@ export default function StartOrderForm() {
           : isUploadingFile
             ? "Uploading ZIP..."
             : uploadedFilePath
-              ? "Continue to payment"
+              ? "Pay with Stripe"
               : "Upload ZIP first"}
       </button>
 

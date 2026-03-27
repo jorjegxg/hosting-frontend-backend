@@ -24,6 +24,9 @@ export default function Home() {
             </span>
           </a>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
+            <a href="/about-us" className="transition hover:text-slate-900">
+              About Us
+            </a>
             <a href="#pricing" className="transition hover:text-slate-900">
               Pricing
             </a>
@@ -424,6 +427,9 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Strelements. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
+            <a href="/about-us" className="transition hover:text-white">
+              About Us
+            </a>
             <a href="#faq" className="transition hover:text-white">
               FAQ
             </a>
