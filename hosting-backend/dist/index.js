@@ -40,6 +40,23 @@ const upload = (0, multer_1.default)({
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const adminPassword = process.env.ADMIN_PASSWORD ?? "";
+function requireAdmin(req, res, next) {
+    if (!adminPassword) {
+        return res.status(503).json({
+            status: "error",
+            message: "Admin password is not configured on server.",
+        });
+    }
+    const providedPassword = req.header("x-admin-password");
+    if (!providedPassword || providedPassword !== adminPassword) {
+        return res.status(401).json({
+            status: "error",
+            message: "Unauthorized.",
+        });
+    }
+    return next();
+}
 function buildAssistantAnswer(questionRaw) {
     const question = questionRaw.toLowerCase();
     let answer = "Thanks for your message. I will reply shortly with full details.";
@@ -161,6 +178,95 @@ app.post("/orders", upload.single("projectUpload"), async (req, res) => {
     }
     catch (error) {
         const message = error instanceof Error ? error.message : "Failed to save order.";
+        return res.status(500).json({ status: "error", message });
+    }
+});
+app.get("/admin/orders", requireAdmin, async (_req, res) => {
+    try {
+        const [rowsRaw] = await db_1.dbPool.query(`SELECT
+        id,
+        name,
+        email,
+        preferred_domain_name,
+        message,
+        backup_domain_ideas,
+        payment_plan,
+        project_zip_path,
+        created_at
+      FROM order_requests
+      ORDER BY id DESC
+      LIMIT 500`);
+        const rows = rowsRaw;
+        return res.json({ status: "ok", orders: rows });
+    }
+    catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to fetch orders.";
+        return res.status(500).json({ status: "error", message });
+    }
+});
+app.get("/admin/orders/:orderId/download", requireAdmin, async (req, res) => {
+    const orderId = Number(req.params.orderId);
+    if (!Number.isInteger(orderId) || orderId < 1) {
+        return res.status(400).json({
+            status: "error",
+            message: "Invalid order id.",
+        });
+    }
+    try {
+        const [rowsRaw] = await db_1.dbPool.execute("SELECT id, project_zip_path FROM order_requests WHERE id = ? LIMIT 1", [orderId]);
+        const rows = rowsRaw;
+        const row = rows[0];
+        if (!row) {
+            return res.status(404).json({
+                status: "error",
+                message: "Order not found.",
+            });
+        }
+        if (!row.project_zip_path.startsWith("/uploads/")) {
+            return res.status(400).json({
+                status: "error",
+                message: "Stored file path is invalid.",
+            });
+        }
+        const uploadsRoot = node_path_1.default.resolve(__dirname, "../uploads");
+        const filePath = node_path_1.default.resolve(__dirname, "..", row.project_zip_path.slice(1));
+        if (!filePath.startsWith(uploadsRoot)) {
+            return res.status(400).json({
+                status: "error",
+                message: "Access outside uploads directory is not allowed.",
+            });
+        }
+        if (!node_fs_1.default.existsSync(filePath)) {
+            return res.status(404).json({
+                status: "error",
+                message: "File not found on disk.",
+            });
+        }
+        return res.download(filePath, node_path_1.default.basename(filePath));
+    }
+    catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to download file.";
+        return res.status(500).json({ status: "error", message });
+    }
+});
+app.get("/admin/storage", requireAdmin, async (_req, res) => {
+    try {
+        const stats = await node_fs_1.default.promises.statfs(uploadsDir);
+        const totalBytes = stats.bsize * stats.blocks;
+        const freeBytes = stats.bsize * stats.bavail;
+        const usedBytes = totalBytes - freeBytes;
+        return res.json({
+            status: "ok",
+            storage: {
+                path: uploadsDir,
+                totalBytes,
+                usedBytes,
+                freeBytes,
+            },
+        });
+    }
+    catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to fetch storage stats.";
         return res.status(500).json({ status: "error", message });
     }
 });
