@@ -424,8 +424,11 @@ export default function Home() {
             <a href="#faq" className="transition hover:text-white">
               FAQ
             </a>
-            <a href="#start-your-order" className="transition hover:text-white">
-              Contact
+            <a
+              href="mailto:hello@strelements.com"
+              className="transition hover:text-white"
+            >
+              hello@strelements.com
             </a>
             <a href="#hero-title" className="transition hover:text-white">
               Back to top

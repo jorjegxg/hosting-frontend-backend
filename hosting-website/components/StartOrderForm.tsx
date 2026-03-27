@@ -1,14 +1,14 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
 import { useOrderPlanStore } from "../store/orderPlanStore";
 
 export default function StartOrderForm() {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUploadingFile, setIsUploadingFile] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [hasSelectedZip, setHasSelectedZip] = useState(false);
+  const [uploadedFilePath, setUploadedFilePath] = useState("");
+  const [uploadedFileName, setUploadedFileName] = useState("");
   const [status, setStatus] = useState<{ type: "ok" | "error"; text: string } | null>(null);
   const isDev = process.env.NODE_ENV === "development";
   const selectedPlan = useOrderPlanStore((state) => state.selectedPlan);
@@ -31,42 +31,23 @@ export default function StartOrderForm() {
     }
   }, [isDev, selectedPlan, setSelectedPlan]);
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (isSubmitting) return;
+  async function uploadZipNow(file: File) {
+    setIsUploadingFile(true);
+    setUploadProgress(0);
+    setUploadedFilePath("");
+    setUploadedFileName("");
 
-    setStatus(null);
-    setIsSubmitting(true);
-
-    const formEl = event.currentTarget;
-    const formData = new FormData(formEl);
-    const uploadedFile = formData.get("projectUpload");
-    const file =
-      uploadedFile instanceof File && uploadedFile.size > 0 ? uploadedFile : null;
-
-    if (!file) {
-      setStatus({
-        type: "error",
-        text: "Please upload a ZIP file first.",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!file.name.toLowerCase().endsWith(".zip")) {
-      setStatus({
-        type: "error",
-        text: "Only .zip files are allowed.",
-      });
-      setIsSubmitting(false);
-      return;
-    }
+    const uploadData = new FormData();
+    uploadData.append("projectUpload", file);
 
     try {
-      setUploadProgress(0);
-      const data = await new Promise<{ message?: string }>((resolve, reject) => {
+      const response = await new Promise<{
+        uploadedFilePath?: string;
+        originalName?: string;
+        message?: string;
+      }>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", `${backendUrl}/orders`, true);
+        xhr.open("POST", `${backendUrl}/orders/upload`, true);
 
         xhr.upload.onprogress = (progressEvent) => {
           if (!progressEvent.lengthComputable) return;
@@ -77,6 +58,107 @@ export default function StartOrderForm() {
         };
 
         xhr.onload = () => {
+          let parsed: { uploadedFilePath?: string; originalName?: string; message?: string } =
+            {};
+          try {
+            parsed = JSON.parse(xhr.responseText) as {
+              uploadedFilePath?: string;
+              originalName?: string;
+              message?: string;
+            };
+          } catch {
+            parsed = {};
+          }
+
+          if (xhr.status >= 200 && xhr.status < 300) {
+            resolve(parsed);
+            return;
+          }
+          reject(new Error(parsed.message ?? "Failed to upload ZIP file."));
+        };
+
+        xhr.onerror = () => reject(new Error("Network error while uploading ZIP."));
+        xhr.send(uploadData);
+      });
+
+      if (!response.uploadedFilePath) {
+        throw new Error("Upload succeeded but file path is missing.");
+      }
+
+      setUploadedFilePath(response.uploadedFilePath);
+      setUploadedFileName(response.originalName ?? file.name);
+      setStatus({
+        type: "ok",
+        text: "ZIP uploaded successfully. You can now send your order.",
+      });
+    } catch (error) {
+      setUploadProgress(0);
+      setStatus({
+        type: "error",
+        text: error instanceof Error ? error.message : "Failed to upload ZIP file.",
+      });
+    } finally {
+      setIsUploadingFile(false);
+    }
+  }
+
+  async function onZipChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.currentTarget.files?.[0] ?? null;
+    setStatus(null);
+    if (!file) {
+      setUploadedFilePath("");
+      setUploadedFileName("");
+      setUploadProgress(0);
+      return;
+    }
+
+    if (!file.name.toLowerCase().endsWith(".zip")) {
+      setUploadedFilePath("");
+      setUploadedFileName("");
+      setUploadProgress(0);
+      setStatus({
+        type: "error",
+        text: "Only .zip files are allowed.",
+      });
+      return;
+    }
+
+    await uploadZipNow(file);
+  }
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (isSubmitting || isUploadingFile) return;
+
+    setStatus(null);
+    setIsSubmitting(true);
+
+    const formEl = event.currentTarget;
+    const formData = new FormData(formEl);
+
+    if (!uploadedFilePath) {
+      setStatus({
+        type: "error",
+        text: "Please choose a ZIP file and wait for upload to finish.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      console.log(`[ORDER_FORM] Submitting order to ${backendUrl}/orders`);
+      const data = await new Promise<{
+        message?: string;
+        checkoutUrl?: string;
+      }>((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `${backendUrl}/orders`, true);
+        console.log("[ORDER_FORM] XHR opened");
+
+        xhr.onload = () => {
+          console.log(
+            `[ORDER_FORM] XHR load | status=${xhr.status} | responseURL=${xhr.responseURL || "n/a"}`,
+          );
           let parsed: { message?: string } = {};
           try {
             parsed = JSON.parse(xhr.responseText) as { message?: string };
@@ -91,20 +173,41 @@ export default function StartOrderForm() {
           reject(new Error(parsed.message ?? "Failed to send order."));
         };
 
-        xhr.onerror = () => reject(new Error("Network error while uploading."));
+        xhr.onerror = () => {
+          console.error("[ORDER_FORM] XHR network error");
+          reject(new Error("Network error while uploading."));
+        };
+        xhr.onabort = () => {
+          console.error("[ORDER_FORM] XHR aborted");
+          reject(new Error("Upload aborted."));
+        };
+        xhr.ontimeout = () => {
+          console.error("[ORDER_FORM] XHR timeout");
+          reject(new Error("Upload timeout."));
+        };
+        formData.delete("projectUpload");
+        formData.set("uploadedProjectPath", uploadedFilePath);
+        console.log("[ORDER_FORM] Sending form data now");
         xhr.send(formData);
       });
 
       formEl.reset();
-      setHasSelectedZip(false);
+      setUploadedFilePath("");
+      setUploadedFileName("");
       setUploadProgress(0);
       setSelectedPlan(isDev ? "hosting-9-99" : "");
+      if (!data.checkoutUrl) {
+        throw new Error("Checkout URL is missing.");
+      }
       setStatus({
         type: "ok",
-        text: "Order sent successfully. I will contact you soon.",
+        text: "Order saved. Redirecting to secure Stripe checkout...",
       });
-      router.push("/order-sent");
+      window.location.href = data.checkoutUrl;
     } catch (error) {
+      console.error(
+        `[ORDER_FORM] Submit failed | reason=${error instanceof Error ? error.message : "Unexpected error."}`,
+      );
       setUploadProgress(0);
       setStatus({
         type: "error",
@@ -156,12 +259,15 @@ export default function StartOrderForm() {
             name="projectUpload"
             required
             accept=".zip,application/zip,application/x-zip-compressed"
-            onChange={(event) =>
-              setHasSelectedZip(Boolean(event.currentTarget.files?.length))
-            }
+            onChange={onZipChange}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-blue-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
           />
         </label>
+        {uploadedFileName && (
+          <p className="mt-2 text-xs font-medium text-slate-600">
+            Uploaded file: {uploadedFileName}
+          </p>
+        )}
       </fieldset>
 
       <div className="grid gap-4">
@@ -252,13 +358,19 @@ export default function StartOrderForm() {
 
       <button
         type="submit"
-        disabled={isSubmitting || !hasSelectedZip}
+        disabled={isSubmitting || isUploadingFile || !uploadedFilePath}
         className="inline-flex rounded-full bg-blue-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {isSubmitting ? "Sending..." : hasSelectedZip ? "Send Order" : "Upload ZIP first"}
+        {isSubmitting
+          ? "Sending..."
+          : isUploadingFile
+            ? "Uploading ZIP..."
+            : uploadedFilePath
+              ? "Continue to payment"
+              : "Upload ZIP first"}
       </button>
 
-      {isSubmitting && (
+      {isUploadingFile && (
         <div className="space-y-2">
           <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
             <div

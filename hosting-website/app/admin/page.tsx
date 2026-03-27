@@ -11,6 +11,11 @@ type Order = {
   backup_domain_ideas: string | null;
   payment_plan: string;
   project_zip_path: string;
+  payment_status: string;
+  stripe_checkout_session_id: string | null;
+  stripe_subscription_id: string | null;
+  payment_currency: string;
+  paid_at: string | null;
   created_at: string;
 };
 
@@ -212,6 +217,7 @@ export default function AdminPage() {
                       <th className="px-3 py-2">Name</th>
                       <th className="px-3 py-2">Email</th>
                       <th className="px-3 py-2">Plan</th>
+                      <th className="px-3 py-2">Payment</th>
                       <th className="px-3 py-2">Domain</th>
                       <th className="px-3 py-2">Created</th>
                       <th className="px-3 py-2">ZIP</th>
@@ -224,6 +230,12 @@ export default function AdminPage() {
                         <td className="px-3 py-2">{order.name}</td>
                         <td className="px-3 py-2">{order.email}</td>
                         <td className="px-3 py-2">{order.payment_plan}</td>
+                        <td className="px-3 py-2">
+                          {order.payment_status}
+                          {order.paid_at
+                            ? ` (${new Date(order.paid_at).toLocaleString()})`
+                            : ""}
+                        </td>
                         <td className="px-3 py-2">{order.preferred_domain_name ?? "-"}</td>
                         <td className="px-3 py-2">
                           {new Date(order.created_at).toLocaleString()}

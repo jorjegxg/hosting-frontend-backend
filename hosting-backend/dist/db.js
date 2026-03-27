@@ -75,5 +75,12 @@ async function ensureOrdersTable() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS payment_status VARCHAR(30) NOT NULL DEFAULT 'pending'");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_checkout_session_id VARCHAR(255) NULL");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_customer_id VARCHAR(255) NULL");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_subscription_id VARCHAR(255) NULL");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_price_id VARCHAR(255) NULL");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS payment_currency VARCHAR(10) NOT NULL DEFAULT 'usd'");
+    await exports.dbPool.query("ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS paid_at TIMESTAMP NULL");
 }
 //# sourceMappingURL=db.js.map

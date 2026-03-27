@@ -10,10 +10,24 @@ import {
   ensureOrdersTable,
 } from "./db";
 import nodemailer from "nodemailer";
+import Stripe from "stripe";
 
 const app = express();
 const port = Number(process.env.PORT ?? 4000);
 const uploadsDir = path.resolve(__dirname, "../uploads");
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY ?? "";
+const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET ?? "";
+const stripeCurrency = "usd";
+const stripePlanPriceIds: Record<string, string | undefined> = {
+  "hosting-9-99": process.env.STRIPE_PRICE_HOSTING_9_99_MONTHLY,
+  "full-stack-19-99": process.env.STRIPE_PRICE_FULL_STACK_19_99_MONTHLY,
+};
+const stripe = stripeSecretKey
+  ? new Stripe(stripeSecretKey, {
+      apiVersion: "2026-03-25.dahlia",
+    })
+  : null;
 
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
@@ -44,6 +58,91 @@ const upload = multer({
 });
 
 app.use(cors());
+app.post(
+  "/stripe/webhook",
+  express.raw({ type: "application/json" }),
+  async (req, res) => {
+    if (!stripe || !stripeWebhookSecret) {
+      return res.status(503).json({
+        status: "error",
+        message: "Stripe webhook is not configured.",
+      });
+    }
+
+    const signature = req.header("stripe-signature");
+    if (!signature) {
+      return res.status(400).json({
+        status: "error",
+        message: "Missing stripe-signature header.",
+      });
+    }
+
+    let event: Stripe.Event;
+    try {
+      event = stripe.webhooks.constructEvent(req.body, signature, stripeWebhookSecret);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Invalid Stripe signature.";
+      return res.status(400).json({
+        status: "error",
+        message,
+      });
+    }
+
+    try {
+      if (event.type === "checkout.session.completed") {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const orderIdRaw = session.metadata?.orderId ?? "";
+        const orderId = Number(orderIdRaw);
+        if (Number.isInteger(orderId) && orderId > 0) {
+          await dbPool.execute(
+            `UPDATE order_requests
+             SET payment_status = 'paid',
+                 paid_at = CURRENT_TIMESTAMP,
+                 stripe_customer_id = ?,
+                 stripe_subscription_id = ?,
+                 stripe_checkout_session_id = ?
+             WHERE id = ?`,
+            [
+              typeof session.customer === "string" ? session.customer : null,
+              typeof session.subscription === "string" ? session.subscription : null,
+              session.id,
+              orderId,
+            ],
+          );
+
+          const clientEmail = session.customer_details?.email;
+          if (clientEmail && emailRegex.test(clientEmail)) {
+            await sendEmailToClient(
+              clientEmail.toLowerCase(),
+              "Payment received - Strelements",
+              "Your subscription payment was received successfully. I will now continue with your order setup.",
+            );
+          }
+        }
+      } else if (
+        event.type === "checkout.session.expired" ||
+        event.type === "checkout.session.async_payment_failed"
+      ) {
+        const session = event.data.object as Stripe.Checkout.Session;
+        const orderIdRaw = session.metadata?.orderId ?? "";
+        const orderId = Number(orderIdRaw);
+        if (Number.isInteger(orderId) && orderId > 0) {
+          await dbPool.execute(
+            "UPDATE order_requests SET payment_status = 'failed' WHERE id = ?",
+            [orderId],
+          );
+        }
+      }
+
+      return res.json({ received: true });
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed processing webhook.";
+      return res.status(500).json({ status: "error", message });
+    }
+  },
+);
 app.use(express.json());
 
 type MessageRow = {
@@ -70,6 +169,11 @@ type OrderRow = {
   backup_domain_ideas: string | null;
   payment_plan: string;
   project_zip_path: string;
+  payment_status: string;
+  stripe_checkout_session_id: string | null;
+  stripe_subscription_id: string | null;
+  payment_currency: string;
+  paid_at: string | null;
   created_at: string;
 };
 
@@ -99,6 +203,11 @@ function requireAdmin(
   return next();
 }
 
+function getStripePriceId(paymentPlan: string): string | null {
+  const priceId = stripePlanPriceIds[paymentPlan];
+  return priceId && priceId.trim() ? priceId.trim() : null;
+}
+
 function buildAssistantAnswer(questionRaw: string): string {
   const question = questionRaw.toLowerCase();
   let answer =
@@ -121,19 +230,23 @@ async function sendEmailToClient(
   toEmail: string,
   subject: string,
   bodyText: string,
-): Promise<void> {
+): Promise<{ sent: true } | { sent: false; reason: string }> {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
   const from = process.env.SMTP_FROM ?? "no-reply@hosting.local";
   const portValue = Number(process.env.SMTP_PORT ?? 587);
   const secure = process.env.SMTP_SECURE === "true";
+  const passLength = pass ? pass.length : 0;
+
+  console.log(
+    `[SMTP] Preparing email | to=${toEmail} | subject="${subject}" | host=${host ?? "missing"} | port=${portValue} | secure=${secure} | user=${user ?? "missing"} | from=${from} | pass_set=${Boolean(pass)} | pass_len=${passLength}`,
+  );
 
   if (!host || !user || !pass) {
-    console.log(
-      `SMTP not configured. Skipping email to ${toEmail}. Subject: ${subject}`,
-    );
-    return;
+    const reason = "SMTP is not configured on server.";
+    console.log(`[SMTP] Skipping send | to=${toEmail} | reason=${reason}`);
+    return { sent: false, reason };
   }
 
   const transporter = nodemailer.createTransport({
@@ -143,12 +256,33 @@ async function sendEmailToClient(
     auth: { user, pass },
   });
 
-  await transporter.sendMail({
-    from,
-    to: toEmail,
-    subject,
-    text: bodyText,
-  });
+  try {
+    console.log(`[SMTP] Calling transporter.sendMail | to=${toEmail}`);
+    await transporter.sendMail({
+      from,
+      to: toEmail,
+      subject,
+      text: bodyText,
+    });
+    console.log(`[SMTP] Email sent successfully | to=${toEmail}`);
+    return { sent: true };
+  } catch (error) {
+    const reason =
+      error instanceof Error ? error.message : "Unknown SMTP send error.";
+    console.error(`[SMTP] Failed sending email | to=${toEmail} | reason=${reason}`);
+    if (error && typeof error === "object") {
+      const smtpError = error as {
+        code?: string;
+        command?: string;
+        response?: string;
+        responseCode?: number;
+      };
+      console.error(
+        `[SMTP] Error details | code=${smtpError.code ?? "n/a"} | command=${smtpError.command ?? "n/a"} | responseCode=${smtpError.responseCode ?? "n/a"} | response=${smtpError.response ?? "n/a"}`,
+      );
+    }
+    return { sent: false, reason };
+  }
 }
 
 async function getOrCreateConversation(
@@ -184,6 +318,34 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok", service: "hosting-backend" });
 });
 
+app.get("/admin/test-email", requireAdmin, async (req, res) => {
+  const to =
+    typeof req.query.to === "string" && req.query.to.trim()
+      ? req.query.to.trim()
+      : process.env.SMTP_USER ?? "";
+
+  if (!to) {
+    return res.status(400).json({ status: "error", message: "No recipient." });
+  }
+
+  console.log(`[TEST-EMAIL] Sending test email to ${to}`);
+  const result = await sendEmailToClient(
+    to,
+    "Test email from Strelements backend",
+    "If you can read this, SMTP is working correctly.\n\nSent at: " +
+      new Date().toISOString(),
+  );
+
+  if (result.sent) {
+    return res.json({ status: "ok", message: `Test email sent to ${to}` });
+  }
+  return res.status(500).json({
+    status: "error",
+    message: `Failed to send test email to ${to}`,
+    reason: result.reason,
+  });
+});
+
 app.get("/db-health", async (_req, res) => {
   try {
     await checkDatabaseConnection();
@@ -196,7 +358,29 @@ app.get("/db-health", async (_req, res) => {
   }
 });
 
-app.post("/orders", upload.single("projectUpload"), async (req, res) => {
+app.post("/orders/upload", upload.single("projectUpload"), async (req, res) => {
+  console.log(
+    `[ORDERS_UPLOAD] Incoming upload | ip=${req.ip ?? "unknown"} | hasFile=${Boolean(req.file)}`,
+  );
+  if (!req.file) {
+    return res.status(400).json({
+      status: "error",
+      message: "Please upload a ZIP file.",
+    });
+  }
+
+  const uploadedFilePath = `/uploads/${req.file.filename}`;
+  return res.json({
+    status: "ok",
+    uploadedFilePath,
+    originalName: req.file.originalname,
+  });
+});
+
+app.post("/orders", async (req, res) => {
+  console.log(
+    `[ORDERS] Incoming request | ip=${req.ip ?? "unknown"} | contentType=${req.headers["content-type"] ?? "unknown"}`,
+  );
   const name = typeof req.body?.name === "string" ? req.body.name.trim() : "";
   const email = typeof req.body?.email === "string" ? req.body.email.trim() : "";
   const preferredDomainName =
@@ -211,35 +395,85 @@ app.post("/orders", upload.single("projectUpload"), async (req, res) => {
       : "";
   const paymentPlan =
     typeof req.body?.paymentPlan === "string" ? req.body.paymentPlan.trim() : "";
+  const uploadedProjectPath =
+    typeof req.body?.uploadedProjectPath === "string"
+      ? req.body.uploadedProjectPath.trim()
+      : "";
+  console.log(
+    `[ORDERS] Parsed payload | name_len=${name.length} | email=${email || "missing"} | paymentPlan=${paymentPlan || "missing"} | hasFile=${Boolean(req.file)} | uploadedProjectPath=${uploadedProjectPath || "missing"}`,
+  );
 
   if (!name) {
+    console.log("[ORDERS] Validation failed | reason=missing_name");
     return res.status(400).json({ status: "error", message: "Name is required." });
   }
   if (!emailRegex.test(email)) {
+    console.log("[ORDERS] Validation failed | reason=invalid_email");
     return res.status(400).json({
       status: "error",
       message: "Valid email is required.",
     });
   }
   if (!paymentPlan) {
+    console.log("[ORDERS] Validation failed | reason=missing_payment_plan");
     return res.status(400).json({
       status: "error",
       message: "Please choose a payment plan.",
     });
   }
-  if (!req.file) {
+  if (!uploadedProjectPath) {
+    console.log("[ORDERS] Validation failed | reason=missing_zip_file");
     return res.status(400).json({
       status: "error",
       message: "Please upload a ZIP file.",
     });
   }
+  if (!stripe) {
+    return res.status(503).json({
+      status: "error",
+      message: "Stripe is not configured on server.",
+    });
+  }
 
   try {
-    const storedPath = `/uploads/${req.file.filename}`;
-    await dbPool.execute(
+    console.log("[ORDERS] Validation passed, saving order to DB");
+    if (!uploadedProjectPath.startsWith("/uploads/")) {
+      return res.status(400).json({
+        status: "error",
+        message: "Uploaded file path is invalid.",
+      });
+    }
+
+    const resolvedFilePath = path.resolve(
+      __dirname,
+      "..",
+      uploadedProjectPath.slice(1),
+    );
+    if (!resolvedFilePath.startsWith(uploadsDir)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Uploaded file path is outside uploads directory.",
+      });
+    }
+    if (!fs.existsSync(resolvedFilePath)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Uploaded ZIP file was not found. Please upload it again.",
+      });
+    }
+
+    const stripePriceId = getStripePriceId(paymentPlan);
+    if (!stripePriceId) {
+      return res.status(400).json({
+        status: "error",
+        message: "Stripe price is not configured for selected payment plan.",
+      });
+    }
+
+    const [insertResult] = await dbPool.execute(
       `INSERT INTO order_requests
-        (name, email, preferred_domain_name, message, backup_domain_ideas, payment_plan, project_zip_path)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        (name, email, preferred_domain_name, message, backup_domain_ideas, payment_plan, project_zip_path, payment_status, stripe_price_id, payment_currency)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', ?, ?)`,
       [
         name,
         email.toLowerCase(),
@@ -247,39 +481,54 @@ app.post("/orders", upload.single("projectUpload"), async (req, res) => {
         message || null,
         backupDomainIdeas || null,
         paymentPlan,
-        storedPath,
+        uploadedProjectPath,
+        stripePriceId,
+        stripeCurrency,
       ],
     );
+    const orderId = (insertResult as { insertId?: number }).insertId;
+    if (!orderId) {
+      throw new Error("Failed to create order.");
+    }
+    console.log(
+      `[ORDERS] DB insert ok | orderId=${orderId} | storedPath=${uploadedProjectPath}`,
+    );
 
-    try {
-      const planLabel =
-        paymentPlan === "full-stack-19-99"
-          ? "Full Stack Plan - $19.99/mo"
-          : "Hosting Plan - $9.99/mo";
-      const domainLine = preferredDomainName
-        ? `Preferred domain: ${preferredDomainName}\n`
-        : "";
+    const checkoutSession = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      customer_email: email.toLowerCase(),
+      line_items: [{ price: stripePriceId, quantity: 1 }],
+      success_url: `${appUrl}/order-sent?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${appUrl}/order-sent?payment=cancelled`,
+      metadata: {
+        orderId: String(orderId),
+        paymentPlan,
+        clientEmail: email.toLowerCase(),
+      },
+    });
 
-      await sendEmailToClient(
-        email.toLowerCase(),
-        "Order received - Strelements",
-        `Hi ${name},\n\nYour order was received successfully.\n\nSelected plan: ${planLabel}\n${domainLine}Uploaded project: ${req.file.originalname}\n\nI will review your request and contact you shortly.\n\nThanks,\nStrelements\n`,
-      );
-    } catch (emailError) {
-      const message =
-        emailError instanceof Error
-          ? emailError.message
-          : "Failed to send order confirmation email";
-      console.error(message);
+    await dbPool.execute(
+      "UPDATE order_requests SET stripe_checkout_session_id = ? WHERE id = ?",
+      [checkoutSession.id, orderId],
+    );
+
+    if (!checkoutSession.url) {
+      return res.status(500).json({
+        status: "error",
+        message: "Stripe did not return a checkout URL.",
+      });
     }
 
+    console.log("[ORDERS] Returning 200 response");
     return res.json({
       status: "ok",
-      message: "Order received successfully.",
+      message: "Order created. Continue to Stripe checkout.",
+      checkoutUrl: checkoutSession.url,
     });
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Failed to save order.";
+    console.error(`[ORDERS] Request failed | reason=${message}`);
     return res.status(500).json({ status: "error", message });
   }
 });
@@ -296,6 +545,11 @@ app.get("/admin/orders", requireAdmin, async (_req, res) => {
         backup_domain_ideas,
         payment_plan,
         project_zip_path,
+        payment_status,
+        stripe_checkout_session_id,
+        stripe_subscription_id,
+        payment_currency,
+        paid_at,
         created_at
       FROM order_requests
       ORDER BY id DESC
