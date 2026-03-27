@@ -10,26 +10,26 @@ export default function StartOrderForm() {
   const [uploadedFilePath, setUploadedFilePath] = useState("");
   const [uploadedFileName, setUploadedFileName] = useState("");
   const [status, setStatus] = useState<{ type: "ok" | "error"; text: string } | null>(null);
-  const isDev = process.env.NODE_ENV === "development";
+  const isDevMode = (process.env.NEXT_PUBLIC_APP_MODE ?? "").toLowerCase() === "dev";
+  const devDefaults = {
+    name: "Gheorghe Off Test",
+    email: "gheorgheoff@gmail.com",
+    preferredDomainName: "gheorghe-demo-site",
+    message: "DEV TEST: Please deploy the attached ZIP and connect the preferred domain.",
+    backupDomainIdeas: "gheorghe-demo, gheorghe-online",
+  };
   const selectedPlan = useOrderPlanStore((state) => state.selectedPlan);
   const setSelectedPlan = useOrderPlanStore((state) => state.setSelectedPlan);
-  const devDefaults = {
-    name: "Test Client",
-    email: "gheorgheoff@gmail.com",
-    preferredDomainName: "strelements-demo",
-    message: "Please deploy my website from the attached ZIP and connect domain.",
-    backupDomainIdeas: "strelements-demo-site, strelements-online",
-  };
   const backendUrl = useMemo(
     () => process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000",
     [],
   );
 
   useEffect(() => {
-    if (isDev && !selectedPlan) {
+    if (!selectedPlan && isDevMode) {
       setSelectedPlan("hosting-9-99");
     }
-  }, [isDev, selectedPlan, setSelectedPlan]);
+  }, [selectedPlan, setSelectedPlan, isDevMode]);
 
   async function uploadZipNow(file: File) {
     setIsUploadingFile(true);
@@ -134,7 +134,38 @@ export default function StartOrderForm() {
     setIsSubmitting(true);
 
     const formEl = event.currentTarget;
-    const formData = new FormData(formEl);
+    const rawFormData = new FormData(formEl);
+    const name = String(rawFormData.get("name") ?? "").trim();
+    const email = String(rawFormData.get("email") ?? "").trim();
+    const preferredDomainName = String(rawFormData.get("preferredDomainName") ?? "").trim();
+    const message = String(rawFormData.get("message") ?? "").trim();
+    const backupDomainIdeas = String(rawFormData.get("backupDomainIdeas") ?? "").trim();
+    const paymentPlan = String(rawFormData.get("paymentPlan") ?? "").trim();
+
+    if (!name) {
+      setStatus({
+        type: "error",
+        text: "Name is required.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    if (!email) {
+      setStatus({
+        type: "error",
+        text: "Email is required.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    if (!paymentPlan) {
+      setStatus({
+        type: "error",
+        text: "Please choose a payment plan.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
 
     if (!uploadedFilePath) {
       setStatus({
@@ -147,55 +178,34 @@ export default function StartOrderForm() {
 
     try {
       console.log(`[ORDER_FORM] Submitting order to ${backendUrl}/orders`);
-      const data = await new Promise<{
+      const response = await fetch(`${backendUrl}/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          preferredDomainName,
+          message,
+          backupDomainIdeas,
+          paymentPlan,
+          uploadedProjectPath: uploadedFilePath,
+        }),
+      });
+
+      const data = (await response.json()) as {
         message?: string;
         checkoutUrl?: string;
-      }>((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", `${backendUrl}/orders`, true);
-        console.log("[ORDER_FORM] XHR opened");
+      };
 
-        xhr.onload = () => {
-          console.log(
-            `[ORDER_FORM] XHR load | status=${xhr.status} | responseURL=${xhr.responseURL || "n/a"}`,
-          );
-          let parsed: { message?: string } = {};
-          try {
-            parsed = JSON.parse(xhr.responseText) as { message?: string };
-          } catch {
-            parsed = {};
-          }
-
-          if (xhr.status >= 200 && xhr.status < 300) {
-            resolve(parsed);
-            return;
-          }
-          reject(new Error(parsed.message ?? "Failed to send order."));
-        };
-
-        xhr.onerror = () => {
-          console.error("[ORDER_FORM] XHR network error");
-          reject(new Error("Network error while uploading."));
-        };
-        xhr.onabort = () => {
-          console.error("[ORDER_FORM] XHR aborted");
-          reject(new Error("Upload aborted."));
-        };
-        xhr.ontimeout = () => {
-          console.error("[ORDER_FORM] XHR timeout");
-          reject(new Error("Upload timeout."));
-        };
-        formData.delete("projectUpload");
-        formData.set("uploadedProjectPath", uploadedFilePath);
-        console.log("[ORDER_FORM] Sending form data now");
-        xhr.send(formData);
-      });
+      if (!response.ok) {
+        throw new Error(data.message ?? "Failed to send order.");
+      }
 
       formEl.reset();
       setUploadedFilePath("");
       setUploadedFileName("");
       setUploadProgress(0);
-      setSelectedPlan(isDev ? "hosting-9-99" : "");
+      setSelectedPlan(isDevMode ? "hosting-9-99" : "");
       if (!data.checkoutUrl) {
         throw new Error("Checkout URL is missing.");
       }
@@ -231,7 +241,7 @@ export default function StartOrderForm() {
             name="name"
             required
             placeholder="Your full name"
-            defaultValue={isDev ? devDefaults.name : ""}
+            defaultValue={isDevMode ? devDefaults.name : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -243,7 +253,7 @@ export default function StartOrderForm() {
             name="email"
             required
             placeholder="you@example.com"
-            defaultValue={isDev ? devDefaults.email : ""}
+            defaultValue={isDevMode ? devDefaults.email : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -279,7 +289,7 @@ export default function StartOrderForm() {
             type="text"
             name="preferredDomainName"
             placeholder="examplebrand"
-            defaultValue={isDev ? devDefaults.preferredDomainName : ""}
+            defaultValue={isDevMode ? devDefaults.preferredDomainName : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -292,7 +302,7 @@ export default function StartOrderForm() {
             name="message"
             rows={4}
             placeholder="Share your goals, required features, and a GitHub link (or other project link)."
-            defaultValue={isDev ? devDefaults.message : ""}
+            defaultValue={isDevMode ? devDefaults.message : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -305,7 +315,7 @@ export default function StartOrderForm() {
             name="backupDomainIdeas"
             rows={3}
             placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
-            defaultValue={isDev ? devDefaults.backupDomainIdeas : ""}
+            defaultValue={isDevMode ? devDefaults.backupDomainIdeas : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -393,9 +403,9 @@ export default function StartOrderForm() {
           {status.text}
         </p>
       )}
-      {isDev && (
+      {isDevMode && (
         <p className="text-xs text-slate-500">
-          Development mode: fields are auto-filled (ZIP still must be chosen).
+          Development mode: fields are auto-filled.
         </p>
       )}
     </form>

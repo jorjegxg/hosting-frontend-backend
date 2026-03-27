@@ -71,25 +71,52 @@ export async function ensureOrdersTable(): Promise<void> {
     )
   `);
 
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS payment_status VARCHAR(30) NOT NULL DEFAULT 'pending'",
+  const databaseName = process.env.DB_NAME ?? "myappdb";
+  async function ensureColumn(
+    columnName: string,
+    addColumnSql: string,
+  ): Promise<void> {
+    const [rows] = await dbPool.query(
+      `SELECT 1
+       FROM information_schema.COLUMNS
+       WHERE TABLE_SCHEMA = ?
+         AND TABLE_NAME = 'order_requests'
+         AND COLUMN_NAME = ?
+       LIMIT 1`,
+      [databaseName, columnName],
+    );
+    if (Array.isArray(rows) && rows.length > 0) {
+      return;
+    }
+    await dbPool.query(addColumnSql);
+  }
+
+  await ensureColumn(
+    "payment_status",
+    "ALTER TABLE order_requests ADD COLUMN payment_status VARCHAR(30) NOT NULL DEFAULT 'pending'",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_checkout_session_id VARCHAR(255) NULL",
+  await ensureColumn(
+    "stripe_checkout_session_id",
+    "ALTER TABLE order_requests ADD COLUMN stripe_checkout_session_id VARCHAR(255) NULL",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_customer_id VARCHAR(255) NULL",
+  await ensureColumn(
+    "stripe_customer_id",
+    "ALTER TABLE order_requests ADD COLUMN stripe_customer_id VARCHAR(255) NULL",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_subscription_id VARCHAR(255) NULL",
+  await ensureColumn(
+    "stripe_subscription_id",
+    "ALTER TABLE order_requests ADD COLUMN stripe_subscription_id VARCHAR(255) NULL",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS stripe_price_id VARCHAR(255) NULL",
+  await ensureColumn(
+    "stripe_price_id",
+    "ALTER TABLE order_requests ADD COLUMN stripe_price_id VARCHAR(255) NULL",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS payment_currency VARCHAR(10) NOT NULL DEFAULT 'usd'",
+  await ensureColumn(
+    "payment_currency",
+    "ALTER TABLE order_requests ADD COLUMN payment_currency VARCHAR(10) NOT NULL DEFAULT 'usd'",
   );
-  await dbPool.query(
-    "ALTER TABLE order_requests ADD COLUMN IF NOT EXISTS paid_at TIMESTAMP NULL",
+  await ensureColumn(
+    "paid_at",
+    "ALTER TABLE order_requests ADD COLUMN paid_at TIMESTAMP NULL",
   );
 }
