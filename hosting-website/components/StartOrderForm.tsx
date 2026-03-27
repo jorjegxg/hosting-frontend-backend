@@ -5,6 +5,14 @@ import { FormEvent, useMemo, useState } from "react";
 export default function StartOrderForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<{ type: "ok" | "error"; text: string } | null>(null);
+  const isDev = process.env.NODE_ENV === "development";
+  const devDefaults = {
+    name: "Test Client",
+    email: "client@example.com",
+    preferredDomainName: "strelements-demo",
+    message: "Please deploy my website from the attached ZIP and connect domain.",
+    backupDomainIdeas: "strelements-demo-site, strelements-online",
+  };
   const backendUrl = useMemo(
     () => process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000",
     [],
@@ -58,6 +66,7 @@ export default function StartOrderForm() {
             name="name"
             required
             placeholder="Your full name"
+            defaultValue={isDev ? devDefaults.name : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -69,6 +78,7 @@ export default function StartOrderForm() {
             name="email"
             required
             placeholder="you@example.com"
+            defaultValue={isDev ? devDefaults.email : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -97,6 +107,7 @@ export default function StartOrderForm() {
             type="text"
             name="preferredDomainName"
             placeholder="examplebrand"
+            defaultValue={isDev ? devDefaults.preferredDomainName : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -109,6 +120,7 @@ export default function StartOrderForm() {
             name="message"
             rows={4}
             placeholder="Share your goals, required features, and a GitHub link (or other project link)."
+            defaultValue={isDev ? devDefaults.message : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -121,6 +133,7 @@ export default function StartOrderForm() {
             name="backupDomainIdeas"
             rows={3}
             placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
+            defaultValue={isDev ? devDefaults.backupDomainIdeas : ""}
             className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
           />
         </label>
@@ -135,6 +148,7 @@ export default function StartOrderForm() {
               name="paymentPlan"
               value="hosting-9-99"
               required
+              defaultChecked={isDev}
               className="mt-1 h-4 w-4 accent-slate-700"
             />
             <span>
@@ -182,6 +196,11 @@ export default function StartOrderForm() {
           }`}
         >
           {status.text}
+        </p>
+      )}
+      {isDev && (
+        <p className="text-xs text-slate-500">
+          Development mode: fields are auto-filled (ZIP still must be chosen).
         </p>
       )}
     </form>

@@ -16,7 +16,7 @@ export default function Home() {
               height={36}
               className="h-9 w-9"
             />
-            <span className="text-sm font-extrabold tracking-wide text-slate-900 sm:text-base">
+            <span className="font-serif text-base font-bold tracking-[0.08em] text-slate-900 sm:text-lg">
               Strelements
             </span>
           </a>
