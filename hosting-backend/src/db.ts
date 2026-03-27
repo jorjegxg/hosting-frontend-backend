@@ -55,3 +55,19 @@ export async function ensureMessagesTable(): Promise<void> {
     )
   `);
 }
+
+export async function ensureOrdersTable(): Promise<void> {
+  await dbPool.query(`
+    CREATE TABLE IF NOT EXISTS order_requests (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      preferred_domain_name VARCHAR(255) NULL,
+      message TEXT NULL,
+      backup_domain_ideas TEXT NULL,
+      payment_plan VARCHAR(100) NOT NULL,
+      project_zip_path VARCHAR(500) NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+}

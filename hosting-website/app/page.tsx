@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
 import ScrollToOrderButton from "../components/ScrollToOrderButton";
+import StartOrderForm from "../components/StartOrderForm";
 
 export default function Home() {
   return (
@@ -10,13 +11,13 @@ export default function Home() {
           <a href="#hero-title" className="flex items-center gap-3">
             <Image
               src="/hosting-logo.svg"
-              alt="Your site online logo"
+              alt="Strelements logo"
               width={36}
               height={36}
               className="h-9 w-9"
             />
             <span className="text-sm font-extrabold tracking-wide text-slate-900 sm:text-base">
-              Your site online
+              Strelements
             </span>
           </a>
           <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
@@ -265,138 +266,7 @@ export default function Home() {
             site live with a clean setup.
           </p>
 
-          <form className="mt-8 space-y-6 rounded-2xl border border-slate-300 bg-slate-50 p-6 shadow-sm">
-            <div className="grid gap-5 md:grid-cols-2">
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
-                  Name
-                </span>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your full name"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-sm font-semibold text-slate-700">
-                  Email
-                </span>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                />
-              </label>
-            </div>
-
-            <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
-              <legend className="px-2 text-sm font-semibold text-slate-700">
-                Project Upload
-              </legend>
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-700">
-                  ZIP file
-                </span>
-                <input
-                  type="file"
-                  name="projectUpload"
-                  accept=".zip,application/zip"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
-                />
-              </label>
-            </fieldset>
-
-            <div className="grid gap-4">
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-700">
-                  Preferred domain name
-                </span>
-                <input
-                  type="text"
-                  name="preferredDomainName"
-                  placeholder="examplebrand"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-700">
-                  Message / Project details
-                </span>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Share your goals, required features, and a GitHub link (or other project link)."
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                />
-              </label>
-
-              <label className="block">
-                <span className="mb-2 block text-sm font-medium text-slate-700">
-                  Backup domain ideas (optional)
-                </span>
-                <textarea
-                  name="backupDomainIdeas"
-                  rows={3}
-                  placeholder="examplebrandonline, getexamplebrand, myexamplebrand"
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-slate-500"
-                />
-              </label>
-            </div>
-
-            <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
-              <legend className="px-2 text-sm font-semibold text-slate-700">
-                Choose payment plan
-              </legend>
-              <div className="mt-3 grid gap-3 md:grid-cols-2">
-                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-slate-500">
-                  <input
-                    type="radio"
-                    name="paymentPlan"
-                    value="hosting-9-99"
-                    required
-                    className="mt-1 h-4 w-4 accent-slate-700"
-                  />
-                  <span>
-                    <span className="block text-sm font-semibold text-slate-800">
-                      Hosting Plan - $9.99/mo
-                    </span>
-                    <span className="block text-xs text-slate-600">
-                      Ideal for landing pages and business sites.
-                    </span>
-                  </span>
-                </label>
-
-                <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-slate-500">
-                  <input
-                    type="radio"
-                    name="paymentPlan"
-                    value="full-stack-19-99"
-                    required
-                    className="mt-1 h-4 w-4 accent-slate-700"
-                  />
-                  <span>
-                    <span className="block text-sm font-semibold text-slate-800">
-                      Full Stack Plan - $19.99/mo
-                    </span>
-                    <span className="block text-xs text-slate-600">
-                      Best for web apps with frontend, backend, and database.
-                    </span>
-                  </span>
-                </label>
-              </div>
-            </fieldset>
-
-            <button
-              type="submit"
-              className="inline-flex rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-            >
-              Send Order
-            </button>
-          </form>
+          <StartOrderForm />
         </div>
       </section>
 
@@ -507,7 +377,7 @@ export default function Home() {
               hosting from one person.
             </p>
             <p className="mt-3 text-sm font-medium text-slate-700">
-              Brand: Your site online
+              Brand: Strelements
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -544,7 +414,7 @@ export default function Home() {
       </section>
       <footer className="border-t border-slate-200 bg-slate-950">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Your site online. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Strelements. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4">
             <a href="#faq" className="transition hover:text-white">
               FAQ
