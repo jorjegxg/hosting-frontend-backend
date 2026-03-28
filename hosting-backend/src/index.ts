@@ -111,37 +111,38 @@ app.post(
             ],
           );
 
-          const clientEmail = session.customer_details?.email;
-          if (clientEmail && emailRegex.test(clientEmail)) {
-            const [orderRowsRaw] = await dbPool.execute(
-              `SELECT
-                 id,
-                 name,
-                 email,
-                 preferred_domain_name,
-                 message,
-                 backup_domain_ideas,
-                 payment_plan,
-                 project_zip_path,
-                 payment_status,
-                 stripe_checkout_session_id,
-                 stripe_subscription_id,
-                 payment_currency,
-                 paid_at,
-                 created_at
-               FROM order_requests
-               WHERE id = ?
-               LIMIT 1`,
-              [orderId],
-            );
-            const orderRows = orderRowsRaw as OrderRow[];
-            const order = orderRows[0];
+          const [orderRowsRaw] = await dbPool.execute(
+            `SELECT
+               id,
+               name,
+               email,
+               preferred_domain_name,
+               message,
+               backup_domain_ideas,
+               payment_plan,
+               project_zip_path,
+               payment_status,
+               stripe_checkout_session_id,
+               stripe_subscription_id,
+               payment_currency,
+               paid_at,
+               created_at
+             FROM order_requests
+             WHERE id = ?
+             LIMIT 1`,
+            [orderId],
+          );
+          const orderRows = orderRowsRaw as OrderRow[];
+          const order = orderRows[0];
 
+          const recipient = resolveCheckoutRecipientEmail(order, session);
+          if (recipient) {
             const plainTextBody = order
               ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${path.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nStrelements`
               : "Your subscription payment was received successfully. I will now continue with your order setup.";
+            const bcc = orderConfirmationBcc(recipient);
             await sendEmailToClient(
-              clientEmail.toLowerCase(),
+              recipient,
               "Order confirmed - Strelements",
               plainTextBody,
               order
@@ -152,6 +153,11 @@ app.post(
                       "Your subscription payment was received successfully.\nI will now continue with your order setup.",
                     ),
                   ),
+              bcc ? { bcc } : undefined,
+            );
+          } else {
+            console.error(
+              `[WEBHOOK] checkout.session.completed | orderId=${orderId} | no recipient email (order row missing or no valid email)`,
             );
           }
         }
@@ -213,6 +219,42 @@ type OrderRow = {
 };
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function resolveCheckoutRecipientEmail(
+  order: OrderRow | undefined,
+  session: Stripe.Checkout.Session,
+): string | null {
+  if (order?.email && emailRegex.test(order.email)) {
+    return order.email.toLowerCase();
+  }
+  const fromSession =
+    session.customer_details?.email ??
+    (typeof session.customer_email === "string" ? session.customer_email : null) ??
+    (typeof session.metadata?.clientEmail === "string"
+      ? session.metadata.clientEmail
+      : null);
+  if (fromSession && emailRegex.test(fromSession)) {
+    return fromSession.toLowerCase();
+  }
+  return null;
+}
+
+/** BCC business inbox on order confirmations (avoid duplicate if same as customer). */
+function orderConfirmationBcc(recipient: string): string | undefined {
+  const notify =
+    process.env.ORDER_NOTIFY_EMAIL?.trim() ||
+    process.env.SMTP_FROM?.trim() ||
+    "";
+  if (!notify || !emailRegex.test(notify)) {
+    return undefined;
+  }
+  const lower = notify.toLowerCase();
+  if (lower === recipient.toLowerCase()) {
+    return undefined;
+  }
+  return lower;
+}
+
 const adminPassword = process.env.ADMIN_PASSWORD ?? "";
 
 function requireAdmin(
@@ -266,6 +308,7 @@ async function sendEmailToClient(
   subject: string,
   bodyText: string,
   bodyHtml?: string,
+  options?: { bcc?: string },
 ): Promise<{ sent: true } | { sent: false; reason: string }> {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
@@ -276,7 +319,7 @@ async function sendEmailToClient(
   const passLength = pass ? pass.length : 0;
 
   console.log(
-    `[SMTP] Preparing email | to=${toEmail} | subject="${subject}" | host=${host ?? "missing"} | port=${portValue} | secure=${secure} | user=${user ?? "missing"} | from=${from} | pass_set=${Boolean(pass)} | pass_len=${passLength}`,
+    `[SMTP] Preparing email | to=${toEmail}${options?.bcc ? ` | bcc=${options.bcc}` : ""} | subject="${subject}" | host=${host ?? "missing"} | port=${portValue} | secure=${secure} | user=${user ?? "missing"} | from=${from} | pass_set=${Boolean(pass)} | pass_len=${passLength}`,
   );
 
   if (!host || !user || !pass) {
@@ -297,6 +340,7 @@ async function sendEmailToClient(
     await transporter.sendMail({
       from,
       to: toEmail,
+      bcc: options?.bcc,
       subject,
       text: bodyText,
       html: bodyHtml,
@@ -599,7 +643,7 @@ app.post("/orders", async (req, res) => {
       mode: "subscription",
       customer_email: email.toLowerCase(),
       line_items: [{ price: stripePriceId, quantity: 1 }],
-      success_url: `${appUrl}/order-sent?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${appUrl}/order-sent?payment=success&order_id=${orderId}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${appUrl}/order-sent?payment=cancelled`,
       metadata: {
         orderId: String(orderId),
@@ -630,6 +674,84 @@ app.post("/orders", async (req, res) => {
     const message =
       error instanceof Error ? error.message : "Failed to save order.";
     console.error(`[ORDERS] Request failed | reason=${message}`);
+    return res.status(500).json({ status: "error", message });
+  }
+});
+
+app.get("/orders/confirmation-summary", async (req, res) => {
+  const sessionIdRaw = req.query.session_id;
+  const sessionId =
+    typeof sessionIdRaw === "string" ? sessionIdRaw.trim() : "";
+  const orderIdRaw = req.query.order_id;
+  const orderIdParam =
+    typeof orderIdRaw === "string" && /^\d+$/.test(orderIdRaw.trim())
+      ? Number(orderIdRaw.trim())
+      : null;
+
+  if (!sessionId.startsWith("cs_") || sessionId.length < 14) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid checkout session id.",
+    });
+  }
+
+  try {
+    const [rowsRaw] = await dbPool.query(
+      `SELECT
+        id,
+        name,
+        email,
+        preferred_domain_name,
+        payment_plan,
+        paid_at
+      FROM order_requests
+      WHERE stripe_checkout_session_id = ?
+      LIMIT 1`,
+      [sessionId],
+    );
+    const rows = rowsRaw as Pick<
+      OrderRow,
+      | "id"
+      | "name"
+      | "email"
+      | "preferred_domain_name"
+      | "payment_plan"
+      | "paid_at"
+    >[];
+    const order = rows[0];
+    if (!order) {
+      return res.status(404).json({
+        status: "error",
+        message: "Order not found for this session.",
+      });
+    }
+
+    if (
+      orderIdParam !== null &&
+      Number.isInteger(orderIdParam) &&
+      order.id !== orderIdParam
+    ) {
+      return res.status(404).json({
+        status: "error",
+        message: "Order does not match this checkout session.",
+      });
+    }
+
+    return res.json({
+      status: "ok",
+      order: {
+        id: order.id,
+        name: order.name,
+        email: order.email,
+        preferredDomain: order.preferred_domain_name,
+        paymentPlan: order.payment_plan,
+        paidAt: order.paid_at,
+      },
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to load order.";
+    console.error(`[ORDERS] confirmation-summary failed | reason=${message}`);
     return res.status(500).json({ status: "error", message });
   }
 });

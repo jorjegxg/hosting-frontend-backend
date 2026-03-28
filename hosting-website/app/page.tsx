@@ -7,44 +7,6 @@ import StartOrderForm from "../components/StartOrderForm";
 export default function Home() {
   return (
     <main className="w-full bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#hero-title" className="flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white">
-              <Image
-                src="/hosting-logo.svg"
-                alt="Strelements logo"
-                width={34}
-                height={34}
-                className="h-8 w-8"
-              />
-            </span>
-            <span className="font-serif text-lg font-bold tracking-[0.06em] text-slate-900 sm:text-xl">
-              Strelements
-            </span>
-          </a>
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
-            <a href="/about-us" className="transition hover:text-slate-900">
-              About Us
-            </a>
-            <a href="#pricing" className="transition hover:text-slate-900">
-              Pricing
-            </a>
-            <a href="#faq" className="transition hover:text-slate-900">
-              FAQ
-            </a>
-            <a href="#start-your-order" className="transition hover:text-slate-900">
-              Contact
-            </a>
-          </nav>
-          <a
-            href="#start-your-order"
-            className="inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
-          >
-            Launch My Site
-          </a>
-        </div>
-      </header>
       <section className="relative overflow-hidden bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
         <div
           aria-hidden="true"
@@ -423,28 +385,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="border-t border-slate-200 bg-slate-950">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Strelements. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-4">
-            <a href="/about-us" className="transition hover:text-white">
-              About Us
-            </a>
-            <a href="#faq" className="transition hover:text-white">
-              FAQ
-            </a>
-            <a
-              href="mailto:hello@strelements.com"
-              className="transition hover:text-white"
-            >
-              hello@strelements.com
-            </a>
-            <a href="#hero-title" className="transition hover:text-white">
-              Back to top
-            </a>
-          </div>
-        </div>
-      </footer>
       <ContactBubble />
     </main>
   );
