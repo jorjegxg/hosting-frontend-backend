@@ -30,7 +30,7 @@ export type OrderConfirmationEmailProps = {
 function statusCopy(status: OrderConfirmationEmailProps["paymentStatus"]) {
   switch (status) {
     case "success":
-      return { label: "Paid", className: "text-emerald-700 bg-emerald-50 border-emerald-200" };
+      return { label: "Paid", className: "text-indigo-700 bg-indigo-50 border-indigo-200" };
     case "pending":
       return { label: "Pending", className: "text-amber-800 bg-amber-50 border-amber-200" };
     case "cancelled":
@@ -126,7 +126,7 @@ export default function OrderConfirmationEmail({
 
         <p className="text-xs text-slate-400">
           Questions? Reply to this email or write to{" "}
-          <a href="mailto:hello@strelements.com" className="text-emerald-600 underline">
+          <a href="mailto:hello@strelements.com" className="text-indigo-600 underline">
             hello@strelements.com
           </a>
           .

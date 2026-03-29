@@ -3,7 +3,7 @@ export default function ContactPage() {
     <main className="w-full bg-slate-50 text-slate-900">
       <section className="border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-3xl px-6 py-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-emerald-700">
+          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
             Contact
           </p>
           <h1 className="mt-3 text-3xl font-bold sm:text-4xl">
@@ -30,7 +30,7 @@ export default function ContactPage() {
                   name="Name"
                   type="text"
                   required
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
                   name="Email"
                   type="email"
                   required
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
 
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   name="Subject"
                   type="text"
                   required
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
 
@@ -69,13 +69,13 @@ export default function ContactPage() {
                   name="Message"
                   rows={7}
                   required
-                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
                 />
               </div>
 
               <button
                 type="submit"
-                className="inline-flex rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
+                className="inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
               >
                 Open Email Draft
               </button>
@@ -85,7 +85,7 @@ export default function ContactPage() {
               If your email app does not open, send your question directly to{" "}
               <a
                 href="mailto:hello@strelements.com"
-                className="font-semibold text-emerald-700 underline underline-offset-2"
+                className="font-semibold text-indigo-700 underline underline-offset-2"
               >
                 hello@strelements.com
               </a>

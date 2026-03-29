@@ -31,8 +31,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
     >
-      <body suppressHydrationWarning className="flex min-h-dvh flex-col bg-slate-50">
-        <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
+      <body suppressHydrationWarning className="flex min-h-dvh flex-col bg-white">
+        <header className="sticky top-0 z-30 border-b border-indigo-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
             <a href="/" className="flex items-center gap-3">
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white">
@@ -44,27 +44,27 @@ export default function RootLayout({
                   className="h-8 w-8"
                 />
               </span>
-              <span className="font-sans text-lg font-bold tracking-[0.06em] text-slate-900 sm:text-xl">
+              <span className="font-sans text-lg font-bold tracking-[0.06em] text-indigo-950 sm:text-xl">
                 Strelements
               </span>
             </a>
-            <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-700 md:flex">
-              <a href="/" className="transition hover:text-slate-900">
+            <nav className="hidden items-center gap-6 text-sm font-semibold text-indigo-900/70 md:flex">
+              <a href="/" className="transition hover:text-indigo-950">
                 Home
               </a>
-              <a href="/#pricing" className="transition hover:text-slate-900">
+              <a href="/#pricing" className="transition hover:text-indigo-950">
                 Pricing
               </a>
-              <a href="/#faq" className="transition hover:text-slate-900">
+              <a href="/#faq" className="transition hover:text-indigo-950">
                 FAQ
               </a>
-              <a href="/contact" className="transition hover:text-slate-900">
+              <a href="/contact" className="transition hover:text-indigo-950">
                 Contact
               </a>
             </nav>
             <a
               href="/#start-your-order"
-              className="inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
+              className="inline-flex rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
               Launch My Site
             </a>

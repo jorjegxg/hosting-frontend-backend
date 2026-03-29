@@ -95,7 +95,7 @@ export default async function OrderSentPage({ searchParams }: OrderSentPageProps
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-8">
         {paymentSuccess && confirmationOrder ? (
           <>
-            <p className="text-center text-sm font-semibold uppercase tracking-[0.15em] text-emerald-700">
+            <p className="text-center text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
               Order received
             </p>
             <OrderConfirmationEmail
@@ -120,7 +120,7 @@ export default async function OrderSentPage({ searchParams }: OrderSentPageProps
           </>
         ) : (
           <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.15em] text-emerald-700">
+            <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
               Order received
             </p>
             <h1 className="mt-3 text-3xl font-bold sm:text-4xl">
@@ -143,7 +143,7 @@ export default async function OrderSentPage({ searchParams }: OrderSentPageProps
         )}
         <Link
           href="/"
-          className="inline-flex w-fit rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
+          className="inline-flex w-fit rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
         >
           Back to home
         </Link>

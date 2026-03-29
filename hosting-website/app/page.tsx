@@ -6,36 +6,36 @@ import StartOrderForm from "../components/StartOrderForm";
 
 export default function Home() {
   return (
-    <main className="w-full bg-slate-50 text-slate-900">
-      <section className="relative overflow-hidden bg-linear-to-b from-slate-900 via-slate-800 to-slate-900">
+    <main className="w-full bg-white text-slate-900">
+      <section className="relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
         >
-          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-emerald-400/20 via-transparent to-transparent" />
-          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-emerald-500/15 blur-3xl" />
-          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-teal-400/15 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-cyan-500/10 blur-3xl" />
+          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-indigo-300/25 via-transparent to-transparent" />
+          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-indigo-300/25 blur-3xl" />
+          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-violet-300/20 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-indigo-200/20 blur-3xl" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1
           id="hero-title"
-          className="max-w-3xl text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl"
+          className="max-w-3xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
         >
           Your website, live in 24 hours
         </h1>
-        <p className="mt-3 max-w-2xl text-sm text-slate-200 sm:text-base">
+        <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
           No tech, no stress. Just send your website — we&apos;ll make it live.
         </p>
         <ScrollToOrderButton
           id="hero-launch-button"
           label="Launch my website"
-          className="mt-6 inline-flex items-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          className="mt-6 inline-flex items-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         />
 
         <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
+            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
               1. Upload zip file of your website
             </p>
             <a href="#start-your-order" className="block">
@@ -51,8 +51,8 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
+            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
               2. I upload it to a server
             </p>
             <div className="relative aspect-5/4 w-full">
@@ -65,8 +65,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-            <p className="border-b border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800">
+          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
+            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
               3. I connect your domain name
             </p>
             <div className="relative aspect-5/4 w-full">
@@ -80,39 +80,39 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-8 w-full max-w-3xl rounded-2xl border border-slate-200 bg-white px-6 py-6 shadow-sm">
+        <div className="mt-8 w-full max-w-3xl rounded-2xl border border-indigo-100 bg-white px-6 py-6">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-800 shadow-sm">
+            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
               WordPress
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Webflow
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Tilda
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Figma AI
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Lovable
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-800 shadow-sm">
+            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
               Cursor
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Claude Code
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Divi
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               HTML
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               React
             </span>
-            <span className="rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700">
+            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
               Others
             </span>
           </div>
@@ -120,7 +120,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50">
+      <section className="border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Presentation Video
@@ -130,7 +130,7 @@ export default function Home() {
             can get your website online fast.
           </p>
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-indigo-100 bg-white">
             <video
               controls
               preload="metadata"
@@ -149,74 +149,125 @@ export default function Home() {
 
       <section
         id="pricing"
-        className="scroll-mt-28 border-t border-slate-200 bg-white"
+        className="scroll-mt-28 border-t border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
-          <div className="mx-auto grid w-full max-w-4xl gap-6 text-left md:grid-cols-2">
+          <h2 className="text-3xl font-bold text-indigo-950 sm:text-4xl">
+            Simple plans for every stage
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-slate-600">
+            Start small or choose full-stack support. Both plans include direct
+            communication and clean setup.
+          </p>
+
+          <div className="mx-auto mt-10 grid w-full max-w-6xl gap-6 text-left md:grid-cols-2">
             <PlanSelectLink
               plan="hosting-9-99"
-              className="block rounded-2xl border border-slate-200 bg-white px-8 py-8 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="block h-full rounded-2xl border border-indigo-300 bg-white px-8 py-8 transition hover:border-indigo-500"
             >
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+              <div className="flex items-center justify-between gap-3">
+                <span className="inline-flex rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                  Reliable Choice
+                </span>
+                <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+                  33% OFF
+                </span>
+              </div>
+
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-500">
                 Hosting Plan
               </p>
-              <p className="mt-2 text-5xl font-extrabold text-slate-800">
-                $9.99
+              <p className="mt-3 text-sm text-slate-500 line-through">$14.99</p>
+              <p className="mt-1 text-5xl font-extrabold text-indigo-950">$9.99</p>
+              <p className="mt-1 text-slate-600">/ month</p>
+              <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
+                Best for landing pages and business websites.
               </p>
-              <p className="mt-1 text-slate-600">per month, simple and solid</p>
-              <p className="mt-3 text-sm font-semibold text-slate-800">
-                Best for landing pages and business websites
-              </p>
-              <span className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500">
+
+              <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
                 Choose Hosting Plan - $9.99/mo
               </span>
+
+              <p className="mt-4 text-sm text-slate-500">30-day support included</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Domain included (.site or .online or .store)
+              </p>
+
+              <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
+                <li>✓ Fast deployment and SSL setup</li>
+                <li>✓ Domain connection done for you</li>
+                <li>✓ Reliable monthly maintenance</li>
+                <li>✓ Direct support when needed</li>
+              </ul>
             </PlanSelectLink>
 
             <PlanSelectLink
               plan="full-stack-19-99"
-              className="block rounded-2xl border border-slate-200 bg-white px-8 py-8 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="block h-full rounded-2xl border-2 border-indigo-500 bg-white px-8 py-8 transition hover:border-indigo-600"
             >
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+              <div className="flex items-center justify-between gap-3">
+                <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
+                  Most Popular
+                </span>
+                <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
+                  33% OFF
+                </span>
+              </div>
+
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-500">
                 Full Stack Plan
               </p>
-              <p className="mt-2 text-5xl font-extrabold text-slate-800">
-                $19.99
+              <p className="mt-3 text-sm text-slate-500 line-through">$29.99</p>
+              <p className="mt-1 text-5xl font-extrabold text-indigo-950">$19.99</p>
+              <p className="mt-1 text-slate-600">/ month</p>
+              <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
+                Great for apps with frontend, backend, and database.
               </p>
-              <p className="mt-1 text-slate-600">per month, full power</p>
-              <p className="mt-3 text-sm font-semibold text-slate-800">
-                Great for web apps with frontend, backend, and database
-              </p>
-              <span className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500">
+
+              <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
                 Choose Full Stack - $19.99/mo
               </span>
+
+              <p className="mt-4 text-sm text-slate-500">Priority support included</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Domain included (.site or .online or .store)
+              </p>
+
+              <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
+                <li>✓ Frontend + backend deployment</li>
+                <li>✓ Database provisioning and config</li>
+                <li>✓ Environment/security baseline setup</li>
+                <li>✓ Performance and uptime checks</li>
+                <li>✓ Faster support response</li>
+              </ul>
             </PlanSelectLink>
           </div>
           <a
             href="#start-your-order"
-            className="mt-10 inline-flex rounded-full bg-emerald-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-emerald-500"
+            className="mt-10 inline-flex rounded-full bg-indigo-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-indigo-500"
           >
             Let&apos;s Launch Your Site
           </a>
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
+      <section className="border-t border-indigo-100 bg-white">
         <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-3">
-          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Done-For-You Setup</h2>
             <p className="mt-3 text-slate-600">
               I handle setup and launch from start to finish, so you avoid the
               technical maze.
             </p>
           </article>
-          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Reliable Uptime</h2>
             <p className="mt-3 text-slate-600">
               Stable hosting with proactive monitoring keeps your site available
               for visitors.
             </p>
           </article>
-          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Real Human Support</h2>
             <p className="mt-3 text-slate-600">
               Need changes or help? You talk directly to me and get a quick
@@ -228,7 +279,7 @@ export default function Home() {
 
       <section
         id="start-your-order"
-        className="scroll-mt-28 border-t border-slate-200 bg-white"
+        className="scroll-mt-28 border-t border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-4xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -243,12 +294,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
+      <section className="border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             What clients say
           </h2>
-          <div className="mt-8 rounded-2xl border border-slate-300 bg-white p-8 shadow-sm">
+          <div className="mt-8 rounded-2xl border border-indigo-100 bg-white p-8">
             <p className="text-lg leading-relaxed text-slate-700">
               &ldquo;I thought hosting a website would be complicated. It
               wasn&apos;t. I just sent my files and it was online the next
@@ -269,7 +320,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="scroll-mt-28 border-t border-slate-200 bg-white">
+      <section id="faq" className="scroll-mt-28 border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
@@ -277,7 +328,7 @@ export default function Home() {
           </p>
 
           <div className="mt-8 space-y-4">
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 What is hosting?
               </h3>
@@ -286,7 +337,7 @@ export default function Home() {
                 access it online 24/7.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 Do I need a domain name?
               </h3>
@@ -295,7 +346,7 @@ export default function Home() {
                 can help you pick and connect it.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 What is SSL / HTTPS?
               </h3>
@@ -304,7 +355,7 @@ export default function Home() {
                 website opens with HTTPS by default.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 What is a website with backend and db?
               </h3>
@@ -314,7 +365,7 @@ export default function Home() {
                 like users, orders, or content.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 I built my website with AI. Can you host it?
               </h3>
@@ -323,7 +374,7 @@ export default function Home() {
                 and launch.
               </p>
             </article>
-            <article className="rounded-xl border border-slate-200 bg-white p-5">
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
                 How fast can my site go live?
               </h3>
@@ -337,7 +388,7 @@ export default function Home() {
           <div className="mt-10">
             <a
               href="#start-your-order"
-              className="inline-flex rounded-full bg-emerald-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
+              className="inline-flex rounded-full bg-indigo-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
               Start Your Order Now
             </a>
@@ -345,10 +396,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-white">
+      <section className="border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 md:p-10 shadow-sm">
-            <p className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-slate-800">
+          <div className="rounded-3xl border border-indigo-100 bg-white p-8 md:p-10">
+            <p className="inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-900">
               Trust & Transparency
             </p>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -364,7 +415,7 @@ export default function Home() {
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <article className="rounded-xl border border-slate-300 bg-white p-5">
+              <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   No hidden charges
                 </h3>
@@ -373,7 +424,7 @@ export default function Home() {
                 </p>
               </article>
 
-              <article className="rounded-xl border border-slate-300 bg-white p-5">
+              <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Real human support
                 </h3>
@@ -382,7 +433,7 @@ export default function Home() {
                 </p>
               </article>
 
-              <article className="rounded-xl border border-slate-300 bg-white p-5">
+              <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
                   Reliable service
                 </h3>
