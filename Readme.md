@@ -151,3 +151,21 @@ All services communicate over an internal Docker network. Only ports 80 and 443 
 #test deploy
 #test deploy2
 #test deploy3
+
+---
+
+## Q&A
+
+### What is a website with backend and db?
+
+A website with backend and database is a full-stack application:
+
+- **Frontend (website UI):** what users see and interact with in the browser.
+- **Backend (server logic):** handles requests, business rules, authentication, payments, and APIs.
+- **Database (db):** stores persistent data like users, products, orders, and settings.
+
+In this project:
+
+- Frontend = **Next.js** (`hosting-website`)
+- Backend = **Express + TypeScript** (`hosting-backend`)
+- DB = **MySQL** (`db` service in Docker)

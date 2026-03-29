@@ -306,6 +306,16 @@ export default function Home() {
             </article>
             <article className="rounded-xl border border-slate-200 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
+                What is a website with backend and db?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                It is a full-stack website: the frontend is what people see, the
+                backend handles logic and requests, and the database stores data
+                like users, orders, or content.
+              </p>
+            </article>
+            <article className="rounded-xl border border-slate-200 bg-white p-5">
+              <h3 className="text-base font-semibold text-slate-900">
                 I built my website with AI. Can you host it?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
