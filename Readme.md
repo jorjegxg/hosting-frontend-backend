@@ -90,6 +90,7 @@ chmod +x deploy.sh
 ```
 
 This script will:
+
 1. Configure nginx for your domain
 2. Build and start all containers (DB, backend, frontend, nginx)
 3. Obtain a free SSL certificate from Let's Encrypt
@@ -148,3 +149,4 @@ Internet
 
 All services communicate over an internal Docker network. Only ports 80 and 443 are exposed to the internet.
 #test deploy
+#test deploy2
