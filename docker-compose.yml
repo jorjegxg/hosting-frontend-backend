@@ -8,7 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-mysecretpassword}
       MYSQL_DATABASE: ${DB_NAME:-myappdb}
-      MYSQL_PORT: ${DB_PORT:-3308}
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
@@ -17,5 +16,56 @@ services:
       timeout: 5s
       retries: 10
 
+  backend:
+    build:
+      context: ./hosting-backend
+      dockerfile: Dockerfile
+    container_name: hosting-backend
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-mysecretpassword}
+      DB_NAME: ${DB_NAME:-myappdb}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_SECURE: ${SMTP_SECURE}
+      SMTP_FROM: ${SMTP_FROM}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      STRIPE_PRICE_HOSTING_9_99_MONTHLY: ${STRIPE_PRICE_HOSTING_9_99_MONTHLY}
+      STRIPE_PRICE_FULL_STACK_19_99_MONTHLY: ${STRIPE_PRICE_FULL_STACK_19_99_MONTHLY}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - uploads_data:/app/uploads
+
+  website:
+    build:
+      context: ./hosting-website
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL:-http://localhost:4000}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:4001}
+        NEXT_PUBLIC_APP_MODE: ${NEXT_PUBLIC_APP_MODE:-dev}
+    container_name: hosting-website
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+    environment:
+      BACKEND_URL: http://backend:4000
+      PORT: 4001
+    depends_on:
+      - backend
+
 volumes:
   db_data:
+  uploads_data:
