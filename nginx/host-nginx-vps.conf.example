@@ -1,0 +1,58 @@
+# =============================================================================
+# Nginx on the HOST (not in Docker) — Strelements / generic VPS
+# =============================================================================
+# 1) Replace YOURDOMAIN.COM with your real domain (e.g. strelements.com).
+# 2) Install on the server:
+#      sudo cp host-nginx-vps.conf.example /etc/nginx/sites-available/app.conf
+#      sudo ln -sf /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
+#      sudo rm -f /etc/nginx/sites-enabled/default
+# 3) Ensure Docker maps app ports only to localhost (see docker-compose.vps.yml).
+# 4) Test and reload:
+#      sudo nginx -t && sudo systemctl reload nginx
+# 5) Obtain HTTPS with Certbot (adds SSL blocks for you):
+#      sudo certbot --nginx -d YOURDOMAIN.COM -d api.YOURDOMAIN.COM
+#
+# After Certbot, URLs:
+#   https://YOURDOMAIN.COM        -> 127.0.0.1:4001 (Next.js)
+#   https://api.YOURDOMAIN.COM    -> 127.0.0.1:4000 (API)
+# =============================================================================
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name YOURDOMAIN.COM;
+
+    client_max_body_size 100M;
+
+    location / {
+        proxy_pass http://127.0.0.1:4001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name api.YOURDOMAIN.COM;
+
+    client_max_body_size 100M;
+
+    location / {
+        proxy_pass http://127.0.0.1:4000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+}

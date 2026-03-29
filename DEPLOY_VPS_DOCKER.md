@@ -61,11 +61,57 @@ docker compose -f docker-compose.vps.yml down
 
 Uploaded ZIP files are stored in a Docker volume mounted at `/app/uploads` in the backend container, so they persist across restarts.
 
-## 6) Ports to open
+## 6) Ports and firewall
 
-- `3000` -> Next.js website
-- `4000` -> backend API
+- Docker publishes **website** on `127.0.0.1:4001` and **backend** on `127.0.0.1:4000` (only nginx on the host should talk to them).
+- Open **80** and **443** for the public (HTTP/HTTPS). Do **not** expose 4000/4001 to the internet if nginx terminates TLS.
 
-For production, put Nginx/Caddy in front (80/443) and route:
-- `/` -> `website:3000`
-- `/api` -> `backend:4000`
+```bash
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw enable
+```
+
+## 7) HTTPS — nginx on the host + Let’s Encrypt
+
+Install on the VPS (Debian/Ubuntu):
+
+```bash
+sudo apt update
+sudo apt install -y nginx certbot python3-certbot-nginx
+```
+
+Copy the example site config from the repo, edit `YOURDOMAIN.COM`, enable it:
+
+```bash
+# from your app folder, after copying the example to the server:
+sudo cp nginx/host-nginx-vps.conf.example /etc/nginx/sites-available/app.conf
+sudo sed -i 's/YOURDOMAIN.COM/strelements.com/g' /etc/nginx/sites-available/app.conf   # adjust domain
+sudo ln -sf /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Start Docker stack, then check **http://yourdomain.com** and **http://api.yourdomain.com** (still HTTP).
+
+Then obtain certificates (Certbot will add HTTPS to the same `server` blocks):
+
+```bash
+sudo certbot --nginx -d strelements.com -d api.strelements.com
+```
+
+Use your real domain names and email when Certbot asks. Renewals are usually installed as a **cron**/`systemd` timer automatically.
+
+`.env` on the server should use HTTPS URLs, then rebuild the website image:
+
+```env
+NEXT_PUBLIC_APP_URL=https://strelements.com
+NEXT_PUBLIC_BACKEND_URL=https://api.strelements.com
+```
+
+```bash
+docker compose -f docker-compose.vps.yml up -d --build website
+```
+
+Reference config: `nginx/host-nginx-vps.conf.example`.

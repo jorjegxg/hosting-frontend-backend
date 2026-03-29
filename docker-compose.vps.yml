@@ -24,9 +24,9 @@ services:
       dockerfile: Dockerfile
     container_name: hosting-backend
     restart: unless-stopped
-    # Acces din exterior: API la http://IP_SAU_DOMENIU:4000 (după firewall)
+    # Cu nginx pe host: doar localhost. Fără nginx: folosește "4000:4000" temporar.
     ports:
-      - "4000:4000"
+      - "127.0.0.1:4000:4000"
     environment:
       PORT: 4000
       DB_HOST: db
@@ -64,9 +64,9 @@ services:
         NEXT_PUBLIC_APP_MODE: production
     container_name: hosting-website
     restart: unless-stopped
-    # Acces din exterior: site la http://IP_SAU_DOMENIU:4001
+    # Cu nginx pe host: doar localhost. Fără nginx: folosește "4001:4001" temporar.
     ports:
-      - "4001:4001"
+      - "127.0.0.1:4001:4001"
     environment:
       BACKEND_URL: http://backend:4000
       PORT: 4001
