@@ -34,19 +34,15 @@ export default function RootLayout({
       <body suppressHydrationWarning className="flex min-h-dvh flex-col bg-white">
         <header className="sticky top-0 z-30 border-b border-indigo-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-            <a href="/" className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white">
-                <Image
-                  src="/hosting-logo.svg"
-                  alt="Strelements logo"
-                  width={34}
-                  height={34}
-                  className="h-8 w-8"
-                />
-              </span>
-              <span className="font-sans text-lg font-bold tracking-[0.06em] text-indigo-950 sm:text-xl">
-                Strelements
-              </span>
+            <a href="/" className="inline-flex items-center">
+              <Image
+                src="/hosting-logo-text.svg"
+                alt="Strelements"
+                width={220}
+                height={51}
+                className="h-9 w-auto max-w-52 sm:h-11 sm:max-w-64"
+                priority
+              />
             </a>
             <nav className="hidden items-center gap-6 text-sm font-semibold text-indigo-900/70 md:flex">
               <a href="/" className="transition hover:text-indigo-950">

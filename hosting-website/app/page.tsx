@@ -33,16 +33,16 @@ export default function Home() {
           className="mt-6 inline-flex items-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         />
 
-        <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
-          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
+        <div className="group mt-6 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
+          <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
             <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-              1. Upload zip file of your website
+              1. Preview your site locally (e.g. localhost:3000)
             </p>
             <a href="#start-your-order" className="block">
               <div className="relative aspect-5/4 w-full cursor-pointer">
                 <Image
-                  src="/project_upload_exact_sqare.svg"
-                  alt="Project upload step"
+                  src="/steps/browser_localhost_3000-02.svg"
+                  alt="Browser showing local development preview"
                   fill
                   className="object-contain object-center p-2"
                   priority
@@ -51,32 +51,40 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
-            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-              2. I upload it to a server
-            </p>
-            <div className="relative aspect-5/4 w-full">
-              <Image
-                src="/steps/upload_to_server.svg"
-                alt="Website deployed to a server"
-                fill
-                className="object-contain p-1"
+          <div
+            className="flex shrink-0 items-center justify-center py-1 text-indigo-500 sm:w-16 sm:py-0"
+            aria-hidden="true"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="h-9 w-9 rotate-90 text-indigo-500 transition-transform duration-300 ease-out group-hover:translate-y-1 sm:rotate-0 sm:group-hover:translate-x-1 sm:group-hover:translate-y-0"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
-            </div>
+            </svg>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-white">
+          <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
             <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-              3. I connect your domain name
+              2. I connect your domain name
             </p>
-            <div className="relative aspect-5/4 w-full">
-              <Image
-                src="/steps/browser_your-brand-02.svg"
-                alt="Domain name setup"
-                fill
-                className="object-contain p-1"
-              />
-            </div>
+            <a href="#start-your-order" className="block">
+              <div className="relative aspect-5/4 w-full cursor-pointer">
+                <Image
+                  src="/steps/browser_your-brand-02.svg"
+                  alt="Domain name setup"
+                  fill
+                  className="object-contain p-1"
+                />
+              </div>
+            </a>
           </div>
         </div>
 
@@ -196,7 +204,8 @@ export default function Home() {
               <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
                 <li>✓ Fast deployment and SSL setup</li>
                 <li>✓ Domain connection done for you</li>
-                <li>✓ Reliable monthly maintenance</li>
+                <li>✓ Ongoing maintenance &amp; updates</li>
+                <li>✓ Website monitoring</li>
                 <li>✓ Direct support when needed</li>
               </ul>
             </PlanSelectLink>
@@ -238,6 +247,8 @@ export default function Home() {
                 <li>✓ Database provisioning and config</li>
                 <li>✓ Environment/security baseline setup</li>
                 <li>✓ Performance and uptime checks</li>
+                <li>✓ Ongoing maintenance &amp; updates</li>
+                <li>✓ Website monitoring</li>
                 <li>✓ Faster support response</li>
               </ul>
             </PlanSelectLink>
