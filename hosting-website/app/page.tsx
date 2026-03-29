@@ -12,10 +12,10 @@ export default function Home() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
         >
-          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-blue-400/20 via-transparent to-transparent" />
-          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-blue-500/15 blur-3xl" />
-          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-sky-400/15 blur-3xl" />
-          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-indigo-500/10 blur-3xl" />
+          <div className="absolute inset-0 bg-radial-[at_50%_12%] from-emerald-400/20 via-transparent to-transparent" />
+          <div className="absolute -top-32 left-1/2 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-emerald-500/15 blur-3xl" />
+          <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-teal-400/15 blur-3xl" />
+          <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-cyan-500/10 blur-3xl" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
         <h1
@@ -30,7 +30,7 @@ export default function Home() {
         <ScrollToOrderButton
           id="hero-launch-button"
           label="Launch my website"
-          className="mt-6 inline-flex items-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+          className="mt-6 inline-flex items-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
         />
 
         <div className="mt-6 grid w-full max-w-6xl gap-6 sm:grid-cols-3">
@@ -167,7 +167,7 @@ export default function Home() {
               <p className="mt-3 text-sm font-semibold text-slate-800">
                 Best for landing pages and business websites
               </p>
-              <span className="mt-6 inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
+              <span className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500">
                 Choose Hosting Plan - $9.99/mo
               </span>
             </PlanSelectLink>
@@ -186,14 +186,14 @@ export default function Home() {
               <p className="mt-3 text-sm font-semibold text-slate-800">
                 Great for web apps with frontend, backend, and database
               </p>
-              <span className="mt-6 inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">
+              <span className="mt-6 inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500">
                 Choose Full Stack - $19.99/mo
               </span>
             </PlanSelectLink>
           </div>
           <a
             href="#start-your-order"
-            className="mt-10 inline-flex rounded-full bg-blue-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-blue-500"
+            className="mt-10 inline-flex rounded-full bg-emerald-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-emerald-500"
           >
             Let&apos;s Launch Your Site
           </a>
@@ -327,7 +327,7 @@ export default function Home() {
           <div className="mt-10">
             <a
               href="#start-your-order"
-              className="inline-flex rounded-full bg-blue-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
+              className="inline-flex rounded-full bg-emerald-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
             >
               Start Your Order Now
             </a>

@@ -126,7 +126,7 @@ export default function OrderConfirmationEmail({
 
         <p className="text-xs text-slate-400">
           Questions? Reply to this email or write to{" "}
-          <a href="mailto:hello@strelements.com" className="text-blue-600 underline">
+          <a href="mailto:hello@strelements.com" className="text-emerald-600 underline">
             hello@strelements.com
           </a>
           .

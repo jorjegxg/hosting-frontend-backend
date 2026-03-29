@@ -143,7 +143,7 @@ export default async function OrderSentPage({ searchParams }: OrderSentPageProps
         )}
         <Link
           href="/"
-          className="inline-flex w-fit rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-500"
+          className="inline-flex w-fit rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
         >
           Back to home
         </Link>

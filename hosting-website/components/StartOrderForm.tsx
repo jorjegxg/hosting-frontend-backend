@@ -270,7 +270,7 @@ export default function StartOrderForm() {
             required
             accept=".zip,application/zip,application/x-zip-compressed"
             onChange={onZipChange}
-            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-blue-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
+            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-emerald-600 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
           />
         </label>
         {uploadedFileName && (
@@ -332,7 +332,7 @@ export default function StartOrderForm() {
               required
               checked={selectedPlan === "hosting-9-99"}
               onChange={() => setSelectedPlan("hosting-9-99")}
-              className="mt-1 h-4 w-4 accent-blue-600"
+              className="mt-1 h-4 w-4 accent-emerald-600"
             />
             <span>
               <span className="block text-sm font-semibold text-slate-800">
@@ -352,7 +352,7 @@ export default function StartOrderForm() {
               required
               checked={selectedPlan === "full-stack-19-99"}
               onChange={() => setSelectedPlan("full-stack-19-99")}
-              className="mt-1 h-4 w-4 accent-blue-600"
+              className="mt-1 h-4 w-4 accent-emerald-600"
             />
             <span>
               <span className="block text-sm font-semibold text-slate-800">
@@ -369,7 +369,7 @@ export default function StartOrderForm() {
       <button
         type="submit"
         disabled={isSubmitting || isUploadingFile || !uploadedFilePath}
-        className="inline-flex rounded-full bg-blue-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
+        className="inline-flex rounded-full bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {isSubmitting
           ? "Sending..."
@@ -384,7 +384,7 @@ export default function StartOrderForm() {
         <div className="space-y-2">
           <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
             <div
-              className="h-full rounded-full bg-blue-600 transition-all"
+              className="h-full rounded-full bg-emerald-600 transition-all"
               style={{ width: `${uploadProgress}%` }}
             />
           </div>

@@ -58,13 +58,13 @@ export default function RootLayout({
               <a href="/#faq" className="transition hover:text-slate-900">
                 FAQ
               </a>
-              <a href="/#start-your-order" className="transition hover:text-slate-900">
+              <a href="/contact" className="transition hover:text-slate-900">
                 Contact
               </a>
             </nav>
             <a
               href="/#start-your-order"
-              className="inline-flex rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+              className="inline-flex rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-500"
             >
               Launch My Site
             </a>
