@@ -1,5 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import OrderConfirmationEmail from "../../components/OrderConfirmationEmail";
+
+export const metadata: Metadata = {
+  title: "Order Confirmation",
+  description: "Order confirmation page.",
+  robots: { index: false, follow: false },
+};
 
 type OrderSentPageProps = {
   searchParams?:

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import "./globals.css";
 
@@ -14,10 +15,46 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://strelements.com";
+
 export const metadata: Metadata = {
-  title: "Your Hosting Service",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Strelements | AI Website Hosting for Non-Technical Owners",
+    template: "%s | Strelements",
+  },
   description:
-    "Website hosting service for $9.99 per month with setup and support.",
+    "US-focused done-for-you hosting and deployment for AI-built and small business websites. Send your files, go live fast, and get real support.",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/",
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Strelements",
+    locale: "en_US",
+    url: "/",
+    title: "Strelements | AI Website Hosting for Non-Technical Owners",
+    description:
+      "Done-for-you website deployment, domain setup, SSL, and ongoing support for AI-generated websites.",
+    images: [
+      {
+        url: "/hosting-logo-text.svg",
+        width: 1200,
+        height: 630,
+        alt: "Strelements hosting service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Strelements | AI Website Hosting for Non-Technical Owners",
+    description:
+      "Hosting and deployment for AI-built websites. No technical stress, just a site that goes live fast.",
+    images: ["/hosting-logo-text.svg"],
+  },
 };
 
 export default function RootLayout({
@@ -39,7 +76,7 @@ export default function RootLayout({
         <FadeInOnScroll />
         <header className="sticky top-0 z-30 border-b border-indigo-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-            <a href="/" className="inline-flex items-center">
+            <Link href="/" className="inline-flex items-center">
               <Image
                 src="/strelements-logo.svg"
                 alt="Strelements"
@@ -48,27 +85,27 @@ export default function RootLayout({
                 className="h-9 w-auto max-w-52 sm:h-11 sm:max-w-64"
                 priority
               />
-            </a>
+            </Link>
             <nav className="hidden items-center gap-6 text-sm font-semibold text-indigo-900/70 md:flex">
-              <a href="/" className="transition hover:text-indigo-950">
+              <Link href="/" className="transition hover:text-indigo-950">
                 Home
-              </a>
-              <a href="/#pricing" className="transition hover:text-indigo-950">
+              </Link>
+              <Link href="/#pricing" className="transition hover:text-indigo-950">
                 Pricing
-              </a>
-              <a href="/#faq" className="transition hover:text-indigo-950">
+              </Link>
+              <Link href="/#faq" className="transition hover:text-indigo-950">
                 FAQ
-              </a>
-              <a href="/contact" className="transition hover:text-indigo-950">
+              </Link>
+              <Link href="/contact" className="transition hover:text-indigo-950">
                 Contact
-              </a>
+              </Link>
             </nav>
-            <a
+            <Link
               href="/#start-your-order"
               className="inline-flex rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
               Launch My Site
-            </a>
+            </Link>
           </div>
         </header>
 
@@ -78,27 +115,27 @@ export default function RootLayout({
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
             <p>© {year} Strelements. All rights reserved.</p>
             <div className="flex flex-wrap items-center gap-4">
-              <a href="/about-us" className="transition hover:text-white">
+              <Link href="/about-us" className="transition hover:text-white">
                 About Us
-              </a>
-              <a href="/privacy-policy" className="transition hover:text-white">
+              </Link>
+              <Link href="/privacy-policy" className="transition hover:text-white">
                 Privacy Policy
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/terms-and-conditions"
                 className="transition hover:text-white"
               >
                 Terms & Conditions
-              </a>
+              </Link>
               <a
                 href="mailto:hello@strelements.com"
                 className="transition hover:text-white"
               >
                 hello@strelements.com
               </a>
-              <a href="/" className="transition hover:text-white">
+              <Link href="/" className="transition hover:text-white">
                 Back to home
-              </a>
+              </Link>
             </div>
           </div>
         </footer>

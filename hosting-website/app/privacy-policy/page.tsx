@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Strelements",
@@ -12,12 +13,12 @@ export default function PrivacyPolicyPage() {
     <main className="min-h-dvh bg-slate-50 text-slate-900">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-4xl px-6 py-10">
-          <a
+          <Link
             href="/"
             className="text-sm font-semibold text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
           >
             Back to Home
-          </a>
+          </Link>
           <h1 className="mt-4 text-3xl font-bold sm:text-4xl">Privacy Policy</h1>
           <p className="mt-3 text-sm text-slate-600">Last updated: {updatedOn}</p>
         </div>

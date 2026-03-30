@@ -1,5 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Strelements",
+  description:
+    "Meet the founder behind Strelements and learn how non-technical US business owners launch websites without stress.",
+  alternates: {
+    canonical: "/about-us",
+  },
+};
 
 export default function AboutUsPage() {
   return (

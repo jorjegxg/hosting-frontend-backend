@@ -4,12 +4,20 @@ import { useEffect, useState } from "react";
 import ScrollToOrderButton from "./ScrollToOrderButton";
 
 export default function FloatingStartButton() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() =>
+    typeof window !== "undefined" ? window.scrollY > 520 : false,
+  );
 
   useEffect(() => {
     const heroButton = document.getElementById("hero-launch-button");
     if (!heroButton) {
-      setIsVisible(window.scrollY > 520);
+      const onScroll = () => setIsVisible(window.scrollY > 520);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+
+    if (typeof IntersectionObserver === "undefined") {
       return;
     }
 

@@ -1,12 +1,102 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
 import PlanSelectLink from "../components/PlanSelectLink";
 import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
+export const metadata: Metadata = {
+  title: "Done-for-You Website Hosting in the US",
+  description:
+    "Hosting for AI-built and business websites with setup, SSL, domain connection, and support. Perfect for non-technical owners who want to launch fast.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Strelements",
+  url: "https://strelements.com",
+  email: "hello@strelements.com",
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "AI Website Hosting and Deployment",
+  provider: {
+    "@type": "Organization",
+    name: "Strelements",
+    url: "https://strelements.com",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Hosting Plan",
+      price: "9.99",
+      priceCurrency: "USD",
+    },
+    {
+      "@type": "Offer",
+      name: "Full Stack Plan",
+      price: "19.99",
+      priceCurrency: "USD",
+    },
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is hosting?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Hosting is internet space where your website lives so people can access it online 24/7.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do I need a domain name?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. A domain is your website address and we can help you pick and connect it.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "I built my website with AI. Can you host it?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes. Send your files and we handle deployment, domain connection, and launch.",
+      },
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <main className="w-full bg-white text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="fade-in relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
         <div
           aria-hidden="true"
@@ -27,6 +117,10 @@ export default function Home() {
           <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
             No tech, no stress. Just send your website — we&apos;ll make it
             live.
+          </p>
+          <p className="mt-3 max-w-3xl text-sm font-medium text-indigo-700">
+            Built with AI tools like Lovable, Cursor, or Claude Code? We host
+            it for you.
           </p>
           <ScrollToOrderButton
             id="hero-launch-button"
@@ -268,6 +362,20 @@ export default function Home() {
           >
             Let&apos;s Launch Your Site
           </a>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-indigo-700">
+            <a href="/ai-website-hosting" className="underline-offset-4 hover:underline">
+              AI website hosting
+            </a>
+            <a
+              href="/website-deployment-service"
+              className="underline-offset-4 hover:underline"
+            >
+              Website deployment service
+            </a>
+            <a href="/full-stack-hosting" className="underline-offset-4 hover:underline">
+              Full stack hosting
+            </a>
+          </div>
         </div>
       </section>
 

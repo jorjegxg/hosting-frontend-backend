@@ -1,0 +1,8 @@
+month,page_url,primary_keyword,intent_group,impressions,clicks,ctr,avg_position,organic_sessions,form_starts,qualified_leads,completed_orders,landing_page_cvr,notes
+2026-04,/,done-for-you website hosting,BOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/ai-website-hosting,host AI website,BOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/website-deployment-service,deploy website for me,BOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/full-stack-hosting,full stack hosting service,BOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/host-lovable-website,host lovable website,MOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/host-cursor-website,host cursor website,MOFU,0,0,0,0,0,0,0,0,0,baseline
+2026-04,/host-claude-code-website,host claude code website,MOFU,0,0,0,0,0,0,0,0,0,baseline

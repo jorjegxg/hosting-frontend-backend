@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Strelements",
@@ -12,12 +13,12 @@ export default function TermsAndConditionsPage() {
     <main className="min-h-dvh bg-slate-50 text-slate-900">
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-4xl px-6 py-10">
-          <a
+          <Link
             href="/"
             className="text-sm font-semibold text-slate-600 underline-offset-4 hover:text-slate-900 hover:underline"
           >
             Back to Home
-          </a>
+          </Link>
           <h1 className="mt-4 text-3xl font-bold sm:text-4xl">
             Terms and Conditions
           </h1>
@@ -74,7 +75,8 @@ export default function TermsAndConditionsPage() {
           <article className="space-y-3">
             <h2 className="text-xl font-semibold">6. Limitation of Liability</h2>
             <p className="text-slate-700">
-              Services are provided on an "as is" and "as available" basis.
+              Services are provided on an &quot;as is&quot; and &quot;as
+              available&quot; basis.
               Strelements is not liable for indirect or consequential losses,
               including loss of profits, business interruption, or data loss.
             </p>
