@@ -7,7 +7,7 @@ import StartOrderForm from "../components/StartOrderForm";
 export default function Home() {
   return (
     <main className="w-full bg-white text-slate-900">
-      <section className="relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
+      <section className="fade-in relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
@@ -128,7 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-indigo-100 bg-white">
+      <section className="fade-in border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Presentation Video
@@ -157,7 +157,7 @@ export default function Home() {
 
       <section
         id="pricing"
-        className="scroll-mt-28 border-t border-indigo-100 bg-white"
+        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-indigo-950 sm:text-4xl">
@@ -262,7 +262,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-indigo-100 bg-white">
+      <section className="fade-in border-t border-indigo-100 bg-white">
         <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-3">
           <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Done-For-You Setup</h2>
@@ -290,7 +290,7 @@ export default function Home() {
 
       <section
         id="start-your-order"
-        className="scroll-mt-28 border-t border-indigo-100 bg-white"
+        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-4xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -305,7 +305,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-indigo-100 bg-white">
+      <section className="fade-in border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             What clients say
@@ -331,7 +331,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="scroll-mt-28 border-t border-indigo-100 bg-white">
+      <section id="faq" className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
@@ -407,7 +407,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-indigo-100 bg-white">
+      <section className="fade-in border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="rounded-3xl border border-indigo-100 bg-white p-8 md:p-10">
             <p className="inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-900">
