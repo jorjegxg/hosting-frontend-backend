@@ -155,6 +155,34 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="fade-in border-t border-indigo-100 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-12 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            Trusted by
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
+              <Image
+                src="/reko-packaging.svg"
+                alt="Reko Packaging"
+                width={240}
+                height={64}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
+              <Image
+                src="/abiso-logo.svg"
+                alt="Abiso"
+                width={240}
+                height={64}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="pricing"
         className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
@@ -267,22 +295,22 @@ export default function Home() {
           <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Done-For-You Setup</h2>
             <p className="mt-3 text-slate-600">
-              I handle setup and launch from start to finish, so you avoid the
-              technical maze.
+              I handle the full setup and launch, so you do not have to deal
+              with the technical part.
             </p>
           </article>
           <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Reliable Uptime</h2>
             <p className="mt-3 text-slate-600">
-              Stable hosting with proactive monitoring keeps your site available
-              for visitors.
+              Your website stays online and stable, with ongoing monitoring in
+              the background.
             </p>
           </article>
           <article className="rounded-xl border border-indigo-100 bg-white p-6">
             <h2 className="text-xl font-semibold">Real Human Support</h2>
             <p className="mt-3 text-slate-600">
-              Need changes or help? You talk directly to me and get a quick
-              response.
+              Need help or updates? You can message me directly and get a real
+              response fast.
             </p>
           </article>
         </div>
