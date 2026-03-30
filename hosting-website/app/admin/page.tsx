@@ -47,6 +47,7 @@ export default function AdminPage() {
   const [savePassword, setSavePassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isDownloadingId, setIsDownloadingId] = useState<number | null>(null);
+  const [isDeletingId, setIsDeletingId] = useState<number | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
   const [storage, setStorage] = useState<StorageStats | null>(null);
   const [errorText, setErrorText] = useState("");
@@ -129,6 +130,33 @@ export default function AdminPage() {
       setErrorText(error instanceof Error ? error.message : "Download failed.");
     } finally {
       setIsDownloadingId(null);
+    }
+  }
+
+  async function onDeleteUpload(orderId: number) {
+    const shouldDelete = window.confirm(
+      `Are you sure you want to delete project ZIP for order #${orderId}? This cannot be undone.`,
+    );
+    if (!shouldDelete) {
+      return;
+    }
+
+    setIsDeletingId(orderId);
+    setErrorText("");
+    try {
+      const response = await fetch(`${backendUrl}/admin/orders/${orderId}/upload`, {
+        method: "DELETE",
+        headers: { "x-admin-password": password.trim() },
+      });
+      const data = (await response.json()) as { message?: string };
+      if (!response.ok) {
+        throw new Error(data.message ?? "Failed to delete upload.");
+      }
+      await loadAdminData(password.trim());
+    } catch (error) {
+      setErrorText(error instanceof Error ? error.message : "Failed to delete upload.");
+    } finally {
+      setIsDeletingId(null);
     }
   }
 
@@ -241,14 +269,24 @@ export default function AdminPage() {
                           {new Date(order.created_at).toLocaleString()}
                         </td>
                         <td className="px-3 py-2">
-                          <button
-                            type="button"
-                            onClick={() => onDownload(order.id)}
-                            disabled={isDownloadingId === order.id}
-                            className="rounded-md bg-slate-900 px-3 py-1 font-semibold text-white hover:bg-slate-800 disabled:opacity-70"
-                          >
-                            {isDownloadingId === order.id ? "Downloading..." : "Download"}
-                          </button>
+                          <div className="flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => onDownload(order.id)}
+                              disabled={isDownloadingId === order.id}
+                              className="rounded-md bg-slate-900 px-3 py-1 font-semibold text-white hover:bg-slate-800 disabled:opacity-70"
+                            >
+                              {isDownloadingId === order.id ? "Downloading..." : "Download"}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => onDeleteUpload(order.id)}
+                              disabled={isDeletingId === order.id}
+                              className="rounded-md bg-red-600 px-3 py-1 font-semibold text-white hover:bg-red-500 disabled:opacity-70"
+                            >
+                              {isDeletingId === order.id ? "Deleting..." : "Delete"}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}

@@ -866,6 +866,64 @@ app.get("/admin/storage", requireAdmin, async (_req, res) => {
   }
 });
 
+app.delete("/admin/orders/:orderId/upload", requireAdmin, async (req, res) => {
+  const orderId = Number(req.params.orderId);
+  if (!Number.isInteger(orderId) || orderId < 1) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid order id.",
+    });
+  }
+
+  try {
+    const [rowsRaw] = await dbPool.execute(
+      "SELECT id, project_zip_path FROM order_requests WHERE id = ? LIMIT 1",
+      [orderId],
+    );
+    const rows = rowsRaw as Pick<OrderRow, "id" | "project_zip_path">[];
+    const row = rows[0];
+
+    if (!row) {
+      return res.status(404).json({
+        status: "error",
+        message: "Order not found.",
+      });
+    }
+    if (!row.project_zip_path.startsWith("/uploads/")) {
+      return res.status(400).json({
+        status: "error",
+        message: "Stored file path is invalid.",
+      });
+    }
+
+    const uploadsRoot = path.resolve(__dirname, "../uploads");
+    const filePath = path.resolve(__dirname, "..", row.project_zip_path.slice(1));
+    if (!filePath.startsWith(uploadsRoot)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Access outside uploads directory is not allowed.",
+      });
+    }
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        status: "error",
+        message: "File not found on disk.",
+      });
+    }
+
+    await fs.promises.rm(filePath, { force: true });
+    return res.json({
+      status: "ok",
+      message: "Project ZIP was deleted.",
+      orderId,
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Failed to delete project ZIP.";
+    return res.status(500).json({ status: "error", message });
+  }
+});
+
 app.post("/contact", async (req, res) => {
   const name = typeof req.body?.name === "string" ? req.body.name.trim() : "";
   const email = typeof req.body?.email === "string" ? req.body.email.trim() : "";

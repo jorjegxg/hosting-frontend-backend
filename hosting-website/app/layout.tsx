@@ -19,6 +19,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://strelements.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/hosting-logo.svg",
+    shortcut: "/hosting-logo.svg",
+    apple: "/hosting-logo.svg",
+  },
   title: {
     default: "Strelements | AI Website Hosting for Non-Technical Owners",
     template: "%s | Strelements",
