@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutUsPage() {
   return (
@@ -14,10 +15,20 @@ export default function AboutUsPage() {
           direct support.
         </p>
         <p className="mt-4 text-base leading-relaxed text-slate-700">
-          I am from Romania and I studied Computer Science at university. This
-          technical background helps me keep hosting and deployment simple,
-          reliable, and easy to understand for non-technical clients.
+          I am based in Romania and studied Computer Science, which gave me a
+          strong technical foundation. I use that experience to keep hosting and
+          deployment simple, stable, and clear for non-technical clients.
         </p>
+        <div className="mt-6 mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-slate-200">
+          <Image
+            src="/lg.jpeg"
+            alt="Founder of Strelements"
+            width={1200}
+            height={800}
+            className="h-auto w-full object-cover"
+            priority
+          />
+        </div>
         <p className="mt-4 text-base leading-relaxed text-slate-700">
           If you need your site online without stress, I can handle setup, domain
           connection, and ongoing support.
