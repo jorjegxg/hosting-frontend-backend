@@ -18,117 +18,118 @@ export default function Home() {
           <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-indigo-200/20 blur-3xl" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
-        <h1
-          id="hero-title"
-          className="max-w-3xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
-        >
-          Your website, live in 24 hours
-        </h1>
-        <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
-          No tech, no stress. Just send your website — we&apos;ll make it live.
-        </p>
-        <ScrollToOrderButton
-          id="hero-launch-button"
-          label="Launch my website"
-          className="mt-6 inline-flex items-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-        />
-
-        <div className="group mt-6 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
-          <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
-            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-              1. Preview your site locally (e.g. localhost:3000)
-            </p>
-            <a href="#start-your-order" className="block">
-              <div className="relative aspect-5/4 w-full cursor-pointer">
-                <Image
-                  src="/steps/browser_localhost_3000-02.svg"
-                  alt="Browser showing local development preview"
-                  fill
-                  className="object-contain object-center p-2"
-                  priority
-                />
-              </div>
-            </a>
-          </div>
-
-          <div
-            className="flex shrink-0 items-center justify-center py-1 text-indigo-500 sm:w-16 sm:py-0"
-            aria-hidden="true"
+          <h1
+            id="hero-title"
+            className="max-w-3xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-9 w-9 rotate-90 text-indigo-500 transition-transform duration-300 ease-out group-hover:translate-y-1 sm:rotate-0 sm:group-hover:translate-x-1 sm:group-hover:translate-y-0"
+            Your website, live in 24 hours
+          </h1>
+          <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
+            No tech, no stress. Just send your website — we&apos;ll make it
+            live.
+          </p>
+          <ScrollToOrderButton
+            id="hero-launch-button"
+            label="Launch my website"
+            className="mt-6 inline-flex items-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+          />
+
+          <div className="group mt-6 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
+            <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
+              <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
+                1. You upload your local website
+              </p>
+              <a href="#start-your-order" className="block">
+                <div className="relative aspect-5/4 w-full cursor-pointer">
+                  <Image
+                    src="/steps/browser_localhost_3000-02.svg"
+                    alt="Browser showing local development preview"
+                    fill
+                    className="object-contain object-center p-2"
+                    priority
+                  />
+                </div>
+              </a>
+            </div>
+
+            <div
+              className="flex shrink-0 items-center justify-center py-1 text-indigo-500 sm:w-16 sm:py-0"
+              aria-hidden="true"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
-            </svg>
-          </div>
-
-          <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
-            <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-              2. I connect your domain name
-            </p>
-            <a href="#start-your-order" className="block">
-              <div className="relative aspect-5/4 w-full cursor-pointer">
-                <Image
-                  src="/steps/browser_your-brand-02.svg"
-                  alt="Domain name setup"
-                  fill
-                  className="object-contain p-1"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-9 w-9 rotate-90 text-indigo-500 transition-transform duration-300 ease-out group-hover:translate-y-1 sm:rotate-0 sm:group-hover:translate-x-1 sm:group-hover:translate-y-0"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
                 />
-              </div>
-            </a>
-          </div>
-        </div>
+              </svg>
+            </div>
 
-        <div className="mt-8 w-full max-w-3xl rounded-2xl border border-indigo-100 bg-white px-6 py-6">
-          <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
-              WordPress
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Webflow
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Tilda
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Figma AI
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Lovable
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
-              Cursor
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Claude Code
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Divi
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              HTML
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              React
-            </span>
-            <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-              Others
-            </span>
+            <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
+              <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
+                2. I make it live
+              </p>
+              <a href="#start-your-order" className="block">
+                <div className="relative aspect-5/4 w-full cursor-pointer">
+                  <Image
+                    src="/steps/browser_your-brand-02.svg"
+                    alt="Domain name setup"
+                    fill
+                    className="object-contain p-1"
+                  />
+                </div>
+              </a>
+            </div>
           </div>
-        </div>
+
+          <div className="mt-8 w-full max-w-3xl rounded-2xl border border-indigo-100 bg-white px-6 py-6">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
+                WordPress
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Webflow
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Tilda
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Figma AI
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Lovable
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
+                Cursor
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
+                Claude Code
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Divi
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                HTML
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                React
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Others
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="fade-in border-t border-indigo-100 bg-white">
+      {/* <section className="fade-in border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Presentation Video
@@ -153,35 +154,7 @@ export default function Home() {
             </video>
           </div>
         </div>
-      </section>
-
-      <section className="fade-in border-t border-indigo-100 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-12 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-            Trusted by
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
-              <Image
-                src="/reko-packaging.svg"
-                alt="Reko Packaging"
-                width={240}
-                height={64}
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
-              <Image
-                src="/abiso-logo.svg"
-                alt="Abiso"
-                width={240}
-                height={64}
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      </section> */}
 
       <section
         id="pricing"
@@ -214,7 +187,9 @@ export default function Home() {
                 Hosting Plan
               </p>
               <p className="mt-3 text-sm text-slate-500 line-through">$14.99</p>
-              <p className="mt-1 text-5xl font-extrabold text-indigo-950">$9.99</p>
+              <p className="mt-1 text-5xl font-extrabold text-indigo-950">
+                $9.99
+              </p>
               <p className="mt-1 text-slate-600">/ month</p>
               <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
                 Best for landing pages and business websites.
@@ -224,7 +199,9 @@ export default function Home() {
                 Choose Hosting Plan - $9.99/mo
               </span>
 
-              <p className="mt-4 text-sm text-slate-500">30-day support included</p>
+              <p className="mt-4 text-sm text-slate-500">
+                30-day support included
+              </p>
               <p className="mt-1 text-sm text-slate-500">
                 Domain included (.site or .online or .store)
               </p>
@@ -255,7 +232,9 @@ export default function Home() {
                 Full Stack Plan
               </p>
               <p className="mt-3 text-sm text-slate-500 line-through">$29.99</p>
-              <p className="mt-1 text-5xl font-extrabold text-indigo-950">$19.99</p>
+              <p className="mt-1 text-5xl font-extrabold text-indigo-950">
+                $19.99
+              </p>
               <p className="mt-1 text-slate-600">/ month</p>
               <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
                 Great for apps with frontend, backend, and database.
@@ -265,7 +244,9 @@ export default function Home() {
                 Choose Full Stack - $19.99/mo
               </span>
 
-              <p className="mt-4 text-sm text-slate-500">Priority support included</p>
+              <p className="mt-4 text-sm text-slate-500">
+                Priority support included
+              </p>
               <p className="mt-1 text-sm text-slate-500">
                 Domain included (.site or .online or .store)
               </p>
@@ -287,6 +268,34 @@ export default function Home() {
           >
             Let&apos;s Launch Your Site
           </a>
+        </div>
+      </section>
+
+      <section className="fade-in border-t border-indigo-100 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-12 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+            Trusted by
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
+              <Image
+                src="/reko-packaging.svg"
+                alt="Reko Packaging"
+                width={240}
+                height={64}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+            <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
+              <Image
+                src="/abiso-logo.svg"
+                alt="Abiso"
+                width={240}
+                height={64}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -359,7 +368,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white">
+      <section
+        id="faq"
+        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
+      >
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
