@@ -850,6 +850,7 @@ app.get("/admin/orders", requireAdmin, async (_req, res) => {
         paid_at,
         created_at
       FROM order_requests
+      WHERE is_deleted = 0
       ORDER BY id DESC
       LIMIT 500`,
     );
@@ -873,7 +874,7 @@ app.get("/admin/orders/:orderId/download", requireAdmin, async (req, res) => {
 
   try {
     const [rowsRaw] = await dbPool.execute(
-      "SELECT id, project_zip_path FROM order_requests WHERE id = ? LIMIT 1",
+      "SELECT id, project_zip_path FROM order_requests WHERE id = ? AND is_deleted = 0 LIMIT 1",
       [orderId],
     );
     const rows = rowsRaw as Pick<OrderRow, "id" | "project_zip_path">[];
@@ -944,7 +945,7 @@ app.get("/admin/storage", requireAdmin, async (_req, res) => {
 async function deleteOrderUpload(orderId: number, res: express.Response) {
   try {
     const [rowsRaw] = await dbPool.execute(
-      "SELECT id, project_zip_path FROM order_requests WHERE id = ? LIMIT 1",
+      "SELECT id, project_zip_path FROM order_requests WHERE id = ? AND is_deleted = 0 LIMIT 1",
       [orderId],
     );
     const rows = rowsRaw as Pick<OrderRow, "id" | "project_zip_path">[];
@@ -971,17 +972,23 @@ async function deleteOrderUpload(orderId: number, res: express.Response) {
         message: "Access outside uploads directory is not allowed.",
       });
     }
-    if (!fs.existsSync(filePath)) {
-      return res.status(404).json({
-        status: "error",
-        message: "File not found on disk.",
-      });
+
+    // Hide order from admin list even if ZIP is already missing.
+    if (fs.existsSync(filePath)) {
+      await fs.promises.rm(filePath, { force: true });
     }
 
-    await fs.promises.rm(filePath, { force: true });
+    await dbPool.execute(
+      `UPDATE order_requests
+       SET is_deleted = 1,
+           deleted_at = CURRENT_TIMESTAMP
+       WHERE id = ?`,
+      [orderId],
+    );
+
     return res.json({
       status: "ok",
-      message: "Project ZIP was deleted.",
+      message: "Project ZIP and admin row were deleted.",
       orderId,
     });
   } catch (error) {

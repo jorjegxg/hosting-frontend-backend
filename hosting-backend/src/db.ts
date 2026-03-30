@@ -119,4 +119,12 @@ export async function ensureOrdersTable(): Promise<void> {
     "paid_at",
     "ALTER TABLE order_requests ADD COLUMN paid_at TIMESTAMP NULL",
   );
+  await ensureColumn(
+    "is_deleted",
+    "ALTER TABLE order_requests ADD COLUMN is_deleted TINYINT(1) NOT NULL DEFAULT 0",
+  );
+  await ensureColumn(
+    "deleted_at",
+    "ALTER TABLE order_requests ADD COLUMN deleted_at TIMESTAMP NULL",
+  );
 }
