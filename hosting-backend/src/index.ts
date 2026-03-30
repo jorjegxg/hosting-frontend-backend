@@ -140,7 +140,6 @@ app.post(
             const plainTextBody = order
               ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${path.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nStrelements`
               : "Your subscription payment was received successfully. I will now continue with your order setup.";
-            const bcc = orderConfirmationBcc(recipient);
             await sendEmailToClient(
               recipient,
               "Order confirmed - Strelements",
@@ -153,8 +152,18 @@ app.post(
                       "Your subscription payment was received successfully.\nI will now continue with your order setup.",
                     ),
                   ),
-              bcc ? { bcc } : undefined,
             );
+            if (order) {
+              const notify = orderNotificationRecipient(recipient);
+              if (notify) {
+                await sendEmailToClient(
+                  notify,
+                  `[New paid order] #${order.id} - ${order.name}`,
+                  renderOwnerOrderNotificationText(order),
+                  renderOwnerOrderNotificationHtml(order),
+                );
+              }
+            }
           } else {
             console.error(
               `[WEBHOOK] checkout.session.completed | orderId=${orderId} | no recipient email (order row missing or no valid email)`,
@@ -239,8 +248,8 @@ function resolveCheckoutRecipientEmail(
   return null;
 }
 
-/** BCC business inbox on order confirmations (avoid duplicate if same as customer). */
-function orderConfirmationBcc(recipient: string): string | undefined {
+/** Business inbox for owner/admin order notifications. */
+function orderNotificationRecipient(recipient: string): string | undefined {
   const notify =
     process.env.ORDER_NOTIFY_EMAIL?.trim() ||
     process.env.SMTP_FROM?.trim() ||
@@ -253,6 +262,72 @@ function orderConfirmationBcc(recipient: string): string | undefined {
     return undefined;
   }
   return lower;
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function renderOwnerOrderNotificationHtml(order: OrderRow): string {
+  const paidAtText = order.paid_at
+    ? new Date(order.paid_at).toLocaleString("en-US")
+    : "Not available";
+  const createdAtText = order.created_at
+    ? new Date(order.created_at).toLocaleString("en-US")
+    : "Not available";
+
+  return renderEmailShell(
+    `New paid order #${order.id}`,
+    [
+      `<p style="margin:0 0 12px 0;line-height:1.6;">A new order has been paid and is ready for delivery.</p>`,
+      `<div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;background:#f8fafc;">`,
+      `<p style="margin:0 0 8px 0;"><strong>Order ID:</strong> #${order.id}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Name:</strong> ${escapeHtml(order.name)}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Email:</strong> ${escapeHtml(order.email)}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Plan:</strong> ${escapeHtml(formatPlanLabel(order.payment_plan))}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Preferred domain:</strong> ${escapeHtml(order.preferred_domain_name ?? "Not provided")}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Backup domain ideas:</strong> ${escapeHtml(order.backup_domain_ideas ?? "Not provided")}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Message / project details:</strong> ${escapeHtml(order.message ?? "Not provided")}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Uploaded ZIP path:</strong> ${escapeHtml(order.project_zip_path)}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Stripe checkout session:</strong> ${escapeHtml(order.stripe_checkout_session_id ?? "Not available")}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Stripe subscription:</strong> ${escapeHtml(order.stripe_subscription_id ?? "Not available")}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Payment status:</strong> ${escapeHtml(order.payment_status)}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Currency:</strong> ${escapeHtml(order.payment_currency)}</p>`,
+      `<p style="margin:0 0 8px 0;"><strong>Paid at:</strong> ${escapeHtml(paidAtText)}</p>`,
+      `<p style="margin:0;"><strong>Created at:</strong> ${escapeHtml(createdAtText)}</p>`,
+      `</div>`,
+    ].join(""),
+  );
+}
+
+function renderOwnerOrderNotificationText(order: OrderRow): string {
+  const paidAtText = order.paid_at
+    ? new Date(order.paid_at).toLocaleString("en-US")
+    : "Not available";
+  const createdAtText = order.created_at
+    ? new Date(order.created_at).toLocaleString("en-US")
+    : "Not available";
+
+  return [
+    `New paid order #${order.id}`,
+    "",
+    `Name: ${order.name}`,
+    `Email: ${order.email}`,
+    `Plan: ${formatPlanLabel(order.payment_plan)}`,
+    `Preferred domain: ${order.preferred_domain_name ?? "Not provided"}`,
+    `Backup domain ideas: ${order.backup_domain_ideas ?? "Not provided"}`,
+    `Message / project details: ${order.message ?? "Not provided"}`,
+    `Uploaded ZIP path: ${order.project_zip_path}`,
+    `Stripe checkout session: ${order.stripe_checkout_session_id ?? "Not available"}`,
+    `Stripe subscription: ${order.stripe_subscription_id ?? "Not available"}`,
+    `Payment status: ${order.payment_status}`,
+    `Currency: ${order.payment_currency}`,
+    `Paid at: ${paidAtText}`,
+    `Created at: ${createdAtText}`,
+  ].join("\n");
 }
 
 const adminPassword = process.env.ADMIN_PASSWORD ?? "";
