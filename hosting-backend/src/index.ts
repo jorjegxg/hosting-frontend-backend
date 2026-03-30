@@ -866,6 +866,66 @@ app.get("/admin/storage", requireAdmin, async (_req, res) => {
   }
 });
 
+app.post("/contact", async (req, res) => {
+  const name = typeof req.body?.name === "string" ? req.body.name.trim() : "";
+  const email = typeof req.body?.email === "string" ? req.body.email.trim() : "";
+  const subject = typeof req.body?.subject === "string" ? req.body.subject.trim() : "";
+  const message = typeof req.body?.message === "string" ? req.body.message.trim() : "";
+
+  if (!name) {
+    return res.status(400).json({ status: "error", message: "Name is required." });
+  }
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      status: "error",
+      message: "Valid email is required.",
+    });
+  }
+  if (!subject) {
+    return res.status(400).json({ status: "error", message: "Subject is required." });
+  }
+  if (!message) {
+    return res.status(400).json({ status: "error", message: "Message is required." });
+  }
+
+  const recipient = process.env.SMTP_FROM ?? "hello@strelements.com";
+  const emailBodyText = [
+    "New contact message from website",
+    "",
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Subject: ${subject}`,
+    "",
+    "Message:",
+    message,
+  ].join("\n");
+  const emailBodyHtml = renderEmailShell(
+    "New contact message from website",
+    [
+      `<p style="margin:0 0 12px 0;line-height:1.6;"><strong>Name:</strong> ${name.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>`,
+      `<p style="margin:0 0 12px 0;line-height:1.6;"><strong>Email:</strong> ${email.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>`,
+      `<p style="margin:0 0 12px 0;line-height:1.6;"><strong>Subject:</strong> ${subject.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>`,
+      toHtmlParagraphs(`Message:\n${message}`),
+    ].join(""),
+  );
+
+  const sendResult = await sendEmailToClient(
+    recipient,
+    `[Contact] ${subject}`,
+    emailBodyText,
+    emailBodyHtml,
+  );
+
+  if (!sendResult.sent) {
+    return res.status(500).json({
+      status: "error",
+      message: `Failed to send message: ${sendResult.reason}`,
+    });
+  }
+
+  return res.json({ status: "ok", message: "Message sent successfully." });
+});
+
 app.post("/ask", async (req, res) => {
   const emailRaw = req.body?.email;
   const questionRaw = req.body?.question;

@@ -32,13 +32,16 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
     >
-      <body suppressHydrationWarning className="flex min-h-dvh flex-col bg-white">
+      <body
+        suppressHydrationWarning
+        className="flex min-h-dvh flex-col bg-white"
+      >
         <FadeInOnScroll />
         <header className="sticky top-0 z-30 border-b border-indigo-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
             <a href="/" className="inline-flex items-center">
               <Image
-                src="/hosting-logo-text2.svg"
+                src="/strelements-logo.svg"
                 alt="Strelements"
                 width={220}
                 height={51}
@@ -81,7 +84,10 @@ export default function RootLayout({
               <a href="/privacy-policy" className="transition hover:text-white">
                 Privacy Policy
               </a>
-              <a href="/terms-and-conditions" className="transition hover:text-white">
+              <a
+                href="/terms-and-conditions"
+                className="transition hover:text-white"
+              >
                 Terms & Conditions
               </a>
               <a
