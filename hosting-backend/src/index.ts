@@ -15,7 +15,7 @@ import Stripe from "stripe";
 const app = express();
 const port = Number(process.env.PORT ?? 4000);
 const uploadsDir = path.resolve(__dirname, "../uploads");
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:4001";
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY ?? "";
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET ?? "";
 const stripeCurrency = "usd";
@@ -941,15 +941,7 @@ app.get("/admin/storage", requireAdmin, async (_req, res) => {
   }
 });
 
-app.delete("/admin/orders/:orderId/upload", requireAdmin, async (req, res) => {
-  const orderId = Number(req.params.orderId);
-  if (!Number.isInteger(orderId) || orderId < 1) {
-    return res.status(400).json({
-      status: "error",
-      message: "Invalid order id.",
-    });
-  }
-
+async function deleteOrderUpload(orderId: number, res: express.Response) {
   try {
     const [rowsRaw] = await dbPool.execute(
       "SELECT id, project_zip_path FROM order_requests WHERE id = ? LIMIT 1",
@@ -997,6 +989,30 @@ app.delete("/admin/orders/:orderId/upload", requireAdmin, async (req, res) => {
       error instanceof Error ? error.message : "Failed to delete project ZIP.";
     return res.status(500).json({ status: "error", message });
   }
+}
+
+app.delete("/admin/orders/:orderId/upload", requireAdmin, async (req, res) => {
+  const orderId = Number(req.params.orderId);
+  if (!Number.isInteger(orderId) || orderId < 1) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid order id.",
+    });
+  }
+
+  return deleteOrderUpload(orderId, res);
+});
+
+app.post("/admin/orders/:orderId/upload/delete", requireAdmin, async (req, res) => {
+  const orderId = Number(req.params.orderId);
+  if (!Number.isInteger(orderId) || orderId < 1) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid order id.",
+    });
+  }
+
+  return deleteOrderUpload(orderId, res);
 });
 
 app.post("/contact", async (req, res) => {

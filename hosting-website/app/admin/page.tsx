@@ -144,10 +144,16 @@ export default function AdminPage() {
     setIsDeletingId(orderId);
     setErrorText("");
     try {
-      const response = await fetch(`${backendUrl}/admin/orders/${orderId}/upload`, {
+      let response = await fetch(`${backendUrl}/admin/orders/${orderId}/upload`, {
         method: "DELETE",
         headers: { "x-admin-password": password.trim() },
       });
+      if (response.status === 404) {
+        response = await fetch(`${backendUrl}/admin/orders/${orderId}/upload/delete`, {
+          method: "POST",
+          headers: { "x-admin-password": password.trim() },
+        });
+      }
       const data = (await response.json()) as { message?: string };
       if (!response.ok) {
         throw new Error(data.message ?? "Failed to delete upload.");
