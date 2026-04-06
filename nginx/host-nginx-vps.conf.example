@@ -1,7 +1,7 @@
 # =============================================================================
-# Nginx on the HOST (not in Docker) — Strelements / generic VPS
+# Nginx on the HOST (not in Docker) — Hostera 24 / generic VPS
 # =============================================================================
-# 1) Replace YOURDOMAIN.COM with your real domain (e.g. strelements.com).
+# 1) Replace YOURDOMAIN.COM with your real domain (e.g. hostera24.com).
 # 2) Install on the server:
 #      sudo cp host-nginx-vps.conf.example /etc/nginx/sites-available/app.conf
 #      sudo ln -sf /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/

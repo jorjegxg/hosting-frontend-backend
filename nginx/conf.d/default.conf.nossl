@@ -2,7 +2,7 @@
 # After running certbot, replace this with default.conf and restart nginx.
 server {
     listen 80;
-    server_name YOURDOMAIN.COM api.YOURDOMAIN.COM;
+    server_name hostera24.com api.hostera24.com;
 
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;

@@ -20,7 +20,7 @@ set -euo pipefail
 #    - DNS A records pointing your domain + api.domain to this server
 #
 #  Example:
-#    ./deploy.sh --domain mysite.com --email admin@mysite.com
+#    ./deploy.sh --domain hostera24.com --email you@hostera24.com
 # ============================================================
 
 # -- CLI argument defaults --
@@ -29,7 +29,7 @@ EMAIL=""
 
 # Show usage instructions and exit if arguments are wrong
 print_usage() {
-  echo "Usage: ./deploy.sh --domain yourdomain.com --email you@email.com"
+  echo "Usage: ./deploy.sh --domain hostera24.com --email you@hostera24.com"
   exit 1
 }
 
@@ -48,12 +48,12 @@ done
 echo "==> Deploying for domain: $DOMAIN"
 echo "==> Certbot email: $EMAIL"
 
-# ── STEP 1: Replace placeholder domain in nginx configs ─────
-# The template configs ship with "YOURDOMAIN.COM" as a placeholder.
-# This replaces it with the real domain in both the SSL and non-SSL configs.
+# ── STEP 1: Apply domain in nginx configs ────────────────────
+# Config templates are committed with hostera24.com defaults.
+# This rewrites both frontend and API hosts to the provided domain.
 echo "==> Configuring nginx for $DOMAIN ..."
-sed -i "s/YOURDOMAIN\.COM/$DOMAIN/g" nginx/conf.d/default.conf
-sed -i "s/YOURDOMAIN\.COM/$DOMAIN/g" nginx/conf.d/default.conf.nossl
+sed -i "s/hostera24\.com/$DOMAIN/g" nginx/conf.d/default.conf
+sed -i "s/hostera24\.com/$DOMAIN/g" nginx/conf.d/default.conf.nossl
 
 # ── STEP 2: Start with HTTP-only nginx (for certbot challenge) ──
 # Certbot needs to serve a file over HTTP to prove we own the domain.

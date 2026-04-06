@@ -28,8 +28,8 @@ cd hosting-website && npm install && npm run dev
 
 - A VPS (Ubuntu 22.04+ recommended) with at least **1 GB RAM**
 - A domain name with DNS pointing to your VPS IP:
-  - `yourdomain.com` → VPS IP (A record)
-  - `api.yourdomain.com` → VPS IP (A record)
+  - `hostera24.com` -> VPS IP (A record)
+  - `api.hostera24.com` -> VPS IP (A record)
 - **Docker** and **Docker Compose** installed on the VPS
 
 ### Step 1 — Install Docker on VPS
@@ -67,13 +67,15 @@ ADMIN_PASSWORD=your_strong_admin_password
 
 SMTP_HOST=mail.privateemail.com
 SMTP_PORT=465
-SMTP_USER=you@yourdomain.com
+SMTP_USER=you@hostera24.com
 SMTP_PASS=your_email_password
 SMTP_SECURE=true
-SMTP_FROM=hello@yourdomain.com
+SMTP_FROM=hello@hostera24.com
+ORDER_NOTIFY_EMAIL=hello@hostera24.com
 
-NEXT_PUBLIC_BACKEND_URL=https://api.yourdomain.com
-NEXT_PUBLIC_APP_URL=https://yourdomain.com
+NEXT_PUBLIC_BACKEND_URL=https://api.hostera24.com
+NEXT_PUBLIC_APP_URL=https://hostera24.com
+NEXT_PUBLIC_SITE_URL=https://hostera24.com
 NEXT_PUBLIC_APP_MODE=production
 
 STRIPE_SECRET_KEY=sk_live_xxx
@@ -86,7 +88,7 @@ STRIPE_PRICE_FULL_STACK_19_99_MONTHLY=price_xxx
 
 ```bash
 chmod +x deploy.sh
-./deploy.sh --domain yourdomain.com --email you@email.com
+./deploy.sh --domain hostera24.com --email you@hostera24.com
 ```
 
 This script will:
@@ -98,8 +100,8 @@ This script will:
 
 ### Step 4 — Verify
 
-- **Frontend:** `https://yourdomain.com`
-- **Backend API:** `https://api.yourdomain.com`
+- **Frontend:** `https://hostera24.com`
+- **Backend API:** `https://api.hostera24.com`
 
 ---
 
@@ -142,8 +144,8 @@ Internet
   │
   ├── :80  ──→ nginx (redirect to HTTPS)
   └── :443 ──→ nginx
-                 ├── yourdomain.com     → website (Next.js :4001)
-                 └── api.yourdomain.com → backend (Express :4000)
+                ├── hostera24.com      → website (Next.js :4001)
+                └── api.hostera24.com  → backend (Express :4000)
                                               └── db (MySQL :3306)
 ```
 

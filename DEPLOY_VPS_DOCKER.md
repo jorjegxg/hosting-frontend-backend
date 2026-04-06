@@ -93,7 +93,7 @@ sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-Start Docker stack, then check **http://yourdomain.com** and **http://api.yourdomain.com** (still HTTP).
+Start Docker stack, then check **http://hostera24.com** and **http://api.hostera24.com** (still HTTP).
 
 Then obtain certificates (Certbot will add HTTPS to the same `server` blocks):
 
@@ -119,3 +119,18 @@ docker compose -f docker-compose.vps.yml up -d --build website
 ```
 
 Reference config: `nginx/host-nginx-vps.conf.example`.
+
+## 8) DNS records (required)
+
+Create these A records at your DNS provider:
+
+- `hostera24.com` -> `VPS_IP`
+- `api.hostera24.com` -> `VPS_IP`
+
+## 9) SSL certificate (both hosts)
+
+Issue or re-issue certificate for both hostnames:
+
+```bash
+sudo certbot --nginx -d hostera24.com -d api.hostera24.com
+```
