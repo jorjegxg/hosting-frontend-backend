@@ -68,6 +68,10 @@ export default function AiWebsiteHostingPage() {
             AI, or similar tools, our team can take it through a structured
             production launch.
           </p>
+          <p className="mt-3 max-w-3xl text-sm font-medium text-indigo-800">
+            This is a managed service by our engineering team, not a self-serve
+            automated platform.
+          </p>
           <Link
             href="/#start-your-order"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"

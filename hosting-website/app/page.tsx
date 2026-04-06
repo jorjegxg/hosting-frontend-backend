@@ -79,6 +79,14 @@ const faqSchema = {
         text: "Most AI-built websites go live within 24 hours after files and launch requirements are confirmed.",
       },
     },
+    {
+      "@type": "Question",
+      name: "Is this an automated platform or a managed service?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "This is a managed service. Our engineering team handles deployment, monitoring, and ongoing maintenance.",
+      },
+    },
   ],
 };
 
@@ -127,7 +135,8 @@ export default function Home() {
             className="mt-7 inline-flex items-center rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           />
           <p className="mt-3 text-xs font-medium text-slate-500 sm:text-sm">
-            Structured workflow. Clear handoff. Fast go-live.
+            Leave your website in our hands for ongoing maintenance and peace of
+            mind.
           </p>
 
           <div className="group mt-8 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
@@ -630,6 +639,15 @@ export default function Home() {
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
+                Is this an automated platform or a managed service?
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                It is a managed service. Our engineering team handles deployment,
+                monitoring, and maintenance when incidents or updates happen.
+              </p>
+            </article>
+            <article className="rounded-xl border border-indigo-100 bg-white p-5">
+              <h3 className="text-base font-semibold text-slate-900">
                 How fast can my site go live?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
@@ -685,7 +703,8 @@ export default function Home() {
                   Direct support channel
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">
-                  Direct communication when you need help or updates.
+                  Direct access to our engineering team for maintenance and
+                  incident support.
                 </p>
               </article>
 
