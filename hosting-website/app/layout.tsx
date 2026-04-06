@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     apple: "/hosting-logo.svg",
   },
   title: {
-    default: "Hostera 24 | Managed Hosting for AI-Built Websites",
+    default: "Hostera 24 | AI Website Hosting & Deployment Service",
     template: "%s | Hostera 24",
   },
   description:
-    "Managed hosting and deployment for AI-built websites with structured delivery, domain setup, SSL, and ongoing support.",
+    "US-focused AI website hosting and deployment service for sites built with tools like Claude Code, Cursor, and Lovable.",
   alternates: {
     canonical: "/",
     languages: {
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     siteName: "Hostera 24",
     locale: "en_US",
     url: "/",
-    title: "Hostera 24 | Managed Hosting for AI-Built Websites",
+    title: "Hostera 24 | AI Website Hosting & Deployment Service",
     description:
-      "Managed deployment, domain setup, SSL, and support for AI-generated websites.",
+      "AI website hosting and deployment with domain setup, SSL, and launch support for AI-built projects.",
     images: [
       {
         url: "/hosting-logo-text.svg",
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hostera 24 | Managed Hosting for AI-Built Websites",
+    title: "Hostera 24 | AI Website Hosting & Deployment Service",
     description:
-      "Hosting and deployment for AI-built websites. No technical stress, just fast launch and real support.",
+      "AI website hosting service for founders who built websites with AI tools and need reliable deployment support.",
     images: ["/hosting-logo-text.svg"],
   },
 };

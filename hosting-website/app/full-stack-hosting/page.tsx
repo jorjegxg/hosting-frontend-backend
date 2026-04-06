@@ -2,22 +2,47 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Managed Full Stack Hosting",
+  title: "Full Stack Hosting for AI-Built Apps",
   description:
-    "Managed full stack hosting for frontend, backend, and database projects with deployment workflow, security baseline, and monitoring.",
+    "Full stack hosting for AI-built apps with frontend, backend, and database deployment, security baseline, and monitoring.",
   alternates: { canonical: "/full-stack-hosting" },
+};
+
+const fullStackBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://hostera24.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Full Stack Hosting",
+      item: "https://hostera24.com/full-stack-hosting",
+    },
+  ],
 };
 
 export default function FullStackHostingPage() {
   return (
     <main className="w-full bg-white text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(fullStackBreadcrumbSchema),
+        }}
+      />
       <section className="border-b border-indigo-100 bg-indigo-50/60">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
             Full Stack Hosting
           </p>
           <h1 className="mt-3 text-3xl font-bold text-indigo-950 sm:text-5xl">
-            Managed full stack hosting for production workloads
+            Full stack hosting for AI-built production apps
           </h1>
           <p className="mt-4 max-w-3xl text-slate-700">
             Designed for SaaS and application teams that need coordinated

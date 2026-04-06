@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Managed AI Website Hosting",
+  title: "AI Website Hosting Service for AI-Built Projects",
   description:
-    "Managed AI website hosting with deployment workflow, domain setup, SSL, and post-launch support.",
+    "AI website hosting service for projects built with Lovable, Cursor, Claude Code, and similar AI tools.",
   alternates: { canonical: "/ai-website-hosting" },
 };
 
@@ -23,6 +23,25 @@ const aiHostingServiceSchema = {
   },
 };
 
+const aiHostingBreadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://hostera24.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "AI Website Hosting",
+      item: "https://hostera24.com/ai-website-hosting",
+    },
+  ],
+};
+
 export default function AiWebsiteHostingPage() {
   return (
     <main className="w-full bg-white text-slate-900">
@@ -30,13 +49,19 @@ export default function AiWebsiteHostingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aiHostingServiceSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aiHostingBreadcrumbSchema),
+        }}
+      />
       <section className="border-b border-indigo-100 bg-indigo-50/60">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
             AI Website Hosting
           </p>
           <h1 className="mt-3 text-3xl font-bold text-indigo-950 sm:text-5xl">
-            Managed hosting for AI-built websites
+            AI website hosting service for AI-built websites
           </h1>
           <p className="mt-4 max-w-3xl text-slate-700">
             If your website was built with Lovable, Cursor, Claude Code, Figma
@@ -97,6 +122,12 @@ export default function AiWebsiteHostingPage() {
               className="underline-offset-4 hover:underline"
             >
               AI hosting guide
+            </Link>
+            <Link
+              href="/blog/domain-vs-hosting-for-non-technical-founders"
+              className="underline-offset-4 hover:underline"
+            >
+              Domain vs hosting guide
             </Link>
           </div>
         </div>

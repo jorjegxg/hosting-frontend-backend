@@ -6,9 +6,9 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
 export const metadata: Metadata = {
-  title: "Managed AI Website Hosting",
+  title: "AI Website Hosting for Sites Built with AI Tools",
   description:
-    "Managed hosting for AI-built websites with deployment workflow, domain setup, SSL, monitoring, and ongoing support.",
+    "AI website hosting and deployment service for websites built with Claude Code, Cursor, Lovable, and Webflow.",
   alternates: {
     canonical: "/",
   },
@@ -25,7 +25,7 @@ const organizationSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "Done-for-You AI Website Hosting and Deployment",
+  serviceType: "AI Website Hosting and Deployment Service",
   provider: {
     "@type": "Organization",
     name: "Hostera 24",
@@ -60,7 +60,7 @@ const faqSchema = {
       name: "Can you host websites built with AI tools?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We host websites built with tools like Lovable, Cursor, Claude Code, Webflow exports, and custom React/HTML projects.",
+        text: "Yes. We host AI-built websites created with Lovable, Cursor, Claude Code, Webflow exports, and custom React/HTML projects.",
       },
     },
     {
@@ -68,7 +68,7 @@ const faqSchema = {
       name: "What do I need to send to get started?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Send your project files or repository and your domain details if available. We handle setup, deployment, SSL, and launch.",
+        text: "Send your project files or repository plus domain details if available. We handle AI website deployment, SSL setup, and launch.",
       },
     },
     {
@@ -76,7 +76,7 @@ const faqSchema = {
       name: "How fast can my AI-built website go live?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Most websites go live within 24 hours after files and requirements are confirmed.",
+        text: "Most AI-built websites go live within 24 hours after files and launch requirements are confirmed.",
       },
     },
   ],
@@ -115,11 +115,11 @@ export default function Home() {
             id="hero-title"
             className="mt-5 max-w-4xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
           >
-            Your AI-built website, launched with production-grade setup
+            AI website hosting for websites built with AI tools
           </h1>
           <p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
-            Submit your files and our team handles deployment, domain setup,
-            SSL, and launch support.
+            Built your website with Lovable, Cursor, Claude Code, or Webflow
+            export? We handle deployment, domain setup, SSL, and launch support.
           </p>
           <ScrollToOrderButton
             id="hero-launch-button"
@@ -368,7 +368,7 @@ export default function Home() {
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-indigo-950 sm:text-4xl">
-            Choose your done-for-you hosting plan
+            Choose the right AI website hosting plan
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
             Pick the plan that matches your AI-built website complexity.
@@ -491,6 +491,20 @@ export default function Home() {
               className="underline-offset-4 hover:underline"
             >
               Full stack hosting
+            </a>
+          </div>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-indigo-800">
+            <a
+              href="/blog/how-to-host-ai-generated-website-without-coding"
+              className="underline-offset-4 hover:underline"
+            >
+              How to host an AI-generated website
+            </a>
+            <a
+              href="/blog/website-deployment-checklist-before-you-send-files"
+              className="underline-offset-4 hover:underline"
+            >
+              AI website deployment checklist
             </a>
           </div>
         </div>

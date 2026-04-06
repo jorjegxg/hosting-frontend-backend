@@ -18,6 +18,21 @@ const publicRoutes: Array<{
   { path: "/about-us", changeFrequency: "monthly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.75 },
   {
+    path: "/blog/how-to-host-lovable-website",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
+    path: "/blog/how-to-deploy-cursor-built-website",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
+    path: "/blog/claude-code-website-deployment-checklist",
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
     path: "/blog/how-to-host-ai-generated-website-without-coding",
     changeFrequency: "monthly",
     priority: 0.7,

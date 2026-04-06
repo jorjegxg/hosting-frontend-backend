@@ -2,13 +2,25 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Website Hosting Guides",
+  title: "AI Website Hosting Guides",
   description:
-    "Guides for non-technical founders on hosting, domains, deployment, and launching AI-built websites.",
+    "US-focused guides on hosting and deploying websites built with AI tools like Lovable, Cursor, and Claude Code.",
   alternates: { canonical: "/blog" },
 };
 
 const posts = [
+  {
+    href: "/blog/how-to-host-lovable-website",
+    title: "How to host a Lovable website",
+  },
+  {
+    href: "/blog/how-to-deploy-cursor-built-website",
+    title: "How to deploy a Cursor-built website",
+  },
+  {
+    href: "/blog/claude-code-website-deployment-checklist",
+    title: "Claude Code website deployment checklist",
+  },
   {
     href: "/blog/how-to-host-ai-generated-website-without-coding",
     title: "How to host an AI-generated website (without coding)",
@@ -36,10 +48,11 @@ export default function BlogPage() {
     <main className="w-full bg-white text-slate-900">
       <section className="mx-auto w-full max-w-4xl px-6 py-16">
         <h1 className="text-3xl font-bold text-indigo-950 sm:text-5xl">
-          Hosting and deployment guides
+          AI website hosting and deployment guides
         </h1>
         <p className="mt-4 text-slate-700">
-          Practical articles for founders and non-technical business owners.
+          Practical guides for US founders and teams launching websites built
+          with AI tools.
         </p>
         <div className="mt-10 space-y-4">
           {posts.map((post) => (
