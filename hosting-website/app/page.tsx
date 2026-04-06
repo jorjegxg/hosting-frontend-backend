@@ -264,7 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="fade-in border-b border-indigo-100 bg-white">
+      <section className="fade-in border-b border-indigo-100 bg-indigo-50/40">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
             Delivery workflow
@@ -273,36 +273,44 @@ export default function Home() {
             A clear process designed for founders and product teams.
           </p>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+          <div className="mt-9 grid gap-5 md:grid-cols-3">
+            <article className="relative rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
                 Step 1
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
                 Intake and scope
               </h3>
               <p className="mt-2 text-sm text-slate-700">
                 Share your repository/files and launch requirements, including
                 domain and environment details.
               </p>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-3 top-1/2 hidden h-0.5 w-6 -translate-y-1/2 bg-indigo-300 md:block"
+              />
             </article>
-            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+            <article className="relative rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
                 Step 2
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
                 Deployment preparation
               </h3>
               <p className="mt-2 text-sm text-slate-700">
                 We deploy, connect infrastructure, activate SSL, and run
                 pre-launch checks.
               </p>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-3 top-1/2 hidden h-0.5 w-6 -translate-y-1/2 bg-indigo-300 md:block"
+              />
             </article>
-            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+            <article className="rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
                 Step 3
-              </p>
-              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
                 Launch and support
               </h3>
               <p className="mt-2 text-sm text-slate-700">
