@@ -89,11 +89,16 @@ app.post(
       });
     }
 
+    console.log(`[WEBHOOK] Received event | id=${event.id} | type=${event.type}`);
+
     try {
       if (event.type === "checkout.session.completed") {
         const session = event.data.object as Stripe.Checkout.Session;
         const orderIdRaw = session.metadata?.orderId ?? "";
         const orderId = Number(orderIdRaw);
+        console.log(
+          `[WEBHOOK] checkout.session.completed | eventId=${event.id} | sessionId=${session.id} | orderIdRaw=${orderIdRaw || "missing"} | customerEmail=${session.customer_details?.email ?? session.customer_email ?? "missing"}`,
+        );
         if (Number.isInteger(orderId) && orderId > 0) {
           await dbPool.execute(
             `UPDATE order_requests
@@ -109,6 +114,9 @@ app.post(
               session.id,
               orderId,
             ],
+          );
+          console.log(
+            `[WEBHOOK] Order marked paid | orderId=${orderId} | sessionId=${session.id}`,
           );
 
           const [orderRowsRaw] = await dbPool.execute(
@@ -134,13 +142,19 @@ app.post(
           );
           const orderRows = orderRowsRaw as OrderRow[];
           const order = orderRows[0];
+          console.log(
+            `[WEBHOOK] Loaded order row | orderId=${orderId} | found=${Boolean(order)} | dbEmail=${order?.email ?? "missing"}`,
+          );
 
           const recipient = resolveCheckoutRecipientEmail(order, session);
+          console.log(
+            `[WEBHOOK] Resolved recipient | orderId=${orderId} | recipient=${recipient ?? "missing"}`,
+          );
           if (recipient) {
             const plainTextBody = order
               ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${path.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nHostera 24`
               : "Your subscription payment was received successfully. I will now continue with your order setup.";
-            await sendEmailToClient(
+            const clientEmailResult = await sendEmailToClient(
               recipient,
               "Order confirmed - Hostera 24",
               plainTextBody,
@@ -153,14 +167,36 @@ app.post(
                     ),
                   ),
             );
+            if (!clientEmailResult.sent) {
+              console.error(
+                `[WEBHOOK] Client confirmation email failed | orderId=${orderId} | recipient=${recipient} | reason=${clientEmailResult.reason}`,
+              );
+            } else {
+              console.log(
+                `[WEBHOOK] Client confirmation email sent | orderId=${orderId} | recipient=${recipient}`,
+              );
+            }
             if (order) {
               const notify = orderNotificationRecipient(recipient);
               if (notify) {
-                await sendEmailToClient(
+                const ownerEmailResult = await sendEmailToClient(
                   notify,
                   `[New paid order] #${order.id} - ${order.name}`,
                   renderOwnerOrderNotificationText(order),
                   renderOwnerOrderNotificationHtml(order),
+                );
+                if (!ownerEmailResult.sent) {
+                  console.error(
+                    `[WEBHOOK] Owner notification email failed | orderId=${orderId} | recipient=${notify} | reason=${ownerEmailResult.reason}`,
+                  );
+                } else {
+                  console.log(
+                    `[WEBHOOK] Owner notification email sent | orderId=${orderId} | recipient=${notify}`,
+                  );
+                }
+              } else {
+                console.log(
+                  `[WEBHOOK] Owner notification skipped | orderId=${orderId} | reason=no_valid_notification_recipient`,
                 );
               }
             }
@@ -169,6 +205,10 @@ app.post(
               `[WEBHOOK] checkout.session.completed | orderId=${orderId} | no recipient email (order row missing or no valid email)`,
             );
           }
+        } else {
+          console.error(
+            `[WEBHOOK] Invalid order id in metadata | eventId=${event.id} | sessionId=${session.id} | orderIdRaw=${orderIdRaw || "missing"}`,
+          );
         }
       } else if (
         event.type === "checkout.session.expired" ||
@@ -177,10 +217,18 @@ app.post(
         const session = event.data.object as Stripe.Checkout.Session;
         const orderIdRaw = session.metadata?.orderId ?? "";
         const orderId = Number(orderIdRaw);
+        console.log(
+          `[WEBHOOK] ${event.type} | eventId=${event.id} | sessionId=${session.id} | orderIdRaw=${orderIdRaw || "missing"}`,
+        );
         if (Number.isInteger(orderId) && orderId > 0) {
           await dbPool.execute(
             "UPDATE order_requests SET payment_status = 'failed' WHERE id = ?",
             [orderId],
+          );
+          console.log(`[WEBHOOK] Order marked failed | orderId=${orderId}`);
+        } else {
+          console.error(
+            `[WEBHOOK] Invalid order id for failed session event | eventId=${event.id} | orderIdRaw=${orderIdRaw || "missing"}`,
           );
         }
       }
