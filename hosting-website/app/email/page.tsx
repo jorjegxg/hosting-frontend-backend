@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import OrderConfirmationEmail from "../../components/OrderConfirmationEmail";
 
 export const metadata: Metadata = {
-  title: "Email preview (test) | Strelements",
+  title: "Email preview (test) | Hostera 24",
   description: "Development preview of the order confirmation email layout.",
   robots: { index: false, follow: false },
 };

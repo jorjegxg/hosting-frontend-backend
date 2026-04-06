@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://strelements.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hostera24.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     apple: "/hosting-logo.svg",
   },
   title: {
-    default: "Strelements | AI Website Hosting for Non-Technical Owners",
-    template: "%s | Strelements",
+    default: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
+    template: "%s | Hostera 24",
   },
   description:
     "US-focused done-for-you hosting and deployment for AI-built and small business websites. Send your files, go live fast, and get real support.",
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Strelements",
+    siteName: "Hostera 24",
     locale: "en_US",
     url: "/",
-    title: "Strelements | AI Website Hosting for Non-Technical Owners",
+    title: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
     description:
       "Done-for-you website deployment, domain setup, SSL, and ongoing support for AI-generated websites.",
     images: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
         url: "/hosting-logo-text.svg",
         width: 1200,
         height: 630,
-        alt: "Strelements hosting service",
+        alt: "Hostera 24 hosting service",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Strelements | AI Website Hosting for Non-Technical Owners",
+    title: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
     description:
       "Hosting and deployment for AI-built websites. No technical stress, just a site that goes live fast.",
     images: ["/hosting-logo-text.svg"],
@@ -84,7 +84,7 @@ export default function RootLayout({
             <Link href="/" className="inline-flex items-center">
               <Image
                 src="/strelements-logo.svg"
-                alt="Strelements"
+                alt="Hostera 24"
                 width={220}
                 height={51}
                 className="h-9 w-auto max-w-52 sm:h-11 sm:max-w-64"
@@ -118,7 +118,7 @@ export default function RootLayout({
 
         <footer className="border-t border-slate-200 bg-slate-950">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 pb-20 pt-10 text-sm text-slate-300 md:flex-row md:items-center md:justify-between">
-            <p>© {year} Strelements. All rights reserved.</p>
+            <p>© {year} Hostera 24. All rights reserved.</p>
             <div className="flex flex-wrap items-center gap-4">
               <Link href="/about-us" className="transition hover:text-white">
                 About Us
@@ -133,10 +133,10 @@ export default function RootLayout({
                 Terms & Conditions
               </Link>
               <a
-                href="mailto:hello@strelements.com"
+                href="mailto:hello@hostera24.com"
                 className="transition hover:text-white"
               >
-                hello@strelements.com
+                hello@hostera24.com
               </a>
               <Link href="/" className="transition hover:text-white">
                 Back to home

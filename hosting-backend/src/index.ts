@@ -138,11 +138,11 @@ app.post(
           const recipient = resolveCheckoutRecipientEmail(order, session);
           if (recipient) {
             const plainTextBody = order
-              ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${path.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nStrelements`
+              ? `Hi ${order.name},\n\nYour payment was successful and your order is now confirmed.\n\nOrder ID: #${order.id}\nPlan: ${formatPlanLabel(order.payment_plan)}\nPreferred domain: ${order.preferred_domain_name ?? "Not provided"}\nUploaded file: ${path.basename(order.project_zip_path)}\n\nI will review your project and contact you shortly.\n\nThanks,\nHostera 24`
               : "Your subscription payment was received successfully. I will now continue with your order setup.";
             await sendEmailToClient(
               recipient,
-              "Order confirmed - Strelements",
+              "Order confirmed - Hostera 24",
               plainTextBody,
               order
                 ? renderOrderConfirmationHtml(order)
@@ -459,7 +459,7 @@ function renderEmailShell(title: string, bodyHtml: string): string {
   <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;">
     <h2 style="margin:0 0 16px 0;font-size:22px;color:#0f172a;">${title}</h2>
     ${bodyHtml}
-    <p style="margin:20px 0 0 0;color:#64748b;font-size:12px;">Strelements</p>
+    <p style="margin:20px 0 0 0;color:#64748b;font-size:12px;">Hostera 24</p>
   </div>
 </div>`.trim();
 }
@@ -545,7 +545,7 @@ app.get("/admin/test-email", requireAdmin, async (req, res) => {
   console.log(`[TEST-EMAIL] Sending test email to ${to}`);
   const result = await sendEmailToClient(
     to,
-    "Test email from Strelements backend",
+    "Test email from Hostera 24 backend",
     "If you can read this, SMTP is working correctly.\n\nSent at: " +
       new Date().toISOString(),
     renderEmailShell(
@@ -1044,7 +1044,7 @@ app.post("/contact", async (req, res) => {
     return res.status(400).json({ status: "error", message: "Message is required." });
   }
 
-  const recipient = process.env.SMTP_FROM ?? "hello@strelements.com";
+  const recipient = process.env.SMTP_FROM ?? "hello@hostera24.com";
   const emailBodyText = [
     "New contact message from website",
     "",

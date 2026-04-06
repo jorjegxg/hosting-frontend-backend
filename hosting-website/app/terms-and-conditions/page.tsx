@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Strelements",
-  description: "Terms and conditions for Strelements hosting services.",
+  title: "Terms & Conditions | Hostera 24",
+  description: "Terms and conditions for Hostera 24 hosting services.",
 };
 
 export default function TermsAndConditionsPage() {
@@ -31,7 +31,7 @@ export default function TermsAndConditionsPage() {
           <article className="space-y-3">
             <h2 className="text-xl font-semibold">1. Services</h2>
             <p className="text-slate-700">
-              Strelements provides website hosting, deployment support, and
+              Hostera 24 provides website hosting, deployment support, and
               related technical services as described on the website.
             </p>
           </article>
@@ -77,7 +77,7 @@ export default function TermsAndConditionsPage() {
             <p className="text-slate-700">
               Services are provided on an &quot;as is&quot; and &quot;as
               available&quot; basis.
-              Strelements is not liable for indirect or consequential losses,
+              Hostera 24 is not liable for indirect or consequential losses,
               including loss of profits, business interruption, or data loss.
             </p>
           </article>
@@ -95,10 +95,10 @@ export default function TermsAndConditionsPage() {
             <p className="text-slate-700">
               For questions about these terms, contact{" "}
               <a
-                href="mailto:hello@strelements.com"
+                href="mailto:hello@hostera24.com"
                 className="font-semibold text-slate-800 underline-offset-4 hover:underline"
               >
-                hello@strelements.com
+                hello@hostera24.com
               </a>
               .
             </p>

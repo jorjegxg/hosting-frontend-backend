@@ -3,9 +3,9 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Strelements",
+  title: "About Hostera 24",
   description:
-    "Meet the founder behind Strelements and learn how non-technical US business owners launch websites without stress.",
+    "Meet the founder behind Hostera 24 and learn how non-technical US business owners launch websites without stress.",
   alternates: {
     canonical: "/about-us",
   },
@@ -18,9 +18,9 @@ export default function AboutUsPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.15em] text-indigo-700">
           About Us
         </p>
-        <h1 className="mt-3 text-3xl font-bold sm:text-4xl">Who is behind Strelements?</h1>
+        <h1 className="mt-3 text-3xl font-bold sm:text-4xl">Who is behind Hostera 24?</h1>
         <p className="mt-5 text-base leading-relaxed text-slate-700">
-          Strelements is run by me as a Romanian PFA and independent freelancer.
+          Hostera 24 is run by me as a Romanian PFA and independent freelancer.
           I help people launch websites quickly with clear communication and
           direct support.
         </p>
@@ -32,7 +32,7 @@ export default function AboutUsPage() {
         <div className="mt-6 mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-slate-200">
           <Image
             src="/lg.jpeg"
-            alt="Founder of Strelements"
+            alt="Founder of Hostera 24"
             width={1200}
             height={800}
             className="h-auto w-full object-cover"

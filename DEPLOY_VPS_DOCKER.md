@@ -87,7 +87,7 @@ Copy the example site config from the repo, edit `YOURDOMAIN.COM`, enable it:
 ```bash
 # from your app folder, after copying the example to the server:
 sudo cp nginx/host-nginx-vps.conf.example /etc/nginx/sites-available/app.conf
-sudo sed -i 's/YOURDOMAIN.COM/strelements.com/g' /etc/nginx/sites-available/app.conf   # adjust domain
+sudo sed -i 's/YOURDOMAIN.COM/hostera24.com/g' /etc/nginx/sites-available/app.conf   # adjust domain
 sudo ln -sf /etc/nginx/sites-available/app.conf /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo nginx -t && sudo systemctl reload nginx
@@ -98,7 +98,7 @@ Start Docker stack, then check **http://yourdomain.com** and **http://api.yourdo
 Then obtain certificates (Certbot will add HTTPS to the same `server` blocks):
 
 ```bash
-sudo certbot --nginx -d strelements.com -d api.strelements.com
+sudo certbot --nginx -d hostera24.com -d api.hostera24.com
 ```
 
 Use your real domain names and email when Certbot asks. Renewals are usually installed as a **cron**/`systemd` timer automatically.
@@ -106,8 +106,12 @@ Use your real domain names and email when Certbot asks. Renewals are usually ins
 `.env` on the server should use HTTPS URLs, then rebuild the website image:
 
 ```env
-NEXT_PUBLIC_APP_URL=https://strelements.com
-NEXT_PUBLIC_BACKEND_URL=https://api.strelements.com
+NEXT_PUBLIC_APP_URL=https://hostera24.com
+NEXT_PUBLIC_BACKEND_URL=https://api.hostera24.com
+NEXT_PUBLIC_SITE_URL=https://hostera24.com
+NEXT_PUBLIC_APP_MODE=production
+SMTP_FROM=hello@hostera24.com
+ORDER_NOTIFY_EMAIL=hello@hostera24.com
 ```
 
 ```bash

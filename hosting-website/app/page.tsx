@@ -6,7 +6,7 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
 export const metadata: Metadata = {
-  title: "Done-for-You Website Hosting in the US",
+  title: "Done-for-You Website Hosting",
   description:
     "Hosting for AI-built and business websites with setup, SSL, domain connection, and support. Perfect for non-technical owners who want to launch fast.",
   alternates: {
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Strelements",
-  url: "https://strelements.com",
-  email: "hello@strelements.com",
+  name: "Hostera 24",
+  url: "https://hostera24.com",
+  email: "hello@hostera24.com",
 };
 
 const serviceSchema = {
@@ -28,8 +28,8 @@ const serviceSchema = {
   serviceType: "AI Website Hosting and Deployment",
   provider: {
     "@type": "Organization",
-    name: "Strelements",
-    url: "https://strelements.com",
+    name: "Hostera 24",
+    url: "https://hostera24.com",
   },
   areaServed: {
     "@type": "Country",
@@ -570,7 +570,7 @@ export default function Home() {
               hosting from one person.
             </p>
             <p className="mt-3 text-sm font-medium text-slate-700">
-              Brand: Strelements
+              Brand: Hostera 24
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">

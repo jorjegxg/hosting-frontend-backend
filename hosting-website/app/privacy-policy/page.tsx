@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Strelements",
-  description: "Privacy policy for Strelements hosting services.",
+  title: "Privacy Policy | Hostera 24",
+  description: "Privacy policy for Hostera 24 hosting services.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
           <article className="space-y-3">
             <h2 className="text-xl font-semibold">1. Information We Collect</h2>
             <p className="text-slate-700">
-              When you contact Strelements or place an order, we may collect your
+              When you contact Hostera 24 or place an order, we may collect your
               name, email address, preferred domain details, project files, and
               service-related messages.
             </p>
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-xl font-semibold">3. Payment Processing</h2>
             <p className="text-slate-700">
               Payments are processed through third-party providers (for example,
-              Stripe). Strelements does not store full payment card details on its
+              Stripe). Hostera 24 does not store full payment card details on its
               own servers.
             </p>
           </article>
@@ -92,10 +92,10 @@ export default function PrivacyPolicyPage() {
             <p className="text-slate-700">
               For privacy questions or requests, contact{" "}
               <a
-                href="mailto:hello@strelements.com"
+                href="mailto:hello@hostera24.com"
                 className="font-semibold text-slate-800 underline-offset-4 hover:underline"
               >
-                hello@strelements.com
+                hello@hostera24.com
               </a>
               .
             </p>

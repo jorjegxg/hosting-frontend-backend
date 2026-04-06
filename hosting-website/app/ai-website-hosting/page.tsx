@@ -14,8 +14,8 @@ const aiHostingServiceSchema = {
   serviceType: "AI Website Hosting Service",
   provider: {
     "@type": "Organization",
-    name: "Strelements",
-    url: "https://strelements.com",
+    name: "Hostera 24",
+    url: "https://hostera24.com",
   },
   areaServed: {
     "@type": "Country",
