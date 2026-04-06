@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import FadeInOnScroll from "../components/FadeInOnScroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -78,7 +77,6 @@ export default function RootLayout({
         suppressHydrationWarning
         className="flex min-h-dvh flex-col bg-white"
       >
-        <FadeInOnScroll />
         <header className="sticky top-0 z-30 border-b border-indigo-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
             <Link href="/" className="inline-flex items-center">

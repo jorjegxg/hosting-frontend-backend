@@ -1,9 +1,14 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from "react";
-import { useOrderPlanStore } from "../store/orderPlanStore";
+import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 
-export default function StartOrderForm() {
+type PlanType = "hosting-9-99" | "full-stack-19-99" | "";
+
+type StartOrderFormProps = {
+  initialPlan?: "hosting-9-99" | "full-stack-19-99";
+};
+
+export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUploadingFile, setIsUploadingFile] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -18,18 +23,17 @@ export default function StartOrderForm() {
     message: "DEV TEST: Please deploy the attached ZIP and connect the preferred domain.",
     backupDomainIdeas: "gheorghe-demo, gheorghe-online",
   };
-  const selectedPlan = useOrderPlanStore((state) => state.selectedPlan);
-  const setSelectedPlan = useOrderPlanStore((state) => state.setSelectedPlan);
+  const initialSelectedPlan: PlanType =
+    initialPlan === "hosting-9-99" || initialPlan === "full-stack-19-99"
+      ? initialPlan
+      : isDevMode
+        ? "hosting-9-99"
+        : "";
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>(initialSelectedPlan);
   const backendUrl = useMemo(
     () => process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000",
     [],
   );
-
-  useEffect(() => {
-    if (!selectedPlan && isDevMode) {
-      setSelectedPlan("hosting-9-99");
-    }
-  }, [selectedPlan, setSelectedPlan, isDevMode]);
 
   async function uploadZipNow(file: File) {
     setIsUploadingFile(true);

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
-import PlanSelectLink from "../components/PlanSelectLink";
-import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
 export const metadata: Metadata = {
@@ -90,7 +88,20 @@ const faqSchema = {
   ],
 };
 
-export default function Home() {
+type HomePageProps = {
+  searchParams?: Promise<{
+    plan?: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: HomePageProps) {
+  const resolvedSearchParams = await searchParams;
+  const selectedPlanFromUrl =
+    resolvedSearchParams?.plan === "hosting-9-99" ||
+    resolvedSearchParams?.plan === "full-stack-19-99"
+      ? resolvedSearchParams.plan
+      : undefined;
+
   return (
     <main className="w-full bg-white text-slate-900">
       <script
@@ -129,11 +140,13 @@ export default function Home() {
             Built your website with Lovable, Cursor, Claude Code, or Webflow
             export? We handle deployment, domain setup, SSL, and launch support.
           </p>
-          <ScrollToOrderButton
+          <a
             id="hero-launch-button"
-            label="Start managed launch"
+            href="#start-your-order"
             className="mt-7 inline-flex items-center rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-          />
+          >
+            Start managed launch
+          </a>
           <p className="mt-3 text-xs font-medium text-slate-500 sm:text-sm">
             Let us be part of your team for launch and maintenance.
           </p>
@@ -391,8 +404,8 @@ export default function Home() {
           </p>
 
           <div className="mx-auto mt-10 grid w-full max-w-6xl gap-6 text-left md:grid-cols-2">
-            <PlanSelectLink
-              plan="hosting-9-99"
+            <a
+              href="/?plan=hosting-9-99#start-your-order"
               className="block h-full rounded-2xl border border-indigo-300 bg-white px-8 py-8 transition hover:border-indigo-500"
             >
               <div className="flex items-center justify-between gap-3">
@@ -434,10 +447,10 @@ export default function Home() {
                 <li>✓ Website monitoring</li>
                 <li>✓ Direct support when needed</li>
               </ul>
-            </PlanSelectLink>
+            </a>
 
-            <PlanSelectLink
-              plan="full-stack-19-99"
+            <a
+              href="/?plan=full-stack-19-99#start-your-order"
               className="block h-full rounded-2xl border-2 border-indigo-500 bg-white px-8 py-8 transition hover:border-indigo-600"
             >
               <div className="flex items-center justify-between gap-3">
@@ -481,7 +494,7 @@ export default function Home() {
                 <li>✓ Website monitoring</li>
                 <li>✓ Faster support response</li>
               </ul>
-            </PlanSelectLink>
+            </a>
           </div>
           <a
             href="#start-your-order"
@@ -567,7 +580,7 @@ export default function Home() {
             move your website to a reliable live environment.
           </p>
 
-          <StartOrderForm />
+          <StartOrderForm initialPlan={selectedPlanFromUrl} />
         </div>
       </section>
 
