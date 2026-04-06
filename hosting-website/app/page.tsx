@@ -123,7 +123,7 @@ export default function Home() {
             id="hero-title"
             className="mt-5 max-w-4xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
           >
-            AI website hosting for websites built with AI tools
+            Managed hosting and deployment for websites built with AI tools
           </h1>
           <p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
             Built your website with Lovable, Cursor, Claude Code, or Webflow
@@ -135,8 +135,7 @@ export default function Home() {
             className="mt-7 inline-flex items-center rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           />
           <p className="mt-3 text-xs font-medium text-slate-500 sm:text-sm">
-            Leave your website in our hands for ongoing maintenance and peace of
-            mind.
+            Let us be part of your team for launch and maintenance.
           </p>
 
           <div className="group mt-8 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
@@ -688,6 +687,9 @@ export default function Home() {
             <p className="mt-4 max-w-3xl text-slate-700">
               Get deployment, domain setup, security baseline, and support from
               one team responsible for delivery.
+            </p>
+            <p className="mt-3 text-sm font-medium text-indigo-800">
+              Let us be part of your team.
             </p>
             <a
               href="#start-your-order"
