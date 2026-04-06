@@ -30,11 +30,20 @@ export type OrderConfirmationEmailProps = {
 function statusCopy(status: OrderConfirmationEmailProps["paymentStatus"]) {
   switch (status) {
     case "success":
-      return { label: "Paid", className: "text-indigo-700 bg-indigo-50 border-indigo-200" };
+      return {
+        label: "Paid",
+        className: "text-indigo-700 bg-indigo-50 border-indigo-200",
+      };
     case "pending":
-      return { label: "Pending", className: "text-amber-800 bg-amber-50 border-amber-200" };
+      return {
+        label: "Pending",
+        className: "text-amber-800 bg-amber-50 border-amber-200",
+      };
     case "cancelled":
-      return { label: "Cancelled", className: "text-slate-700 bg-slate-100 border-slate-200" };
+      return {
+        label: "Cancelled",
+        className: "text-slate-700 bg-slate-100 border-slate-200",
+      };
   }
 }
 
@@ -61,9 +70,11 @@ export default function OrderConfirmationEmail({
     >
       <div className="border-b border-slate-100 bg-slate-50 px-6 py-5">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-          Strelements
+          Hostera 24
         </p>
-        <h1 className="mt-1 text-xl font-bold text-slate-900">Order confirmation</h1>
+        <h1 className="mt-1 text-xl font-bold text-slate-900">
+          Order confirmation
+        </h1>
       </div>
 
       <div className="space-y-5 px-6 py-6 text-sm text-slate-700">
@@ -80,7 +91,9 @@ export default function OrderConfirmationEmail({
         </p>
 
         <div className="rounded-lg border border-slate-200 bg-slate-50/80 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Summary</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Summary
+          </p>
           <dl className="mt-3 space-y-2.5">
             <div className="flex flex-wrap justify-between gap-2 border-b border-slate-200/80 pb-2">
               <dt className="text-slate-500">Order</dt>
@@ -120,14 +133,17 @@ export default function OrderConfirmationEmail({
         </div>
 
         <p className="text-xs leading-relaxed text-slate-500">
-          {plan.description} You will receive a separate message when your site setup moves to the
-          next step.
+          {plan.description} You will receive a separate message when your site
+          setup moves to the next step.
         </p>
 
         <p className="text-xs text-slate-400">
           Questions? Reply to this email or write to{" "}
-          <a href="mailto:hello@strelements.com" className="text-indigo-600 underline">
-            hello@strelements.com
+          <a
+            href="mailto:hello@hostera24.com"
+            className="text-indigo-600 underline"
+          >
+            hello@hostera24.com
           </a>
           .
         </p>

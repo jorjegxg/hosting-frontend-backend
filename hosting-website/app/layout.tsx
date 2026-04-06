@@ -83,7 +83,7 @@ export default function RootLayout({
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
             <Link href="/" className="inline-flex items-center">
               <Image
-                src="/strelements-logo.svg"
+                src="/hosting-logo-text.svg"
                 alt="Hostera 24"
                 width={220}
                 height={51}
@@ -95,13 +95,19 @@ export default function RootLayout({
               <Link href="/" className="transition hover:text-indigo-950">
                 Home
               </Link>
-              <Link href="/#pricing" className="transition hover:text-indigo-950">
+              <Link
+                href="/#pricing"
+                className="transition hover:text-indigo-950"
+              >
                 Pricing
               </Link>
               <Link href="/#faq" className="transition hover:text-indigo-950">
                 FAQ
               </Link>
-              <Link href="/contact" className="transition hover:text-indigo-950">
+              <Link
+                href="/contact"
+                className="transition hover:text-indigo-950"
+              >
                 Contact
               </Link>
             </nav>
@@ -123,7 +129,10 @@ export default function RootLayout({
               <Link href="/about-us" className="transition hover:text-white">
                 About Us
               </Link>
-              <Link href="/privacy-policy" className="transition hover:text-white">
+              <Link
+                href="/privacy-policy"
+                className="transition hover:text-white"
+              >
                 Privacy Policy
               </Link>
               <Link
