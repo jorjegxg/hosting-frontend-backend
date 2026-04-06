@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Website Hosting Service",
+  title: "Managed AI Website Hosting",
   description:
-    "Host your AI-generated website in the US with done-for-you deployment, domain setup, SSL, and support for non-technical owners.",
+    "Managed AI website hosting with deployment workflow, domain setup, SSL, and post-launch support.",
   alternates: { canonical: "/ai-website-hosting" },
 };
 
@@ -36,41 +36,42 @@ export default function AiWebsiteHostingPage() {
             AI Website Hosting
           </p>
           <h1 className="mt-3 text-3xl font-bold text-indigo-950 sm:text-5xl">
-            Host your AI-built website without technical stress
+            Managed hosting for AI-built websites
           </h1>
           <p className="mt-4 max-w-3xl text-slate-700">
-            If you built your website with Lovable, Cursor, Claude Code, Figma
-            AI, or another tool, we can host it for you and make it live fast.
+            If your website was built with Lovable, Cursor, Claude Code, Figma
+            AI, or similar tools, our team can take it through a structured
+            production launch.
           </p>
           <Link
             href="/#start-your-order"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
           >
-            Start my AI website hosting
+            Start launch request
           </Link>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-5xl gap-6 px-6 py-14 md:grid-cols-3">
         <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-          <h2 className="text-xl font-semibold">Upload your files</h2>
+          <h2 className="text-xl font-semibold">Project intake</h2>
           <p className="mt-3 text-sm text-slate-700">
-            Send your website ZIP and domain preferences. No server setup needed
-            on your side.
+            Share your website files and domain preferences. No infrastructure
+            setup is required on your side.
           </p>
         </article>
         <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-          <h2 className="text-xl font-semibold">We deploy it for you</h2>
+          <h2 className="text-xl font-semibold">Managed deployment</h2>
           <p className="mt-3 text-sm text-slate-700">
-            We handle deployment, domain connection, SSL, and launch checks for
-            a clean go-live.
+            We execute deployment, domain connection, SSL setup, and launch
+            validation checks.
           </p>
         </article>
         <article className="rounded-2xl border border-indigo-100 bg-white p-6">
-          <h2 className="text-xl font-semibold">You get ongoing support</h2>
+          <h2 className="text-xl font-semibold">Post-launch support</h2>
           <p className="mt-3 text-sm text-slate-700">
-            Need updates or fixes after launch? You get direct support from a
-            real person.
+            Update requests and fixes are handled through a direct support
+            workflow.
           </p>
         </article>
       </section>
@@ -78,11 +79,11 @@ export default function AiWebsiteHostingPage() {
       <section className="border-t border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-5xl px-6 py-12">
           <h2 className="text-2xl font-bold text-indigo-950 sm:text-3xl">
-            Built for non-technical owners
+            Built for non-technical teams
           </h2>
           <p className="mt-3 text-slate-700">
-            You do not need to understand hosting panels, DNS records, or server
-            configuration. We guide the process from upload to launch.
+            You do not need to manage hosting panels, DNS records, or server
+            configuration. We handle operations from intake to launch.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-indigo-700">
             <Link href="/website-deployment-service" className="underline-offset-4 hover:underline">

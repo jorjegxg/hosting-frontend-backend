@@ -6,9 +6,9 @@ import ScrollToOrderButton from "../components/ScrollToOrderButton";
 import StartOrderForm from "../components/StartOrderForm";
 
 export const metadata: Metadata = {
-  title: "Done-for-You Website Hosting",
+  title: "Managed AI Website Hosting",
   description:
-    "Hosting for AI-built and business websites with setup, SSL, domain connection, and support. Perfect for non-technical owners who want to launch fast.",
+    "Managed hosting for AI-built websites with deployment workflow, domain setup, SSL, monitoring, and ongoing support.",
   alternates: {
     canonical: "/",
   },
@@ -25,7 +25,7 @@ const organizationSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "AI Website Hosting and Deployment",
+  serviceType: "Done-for-You AI Website Hosting and Deployment",
   provider: {
     "@type": "Organization",
     name: "Hostera 24",
@@ -38,13 +38,13 @@ const serviceSchema = {
   offers: [
     {
       "@type": "Offer",
-      name: "Hosting Plan",
+      name: "AI Website Hosting Plan",
       price: "9.99",
       priceCurrency: "USD",
     },
     {
       "@type": "Offer",
-      name: "Full Stack Plan",
+      name: "AI Full-Stack Hosting Plan",
       price: "19.99",
       priceCurrency: "USD",
     },
@@ -57,26 +57,26 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is hosting?",
+      name: "Can you host websites built with AI tools?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Hosting is internet space where your website lives so people can access it online 24/7.",
+        text: "Yes. We host websites built with tools like Lovable, Cursor, Claude Code, Webflow exports, and custom React/HTML projects.",
       },
     },
     {
       "@type": "Question",
-      name: "Do I need a domain name?",
+      name: "What do I need to send to get started?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. A domain is your website address and we can help you pick and connect it.",
+        text: "Send your project files or repository and your domain details if available. We handle setup, deployment, SSL, and launch.",
       },
     },
     {
       "@type": "Question",
-      name: "I built my website with AI. Can you host it?",
+      name: "How fast can my AI-built website go live?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Send your files and we handle deployment, domain connection, and launch.",
+        text: "Most websites go live within 24 hours after files and requirements are confirmed.",
       },
     },
   ],
@@ -97,7 +97,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="fade-in relative overflow-hidden bg-linear-to-b from-indigo-50 via-white to-white">
+      <section className="fade-in relative overflow-hidden border-b border-indigo-100 bg-linear-to-b from-indigo-50 via-white to-white">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
@@ -107,31 +107,33 @@ export default function Home() {
           <div className="absolute -top-12 -left-24 h-[460px] w-[460px] rounded-full bg-violet-300/20 blur-3xl" />
           <div className="absolute -bottom-40 -right-24 h-[620px] w-[620px] rounded-full bg-indigo-200/20 blur-3xl" />
         </div>
-        <div className="relative z-10 mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+        <div className="relative z-10 mx-auto flex min-h-[68vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
+          <p className="rounded-full border border-indigo-200 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-700">
+            Managed Hosting Platform
+          </p>
           <h1
             id="hero-title"
-            className="max-w-3xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
+            className="mt-5 max-w-4xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
           >
-            Your website, live in 24 hours
+            Your AI-built website, launched with production-grade setup
           </h1>
-          <p className="mt-3 max-w-2xl text-sm text-slate-600 sm:text-base">
-            No tech, no stress. Just send your website — we&apos;ll make it
-            live.
-          </p>
-          <p className="mt-3 max-w-3xl text-sm font-medium text-indigo-700">
-            Built with AI tools like Lovable, Cursor, or Claude Code? We host
-            it for you.
+          <p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
+            Submit your files and our team handles deployment, domain setup,
+            SSL, and launch support.
           </p>
           <ScrollToOrderButton
             id="hero-launch-button"
-            label="Launch my website"
-            className="mt-6 inline-flex items-center rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            label="Start managed launch"
+            className="mt-7 inline-flex items-center rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           />
+          <p className="mt-3 text-xs font-medium text-slate-500 sm:text-sm">
+            Structured workflow. Clear handoff. Fast go-live.
+          </p>
 
-          <div className="group mt-6 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
+          <div className="group mt-8 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
             <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
               <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-                1. You upload your local website
+                1. Submit project files and requirements
               </p>
               <a href="#start-your-order" className="block">
                 <div className="relative aspect-5/4 w-full cursor-pointer">
@@ -168,7 +170,7 @@ export default function Home() {
 
             <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
               <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-                2. I make it live
+                2. Deployment, security checks, and launch
               </p>
               <a href="#start-your-order" className="block">
                 <div className="relative aspect-5/4 w-full cursor-pointer">
@@ -185,18 +187,6 @@ export default function Home() {
 
           <div className="mt-8 w-full max-w-3xl rounded-2xl border border-indigo-100 bg-white px-6 py-6">
             <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
-                WordPress
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Webflow
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Tilda
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Figma AI
-              </span>
               <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
                 Lovable
               </span>
@@ -207,60 +197,181 @@ export default function Home() {
                 Claude Code
               </span>
               <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Divi
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                HTML
+                Webflow
               </span>
               <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
                 React
               </span>
               <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Others
+                Next.js
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
+                Static HTML
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* <section className="fade-in border-t border-indigo-100 bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Presentation Video
+      <section className="fade-in border-b border-t border-indigo-100 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-14">
+          <h2 className="text-center text-3xl font-bold text-slate-900 sm:text-4xl">
+            Why teams choose Hostera 24
           </h2>
-          <p className="mt-3 max-w-3xl text-slate-600">
-            Watch a quick overview of the hosting service, pricing, and how I
-            can get your website online fast.
+          <p className="mx-auto mt-3 max-w-3xl text-center text-slate-600">
+            Managed delivery for teams that build quickly with AI and need a
+            reliable production handoff without infrastructure overhead.
           </p>
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-indigo-100 bg-white">
-            <video
-              controls
-              preload="metadata"
-              className="h-auto w-full"
-              poster="https://dummyimage.com/1280x720/0f172a/94a3b8&text=Presentation+Video"
-            >
-              <source
-                src="https://www.w3schools.com/html/mov_bbb.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Managed implementation
+              </h3>
+              <p className="mt-3 text-sm text-slate-700">
+                We configure hosting, deployment workflow, domain integration,
+                SSL, and baseline production settings.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Structured launch workflow
+              </h3>
+              <p className="mt-3 text-sm text-slate-700">
+                Clear intake and validation steps keep launches predictable and
+                reduce last-minute deployment issues.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Ongoing support operations
+              </h3>
+              <p className="mt-3 text-sm text-slate-700">
+                Post-launch updates and fixes are handled through direct support
+                with clear communication.
+              </p>
+            </article>
           </div>
         </div>
-      </section> */}
+      </section>
+
+      <section className="fade-in border-b border-indigo-100 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            Delivery workflow
+          </h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            A clear process designed for founders and product teams.
+          </p>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+                Step 1
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                Intake and scope
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Share your repository/files and launch requirements, including
+                domain and environment details.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+                Step 2
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                Deployment preparation
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                We deploy, connect infrastructure, activate SSL, and run
+                pre-launch checks.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-indigo-600">
+                Step 3
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                Launch and support
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Your website is released with monitoring and ongoing support for
+                updates and fixes.
+              </p>
+            </article>
+          </div>
+
+          <a
+            href="#start-your-order"
+            className="mt-8 inline-flex rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
+          >
+            Start your launch workflow
+          </a>
+        </div>
+      </section>
+
+      <section className="fade-in border-b border-indigo-100 bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+            Operational standards
+          </h2>
+          <p className="mt-3 max-w-3xl text-slate-600">
+            Every launch follows the same operational baseline so delivery
+            quality stays consistent.
+          </p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Deployment checklist
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Build verification, runtime validation, and route checks before
+                release.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Security baseline
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                SSL/HTTPS setup and environment configuration aligned to
+                production best practices.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Monitoring setup
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Launch includes core uptime and stability monitoring to reduce
+                incident risk.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-100 bg-white p-6">
+              <h3 className="text-lg font-semibold text-slate-900">
+                Support response workflow
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                Issues and update requests are handled through a clear support
+                communication process.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
 
       <section
         id="pricing"
-        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
+        className="fade-in scroll-mt-28 border-b border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-indigo-950 sm:text-4xl">
-            Simple plans for every stage
+            Choose your done-for-you hosting plan
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-            Start small or choose full-stack support. Both plans include direct
-            communication and clean setup.
+            Pick the plan that matches your AI-built website complexity.
           </p>
 
           <div className="mx-auto mt-10 grid w-full max-w-6xl gap-6 text-left md:grid-cols-2">
@@ -286,7 +397,7 @@ export default function Home() {
               </p>
               <p className="mt-1 text-slate-600">/ month</p>
               <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
-                Best for landing pages and business websites.
+                Best for AI-generated landing pages and business websites.
               </p>
 
               <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
@@ -303,7 +414,7 @@ export default function Home() {
               <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
                 <li>✓ Fast deployment and SSL setup</li>
                 <li>✓ Domain connection done for you</li>
-                <li>✓ Ongoing maintenance &amp; updates</li>
+                <li>✓ Ongoing maintenance and updates</li>
                 <li>✓ Website monitoring</li>
                 <li>✓ Direct support when needed</li>
               </ul>
@@ -331,7 +442,7 @@ export default function Home() {
               </p>
               <p className="mt-1 text-slate-600">/ month</p>
               <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
-                Great for apps with frontend, backend, and database.
+                Great for apps with frontend, backend, APIs, and database.
               </p>
 
               <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
@@ -350,7 +461,7 @@ export default function Home() {
                 <li>✓ Database provisioning and config</li>
                 <li>✓ Environment/security baseline setup</li>
                 <li>✓ Performance and uptime checks</li>
-                <li>✓ Ongoing maintenance &amp; updates</li>
+                <li>✓ Ongoing maintenance and updates</li>
                 <li>✓ Website monitoring</li>
                 <li>✓ Faster support response</li>
               </ul>
@@ -360,10 +471,13 @@ export default function Home() {
             href="#start-your-order"
             className="mt-10 inline-flex rounded-full bg-indigo-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-indigo-500"
           >
-            Let&apos;s Launch Your Site
+            Launch my AI-built site
           </a>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-indigo-700">
-            <a href="/ai-website-hosting" className="underline-offset-4 hover:underline">
+            <a
+              href="/ai-website-hosting"
+              className="underline-offset-4 hover:underline"
+            >
               AI website hosting
             </a>
             <a
@@ -372,17 +486,20 @@ export default function Home() {
             >
               Website deployment service
             </a>
-            <a href="/full-stack-hosting" className="underline-offset-4 hover:underline">
+            <a
+              href="/full-stack-hosting"
+              className="underline-offset-4 hover:underline"
+            >
               Full stack hosting
             </a>
           </div>
         </div>
       </section>
 
-      <section className="fade-in border-t border-indigo-100 bg-white">
+      <section className="fade-in border-b border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-12 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-            Trusted by
+            Selected client brands
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <div className="rounded-2xl border border-indigo-100 bg-white px-8 py-5">
@@ -407,59 +524,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="fade-in border-t border-indigo-100 bg-white">
-        <div className="mx-auto grid w-full max-w-6xl gap-6 px-6 py-16 md:grid-cols-3">
-          <article className="rounded-xl border border-indigo-100 bg-white p-6">
-            <h2 className="text-xl font-semibold">Done-For-You Setup</h2>
-            <p className="mt-3 text-slate-600">
-              I handle the full setup and launch, so you do not have to deal
-              with the technical part.
-            </p>
-          </article>
-          <article className="rounded-xl border border-indigo-100 bg-white p-6">
-            <h2 className="text-xl font-semibold">Reliable Uptime</h2>
-            <p className="mt-3 text-slate-600">
-              Your website stays online and stable, with ongoing monitoring in
-              the background.
-            </p>
-          </article>
-          <article className="rounded-xl border border-indigo-100 bg-white p-6">
-            <h2 className="text-xl font-semibold">Real Human Support</h2>
-            <p className="mt-3 text-slate-600">
-              Need help or updates? You can message me directly and get a real
-              response fast.
-            </p>
-          </article>
-        </div>
-      </section>
-
       <section
         id="start-your-order"
-        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
+        className="fade-in scroll-mt-28 border-b border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-4xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Start Your Order
+            Start your AI website launch
           </h2>
           <p className="mt-3 text-slate-600">
-            Share your details and project files. I will reach out and get your
-            site live with a clean setup.
+            Share your details and project files. We will follow up quickly and
+            move your website to a reliable live environment.
           </p>
 
           <StartOrderForm />
         </div>
       </section>
 
-      <section className="fade-in border-t border-indigo-100 bg-white">
+      <section className="fade-in border-b border-indigo-100 bg-white">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            What clients say
+            Client feedback
           </h2>
           <div className="mt-8 rounded-2xl border border-indigo-100 bg-white p-8">
             <p className="text-lg leading-relaxed text-slate-700">
-              &ldquo;I thought hosting a website would be complicated. It
-              wasn&apos;t. I just sent my files and it was online the next
-              day.&rdquo;
+              &ldquo;The launch process was structured and clear. We shared the
+              files and the site went live quickly, without technical
+              back-and-forth.&rdquo;
             </p>
             <p className="mt-5 text-sm font-semibold uppercase tracking-[0.15em] text-slate-500">
               David. H
@@ -470,7 +561,7 @@ export default function Home() {
               rel="noreferrer"
               className="mt-2 inline-flex text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-slate-900 hover:underline"
             >
-              View LinkedIn Profile
+              View profile
             </a>
           </div>
         </div>
@@ -478,59 +569,49 @@ export default function Home() {
 
       <section
         id="faq"
-        className="fade-in scroll-mt-28 border-t border-indigo-100 bg-white"
+        className="fade-in scroll-mt-28 border-b border-indigo-100 bg-white"
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
-            Clear answers for non-technical business owners.
+            Clear answers for founders launching AI-generated websites.
           </p>
 
           <div className="mt-8 space-y-4">
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                What is hosting?
+                Can you host websites built with AI tools?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Hosting is internet space where your website lives so people can
-                access it online 24/7.
+                Yes. We host websites built with Lovable, Cursor, Claude Code,
+                and other tools when you can provide the project files.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                Do I need a domain name?
+                What do I need to send?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Yes. A domain is your website address (like yourbusiness.com). I
-                can help you pick and connect it.
+                Send your website files or repository and, if available, your
+                domain details. We guide you if anything is missing.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                What is SSL / HTTPS?
+                Do you set up SSL and HTTPS?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                It is the security lock shown in browsers. I set up SSL so your
-                website opens with HTTPS by default.
+                Yes. SSL setup is included so your live website runs securely
+                over HTTPS by default.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                What is a website with backend and db?
+                Can you host full-stack apps too?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                It is a full-stack website: the frontend is what people see, the
-                backend handles logic and requests, and the database stores data
-                like users, orders, or content.
-              </p>
-            </article>
-            <article className="rounded-xl border border-indigo-100 bg-white p-5">
-              <h3 className="text-base font-semibold text-slate-900">
-                I built my website with AI. Can you host it?
-              </h3>
-              <p className="mt-2 text-sm text-slate-700">
-                Yes. Send your files and I handle deployment, domain connection,
-                and launch.
+                Yes. We support frontend + backend + database projects with the
+                Full Stack plan.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
@@ -538,8 +619,8 @@ export default function Home() {
                 How fast can my site go live?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Most websites are live within 24 hours after I receive your
-                files and domain details.
+                Most websites go live within 24 hours once files and setup
+                details are confirmed.
               </p>
             </article>
           </div>
@@ -549,56 +630,58 @@ export default function Home() {
               href="#start-your-order"
               className="inline-flex rounded-full bg-indigo-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
-              Start Your Order Now
+            Start launch request
             </a>
           </div>
         </div>
       </section>
 
-      <section className="fade-in border-t border-indigo-100 bg-white">
+      <section className="fade-in bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="rounded-3xl border border-indigo-100 bg-white p-8 md:p-10">
             <p className="inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-900">
-              Trust & Transparency
+              Managed launch
             </p>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-              Too good to be true?
+              Ready for a structured production launch?
             </h2>
             <p className="mt-4 max-w-3xl text-slate-700">
-              It is a fair monthly service, not a hidden-fee offer. You get
-              direct support, clear communication, domain setup, and reliable
-              hosting from one person.
+              Get deployment, domain setup, security baseline, and support from
+              one team responsible for delivery.
             </p>
-            <p className="mt-3 text-sm font-medium text-slate-700">
-              Brand: Hostera 24
-            </p>
+            <a
+              href="#start-your-order"
+              className="mt-7 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
+            >
+              Start launch request
+            </a>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
-                  No hidden charges
+                  Transparent pricing
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">
-                  Monthly pricing is clear before we start.
+                  Monthly pricing is clearly stated before work begins.
                 </p>
               </article>
 
               <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
-                  Real human support
+                  Direct support channel
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">
-                  You talk directly to me when you need help.
+                  Direct communication when you need help or updates.
                 </p>
               </article>
 
               <article className="rounded-xl border border-indigo-100 bg-white p-5">
                 <h3 className="text-lg font-semibold text-slate-900">
-                  Reliable service
+                  Reliable operation
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">
-                  Your domain and hosting are managed properly so your website
-                  stays online.
+                  Hosting and domain are managed properly so your site stays
+                  online and stable.
                 </p>
               </article>
             </div>

@@ -11,6 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/order-sent", "/email"],
       },
     ],
+    host: siteUrl,
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

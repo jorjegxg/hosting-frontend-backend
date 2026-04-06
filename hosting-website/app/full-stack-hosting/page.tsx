@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Full Stack Hosting Service",
+  title: "Managed Full Stack Hosting",
   description:
-    "Managed full stack hosting for frontend, backend, and database projects with deployment, security baseline, and monitoring.",
+    "Managed full stack hosting for frontend, backend, and database projects with deployment workflow, security baseline, and monitoring.",
   alternates: { canonical: "/full-stack-hosting" },
 };
 
@@ -17,35 +17,35 @@ export default function FullStackHostingPage() {
             Full Stack Hosting
           </p>
           <h1 className="mt-3 text-3xl font-bold text-indigo-950 sm:text-5xl">
-            Host your frontend, backend, and database with one service
+            Managed full stack hosting for production workloads
           </h1>
           <p className="mt-4 max-w-3xl text-slate-700">
-            Ideal for SaaS and app-style projects that need full stack
-            deployment and ongoing maintenance without hiring an in-house ops
-            team.
+            Designed for SaaS and application teams that need coordinated
+            frontend, backend, and database delivery without running in-house
+            operations.
           </p>
           <Link
             href="/#start-your-order"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
           >
-            Start full stack hosting
+            Start full stack request
           </Link>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-5xl gap-6 px-6 py-14 md:grid-cols-2">
         <article className="rounded-2xl border border-indigo-100 p-6">
-          <h2 className="text-xl font-semibold">Deployment and setup</h2>
+          <h2 className="text-xl font-semibold">Deployment operations</h2>
           <p className="mt-3 text-sm text-slate-700">
-            We deploy your frontend and backend, connect services, and verify
-            environment variables and routing.
+            We deploy frontend and backend services, validate environment
+            configuration, and confirm routing behavior.
           </p>
         </article>
         <article className="rounded-2xl border border-indigo-100 p-6">
-          <h2 className="text-xl font-semibold">Database and monitoring</h2>
+          <h2 className="text-xl font-semibold">Database and observability</h2>
           <p className="mt-3 text-sm text-slate-700">
-            We provision and configure the database layer, then monitor uptime
-            and core stability checks.
+            We provision and configure the database layer, then run core uptime
+            and stability monitoring.
           </p>
         </article>
       </section>

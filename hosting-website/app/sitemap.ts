@@ -2,32 +2,56 @@ import type { MetadataRoute } from "next";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hostera24.com";
 
-const publicRoutes = [
-  "/",
-  "/about-us",
-  "/contact",
-  "/privacy-policy",
-  "/terms-and-conditions",
-  "/ai-website-hosting",
-  "/website-deployment-service",
-  "/full-stack-hosting",
-  "/host-lovable-website",
-  "/host-cursor-website",
-  "/host-claude-code-website",
-  "/blog",
-  "/blog/how-to-host-ai-generated-website-without-coding",
-  "/blog/domain-vs-hosting-for-non-technical-founders",
-  "/blog/website-deployment-checklist-before-you-send-files",
-  "/blog/how-long-does-website-deployment-take",
-  "/blog/best-way-to-launch-small-business-website-in-24-hours",
+const publicRoutes: Array<{
+  path: string;
+  changeFrequency: "weekly" | "monthly";
+  priority: number;
+}> = [
+  { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/ai-website-hosting", changeFrequency: "weekly", priority: 0.95 },
+  { path: "/website-deployment-service", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/full-stack-hosting", changeFrequency: "weekly", priority: 0.9 },
+  { path: "/host-lovable-website", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/host-cursor-website", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/host-claude-code-website", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/contact", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/about-us", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/blog", changeFrequency: "weekly", priority: 0.75 },
+  {
+    path: "/blog/how-to-host-ai-generated-website-without-coding",
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
+    path: "/blog/domain-vs-hosting-for-non-technical-founders",
+    changeFrequency: "monthly",
+    priority: 0.65,
+  },
+  {
+    path: "/blog/website-deployment-checklist-before-you-send-files",
+    changeFrequency: "monthly",
+    priority: 0.65,
+  },
+  {
+    path: "/blog/how-long-does-website-deployment-take",
+    changeFrequency: "monthly",
+    priority: 0.65,
+  },
+  {
+    path: "/blog/best-way-to-launch-small-business-website-in-24-hours",
+    changeFrequency: "monthly",
+    priority: 0.65,
+  },
+  { path: "/privacy-policy", changeFrequency: "monthly", priority: 0.4 },
+  { path: "/terms-and-conditions", changeFrequency: "monthly", priority: 0.4 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return publicRoutes.map((route) => ({
-    url: `${siteUrl}${route}`,
+    url: `${siteUrl}${route.path}`,
     lastModified: now,
-    changeFrequency: route.startsWith("/blog/") ? "monthly" : "weekly",
-    priority: route === "/" ? 1 : route.startsWith("/blog/") ? 0.7 : 0.8,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

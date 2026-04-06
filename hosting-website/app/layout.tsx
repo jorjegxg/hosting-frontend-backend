@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     apple: "/hosting-logo.svg",
   },
   title: {
-    default: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
+    default: "Hostera 24 | Managed Hosting for AI-Built Websites",
     template: "%s | Hostera 24",
   },
   description:
-    "US-focused done-for-you hosting and deployment for AI-built and small business websites. Send your files, go live fast, and get real support.",
+    "Managed hosting and deployment for AI-built websites with structured delivery, domain setup, SSL, and ongoing support.",
   alternates: {
     canonical: "/",
     languages: {
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     siteName: "Hostera 24",
     locale: "en_US",
     url: "/",
-    title: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
+    title: "Hostera 24 | Managed Hosting for AI-Built Websites",
     description:
-      "Done-for-you website deployment, domain setup, SSL, and ongoing support for AI-generated websites.",
+      "Managed deployment, domain setup, SSL, and support for AI-generated websites.",
     images: [
       {
         url: "/hosting-logo-text.svg",
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hostera 24 | AI Website Hosting for Non-Technical Owners",
+    title: "Hostera 24 | Managed Hosting for AI-Built Websites",
     description:
-      "Hosting and deployment for AI-built websites. No technical stress, just a site that goes live fast.",
+      "Hosting and deployment for AI-built websites. No technical stress, just fast launch and real support.",
     images: ["/hosting-logo-text.svg"],
   },
 };
@@ -99,7 +99,7 @@ export default function RootLayout({
                 href="/#pricing"
                 className="transition hover:text-indigo-950"
               >
-                Pricing
+                Plans
               </Link>
               <Link href="/#faq" className="transition hover:text-indigo-950">
                 FAQ
@@ -115,7 +115,7 @@ export default function RootLayout({
               href="/#start-your-order"
               className="inline-flex rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
-              Launch My Site
+              Start Launch Request
             </Link>
           </div>
         </header>
