@@ -52,6 +52,7 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
       }>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", `${backendUrl}/orders/upload`, true);
+        xhr.timeout = 60_000;
 
         xhr.upload.onprogress = (progressEvent) => {
           if (!progressEvent.lengthComputable) return;
@@ -81,7 +82,19 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
           reject(new Error(parsed.message ?? "Failed to upload ZIP file."));
         };
 
-        xhr.onerror = () => reject(new Error("Network error while uploading ZIP."));
+        xhr.onerror = () =>
+          reject(
+            new Error(
+              `Could not reach upload server (${backendUrl}/orders/upload). Check HTTPS vs HTTP mismatch (mixed content), CORS, or reverse-proxy upload limits.`,
+            ),
+          );
+        xhr.onabort = () => reject(new Error("Upload was canceled before completion."));
+        xhr.ontimeout = () =>
+          reject(
+            new Error(
+              "Upload request timed out after 60s. Check server/proxy limits and connectivity.",
+            ),
+          );
         xhr.send(uploadData);
       });
 

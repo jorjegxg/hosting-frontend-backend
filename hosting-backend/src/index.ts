@@ -320,9 +320,6 @@ function escapeHtml(text: string): string {
 }
 
 function renderOwnerOrderNotificationHtml(order: OrderRow): string {
-  const paidAtText = order.paid_at
-    ? new Date(order.paid_at).toLocaleString("en-US")
-    : "Not available";
   const createdAtText = order.created_at
     ? new Date(order.created_at).toLocaleString("en-US")
     : "Not available";
@@ -344,7 +341,6 @@ function renderOwnerOrderNotificationHtml(order: OrderRow): string {
       `<p style="margin:0 0 8px 0;"><strong>Stripe subscription:</strong> ${escapeHtml(order.stripe_subscription_id ?? "Not available")}</p>`,
       `<p style="margin:0 0 8px 0;"><strong>Payment status:</strong> ${escapeHtml(order.payment_status)}</p>`,
       `<p style="margin:0 0 8px 0;"><strong>Currency:</strong> ${escapeHtml(order.payment_currency)}</p>`,
-      `<p style="margin:0 0 8px 0;"><strong>Paid at:</strong> ${escapeHtml(paidAtText)}</p>`,
       `<p style="margin:0;"><strong>Created at:</strong> ${escapeHtml(createdAtText)}</p>`,
       `</div>`,
     ].join(""),
@@ -352,9 +348,6 @@ function renderOwnerOrderNotificationHtml(order: OrderRow): string {
 }
 
 function renderOwnerOrderNotificationText(order: OrderRow): string {
-  const paidAtText = order.paid_at
-    ? new Date(order.paid_at).toLocaleString("en-US")
-    : "Not available";
   const createdAtText = order.created_at
     ? new Date(order.created_at).toLocaleString("en-US")
     : "Not available";
@@ -373,7 +366,6 @@ function renderOwnerOrderNotificationText(order: OrderRow): string {
     `Stripe subscription: ${order.stripe_subscription_id ?? "Not available"}`,
     `Payment status: ${order.payment_status}`,
     `Currency: ${order.payment_currency}`,
-    `Paid at: ${paidAtText}`,
     `Created at: ${createdAtText}`,
   ].join("\n");
 }
@@ -524,9 +516,6 @@ function formatPlanLabel(paymentPlan: string): string {
 
 function renderOrderConfirmationHtml(order: OrderRow): string {
   const planLabel = formatPlanLabel(order.payment_plan);
-  const paidAtText = order.paid_at
-    ? new Date(order.paid_at).toLocaleString("en-US")
-    : "Just now";
   const domain = order.preferred_domain_name ?? "Not provided";
   const uploadedFile = path.basename(order.project_zip_path);
 
@@ -538,7 +527,6 @@ function renderOrderConfirmationHtml(order: OrderRow): string {
 <div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;background:#f8fafc;">
   <p style="margin:0 0 8px 0;"><strong>Order ID:</strong> #${order.id}</p>
   <p style="margin:0 0 8px 0;"><strong>Plan:</strong> ${planLabel}</p>
-  <p style="margin:0 0 8px 0;"><strong>Paid at:</strong> ${paidAtText}</p>
   <p style="margin:0 0 8px 0;"><strong>Preferred domain:</strong> ${domain}</p>
   <p style="margin:0;"><strong>Uploaded file:</strong> ${uploadedFile}</p>
 </div>
