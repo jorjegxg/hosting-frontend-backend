@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactBubble from "../components/ContactBubble";
-import StartOrderForm from "../components/StartOrderForm";
 
 export const metadata: Metadata = {
-  title: "AI Website Hosting for Sites Built with AI Tools",
+  title: "Presentation Website Build + Maintenance",
   description:
-    "AI website hosting and deployment service for websites built with Claude Code, Cursor, Lovable, and Webflow.",
+    "I build your presentation website and you pay only $20/month for maintenance, hosting, and domain.",
   alternates: {
     canonical: "/",
   },
@@ -23,7 +22,7 @@ const organizationSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "AI Website Hosting and Deployment Service",
+  serviceType: "Presentation Website Build and Maintenance Service",
   provider: {
     "@type": "Organization",
     name: "Hostera 24",
@@ -36,14 +35,8 @@ const serviceSchema = {
   offers: [
     {
       "@type": "Offer",
-      name: "AI Website Hosting Plan",
-      price: "9.99",
-      priceCurrency: "USD",
-    },
-    {
-      "@type": "Offer",
-      name: "AI Full-Stack Hosting Plan",
-      price: "19.99",
+      name: "Presentation Website Maintenance Plan",
+      price: "20.00",
       priceCurrency: "USD",
     },
   ],
@@ -55,10 +48,10 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Can you host websites built with AI tools?",
+      name: "Do you build presentation websites for clients?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. We host AI-built websites created with Lovable, Cursor, Claude Code, Webflow exports, and custom React/HTML projects.",
+        text: "Yes. We build and launch presentation websites based on your business goals, content, and brand direction.",
       },
     },
     {
@@ -66,15 +59,15 @@ const faqSchema = {
       name: "What do I need to send to get started?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Send your project files or repository plus domain details if available. We handle AI website deployment, SSL setup, and launch.",
+        text: "Send your business details, preferred content structure, and domain preferences. We handle website build, launch, SSL setup, and ongoing maintenance.",
       },
     },
     {
       "@type": "Question",
-      name: "How fast can my AI-built website go live?",
+      name: "How fast can my website go live?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Most AI-built websites go live within 24 hours after files and launch requirements are confirmed.",
+        text: "Most presentation websites go live quickly after content and launch requirements are confirmed.",
       },
     },
     {
@@ -88,20 +81,7 @@ const faqSchema = {
   ],
 };
 
-type HomePageProps = {
-  searchParams?: Promise<{
-    plan?: string;
-  }>;
-};
-
-export default async function Home({ searchParams }: HomePageProps) {
-  const resolvedSearchParams = await searchParams;
-  const selectedPlanFromUrl =
-    resolvedSearchParams?.plan === "hosting-9-99" ||
-    resolvedSearchParams?.plan === "full-stack-19-99"
-      ? resolvedSearchParams.plan
-      : undefined;
-
+export default function Home() {
   return (
     <main className="w-full bg-white text-slate-900">
       <script
@@ -128,108 +108,72 @@ export default async function Home({ searchParams }: HomePageProps) {
         </div>
         <div className="relative z-10 mx-auto flex min-h-[68vh] w-full max-w-6xl flex-col items-center justify-center px-6 py-14 text-center">
           <p className="rounded-full border border-indigo-200 bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-700">
-            Managed Hosting Platform
+            Presentation Website Service
           </p>
           <h1
             id="hero-title"
             className="mt-5 max-w-4xl text-3xl font-bold leading-tight text-indigo-950 sm:text-4xl md:text-6xl"
           >
-            Managed hosting and deployment for websites built with AI tools
+            We build your presentation website for your business.
           </h1>
           <p className="mt-4 max-w-3xl text-sm text-slate-600 sm:text-base">
-            Built your website with Lovable, Cursor, Claude Code, or Webflow
-            export? We handle deployment, domain setup, SSL, and launch support.
+            We build your website and keep it online with maintenance, hosting,
+            and domain management in one simple monthly plan.
           </p>
           <a
             id="hero-launch-button"
-            href="#start-your-order"
+            href="/start-project"
             className="mt-7 inline-flex items-center rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           >
-            Start managed launch
+            Start your website build
           </a>
           <p className="mt-3 text-xs font-medium text-slate-500 sm:text-sm">
-            Let us be part of your team for launch and maintenance.
+            One team handles build, launch, and monthly maintenance.
           </p>
 
-          <div className="group mt-8 flex w-full max-w-4xl flex-col items-stretch gap-4 sm:flex-row sm:items-stretch sm:gap-3">
-            <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
-              <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-                1. Submit project files and requirements
+          <div className="mt-8 grid w-full max-w-4xl gap-4 text-left sm:grid-cols-3">
+            <article className="group rounded-2xl border border-indigo-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+                1
+              </div>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-700">
+                Step 1
               </p>
-              <a href="#start-your-order" className="block">
-                <div className="relative aspect-5/4 w-full cursor-pointer">
-                  <Image
-                    src="/steps/browser_localhost_3000-02.svg"
-                    alt="Browser showing local development preview"
-                    fill
-                    className="object-contain object-center p-2"
-                    priority
-                  />
-                </div>
-              </a>
-            </div>
-
-            <div
-              className="flex shrink-0 items-center justify-center py-1 text-indigo-500 sm:w-16 sm:py-0"
-              aria-hidden="true"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="h-9 w-9 rotate-90 text-indigo-500 transition-transform duration-300 ease-out group-hover:translate-y-1 sm:rotate-0 sm:group-hover:translate-x-1 sm:group-hover:translate-y-0"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </div>
-
-            <div className="min-w-0 flex-1 overflow-hidden rounded-3xl border border-indigo-100 bg-white transition-shadow duration-300 group-hover:shadow-md">
-              <p className="border-b border-indigo-100 px-4 py-3 text-sm font-semibold text-indigo-900">
-                2. Deployment, security checks, and launch
+              <h3 className="mt-2 text-base font-semibold text-slate-900">
+                Share your business details
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                Tell us about your company, goals, and preferred pages.
               </p>
-              <a href="#start-your-order" className="block">
-                <div className="relative aspect-5/4 w-full cursor-pointer">
-                  <Image
-                    src="/steps/browser_your-brand-02.svg"
-                    alt="Domain name setup"
-                    fill
-                    className="object-contain p-1"
-                  />
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-8 w-full max-w-3xl rounded-2xl border border-indigo-100 bg-white px-6 py-6">
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Lovable
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
-                Cursor
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-900">
-                Claude Code
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Webflow
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                React
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Next.js
-              </span>
-              <span className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-sm font-medium text-indigo-900/80">
-                Static HTML
-              </span>
-            </div>
+            </article>
+            <article className="group rounded-2xl border border-indigo-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+                2
+              </div>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-700">
+                Step 2
+              </p>
+              <h3 className="mt-2 text-base font-semibold text-slate-900">
+                We build and launch your website
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                We design, build, connect domain, and publish your website.
+              </p>
+            </article>
+            <article className="group rounded-2xl border border-indigo-200 bg-white/95 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">
+                3
+              </div>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-700">
+                Step 3
+              </p>
+              <h3 className="mt-2 text-base font-semibold text-slate-900">
+                Monthly maintenance
+              </h3>
+              <p className="mt-2 text-sm text-slate-600">
+                Ongoing updates, hosting, monitoring, and support in one plan.
+              </p>
+            </article>
           </div>
         </div>
       </section>
@@ -240,8 +184,8 @@ export default async function Home({ searchParams }: HomePageProps) {
             Why teams choose Hostera 24
           </h2>
           <p className="mx-auto mt-3 max-w-3xl text-center text-slate-600">
-            Managed delivery for teams that build quickly with AI and need a
-            reliable production handoff without infrastructure overhead.
+            Clear delivery for founders who want their presentation website built
+            and managed without technical overhead.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -279,64 +223,56 @@ export default async function Home({ searchParams }: HomePageProps) {
       <section className="fade-in border-b border-indigo-100 bg-indigo-50/40">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Delivery workflow
+            What you get every month
           </h2>
           <p className="mt-3 max-w-3xl text-slate-600">
-            A clear process designed for founders and product teams.
+            A complete website service built for business owners.
           </p>
 
           <div className="mt-9 grid gap-5 md:grid-cols-3">
-            <article className="relative rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
-                Step 1
+            <article className="rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-700">
+                Included
               </span>
               <h3 className="mt-3 text-lg font-semibold text-slate-900">
-                Intake and scope
+                Website build and updates
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Share your repository/files and launch requirements, including
-                domain and environment details.
+                We build your presentation website and handle requested updates
+                so it always reflects your business.
               </p>
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-3 top-1/2 hidden h-0.5 w-6 -translate-y-1/2 bg-indigo-300 md:block"
-              />
-            </article>
-            <article className="relative rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
-                Step 2
-              </span>
-              <h3 className="mt-3 text-lg font-semibold text-slate-900">
-                Deployment preparation
-              </h3>
-              <p className="mt-2 text-sm text-slate-700">
-                We deploy, connect infrastructure, activate SSL, and run
-                pre-launch checks.
-              </p>
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-3 top-1/2 hidden h-0.5 w-6 -translate-y-1/2 bg-indigo-300 md:block"
-              />
             </article>
             <article className="rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
-              <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
-                Step 3
+              <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-700">
+                Included
               </span>
               <h3 className="mt-3 text-lg font-semibold text-slate-900">
-                Launch and support
+                Hosting, domain, and SSL
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Your website is released with monitoring and ongoing support for
-                updates and fixes.
+                Your hosting, domain setup, and SSL security are managed by one
+                team from start to finish.
+              </p>
+            </article>
+            <article className="rounded-2xl border border-indigo-200 bg-white p-6 shadow-sm">
+              <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-700">
+                Included
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-slate-900">
+                Monitoring and support
+              </h3>
+              <p className="mt-2 text-sm text-slate-700">
+                We monitor uptime and respond quickly when you need changes or
+                fixes.
               </p>
             </article>
           </div>
 
           <a
-            href="#start-your-order"
+            href="/start-project"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
           >
-            Start your launch workflow
+            Start my website service
           </a>
         </div>
       </section>
@@ -397,143 +333,82 @@ export default async function Home({ searchParams }: HomePageProps) {
       >
         <div className="mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <h2 className="text-3xl font-bold text-indigo-950 sm:text-4xl">
-            Choose the right AI website hosting plan
+            One simple presentation website plan
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-600">
-            Pick the plan that matches your AI-built website complexity.
+            No setup fee. You only pay for maintenance, hosting, and domain.
           </p>
 
-          <div className="mx-auto mt-10 grid w-full max-w-6xl gap-6 text-left md:grid-cols-2">
+          <div className="mx-auto mt-10 grid w-full max-w-4xl gap-6 text-left">
             <a
-              href="/?plan=hosting-9-99#start-your-order"
+              href="/start-project?plan=presentation-20-monthly"
               className="block h-full rounded-2xl border border-indigo-300 bg-white px-8 py-8 transition hover:border-indigo-500"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="inline-flex rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
-                  Reliable Choice
-                </span>
-                <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
-                  33% OFF
+                  All-in-one plan
                 </span>
               </div>
 
               <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-500">
-                Hosting Plan
+                Presentation Website Plan
               </p>
-              <p className="mt-3 text-sm text-slate-500 line-through">$14.99</p>
-              <p className="mt-1 text-5xl font-extrabold text-indigo-950">
-                $9.99
-              </p>
+              <p className="mt-1 text-5xl font-extrabold text-indigo-950">$20</p>
               <p className="mt-1 text-slate-600">/ month</p>
               <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
-                Best for AI-generated landing pages and business websites.
+                I build your presentation website and manage it every month.
               </p>
 
               <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
-                Choose Hosting Plan - $9.99/mo
+                Choose Plan - $20/mo
               </span>
 
               <p className="mt-4 text-sm text-slate-500">
-                30-day support included
-              </p>
-              <p className="mt-1 text-sm text-slate-500">
-                Domain included (.site or .online or .store)
+                Maintenance, hosting, and domain included
               </p>
 
               <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
-                <li>✓ Fast deployment and SSL setup</li>
-                <li>✓ Domain connection done for you</li>
+                <li>✓ Presentation website build and launch</li>
                 <li>✓ Ongoing maintenance and updates</li>
+                <li>✓ Hosting setup and SSL security</li>
+                <li>✓ Domain management included</li>
                 <li>✓ Website monitoring</li>
                 <li>✓ Direct support when needed</li>
               </ul>
             </a>
-
-            <a
-              href="/?plan=full-stack-19-99#start-your-order"
-              className="block h-full rounded-2xl border-2 border-indigo-500 bg-white px-8 py-8 transition hover:border-indigo-600"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className="inline-flex rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
-                  Most Popular
-                </span>
-                <span className="inline-flex rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">
-                  33% OFF
-                </span>
-              </div>
-
-              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-indigo-500">
-                Full Stack Plan
-              </p>
-              <p className="mt-3 text-sm text-slate-500 line-through">$29.99</p>
-              <p className="mt-1 text-5xl font-extrabold text-indigo-950">
-                $19.99
-              </p>
-              <p className="mt-1 text-slate-600">/ month</p>
-              <p className="mt-3 min-h-[40px] text-sm font-semibold text-indigo-900">
-                Great for apps with frontend, backend, APIs, and database.
-              </p>
-
-              <span className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500">
-                Choose Full Stack - $19.99/mo
-              </span>
-
-              <p className="mt-4 text-sm text-slate-500">
-                Priority support included
-              </p>
-              <p className="mt-1 text-sm text-slate-500">
-                Domain included (.site or .online or .store)
-              </p>
-
-              <ul className="mt-6 space-y-2.5 text-sm text-slate-700">
-                <li>✓ Frontend + backend deployment</li>
-                <li>✓ Database provisioning and config</li>
-                <li>✓ Environment/security baseline setup</li>
-                <li>✓ Performance and uptime checks</li>
-                <li>✓ Ongoing maintenance and updates</li>
-                <li>✓ Website monitoring</li>
-                <li>✓ Faster support response</li>
-              </ul>
-            </a>
           </div>
           <a
-            href="#start-your-order"
+            href="/start-project"
             className="mt-10 inline-flex rounded-full bg-indigo-600 px-8 py-3 text-base font-semibold text-white transition hover:bg-indigo-500"
           >
-            Launch my AI-built site
+            Start my website project
           </a>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm font-semibold text-indigo-700">
-            <a
-              href="/ai-website-hosting"
-              className="underline-offset-4 hover:underline"
-            >
-              AI website hosting
-            </a>
             <a
               href="/website-deployment-service"
               className="underline-offset-4 hover:underline"
             >
-              Website deployment service
+              Website build service
             </a>
             <a
-              href="/full-stack-hosting"
+              href="/contact"
               className="underline-offset-4 hover:underline"
             >
-              Full stack hosting
+              Contact us
             </a>
           </div>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-indigo-800">
             <a
-              href="/blog/how-to-host-ai-generated-website-without-coding"
+              href="/blog/best-way-to-launch-small-business-website-in-24-hours"
               className="underline-offset-4 hover:underline"
             >
-              How to host an AI-generated website
+              Launch a small business website fast
             </a>
             <a
               href="/blog/website-deployment-checklist-before-you-send-files"
               className="underline-offset-4 hover:underline"
             >
-              AI website deployment checklist
+              Website launch checklist
             </a>
           </div>
         </div>
@@ -564,23 +439,6 @@ export default async function Home({ searchParams }: HomePageProps) {
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section
-        id="start-your-order"
-        className="fade-in scroll-mt-28 border-b border-indigo-100 bg-white"
-      >
-        <div className="mx-auto w-full max-w-4xl px-6 py-16">
-          <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-            Start your AI website launch
-          </h2>
-          <p className="mt-3 text-slate-600">
-            Share your details and project files. We will follow up quickly and
-            move your website to a reliable live environment.
-          </p>
-
-          <StartOrderForm initialPlan={selectedPlanFromUrl} />
         </div>
       </section>
 
@@ -617,17 +475,17 @@ export default async function Home({ searchParams }: HomePageProps) {
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">FAQ</h2>
           <p className="mt-3 max-w-3xl text-slate-600">
-            Clear answers for founders launching AI-generated websites.
+            Clear answers for founders launching presentation websites.
           </p>
 
           <div className="mt-8 space-y-4">
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                Can you host websites built with AI tools?
+                Do you build the website for me?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Yes. We host websites built with Lovable, Cursor, Claude Code,
-                and other tools when you can provide the project files.
+                Yes. We build your presentation website and handle launch,
+                hosting, and maintenance.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
@@ -650,11 +508,11 @@ export default async function Home({ searchParams }: HomePageProps) {
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
               <h3 className="text-base font-semibold text-slate-900">
-                Can you host full-stack apps too?
+                What is included in the $20/month plan?
               </h3>
               <p className="mt-2 text-sm text-slate-700">
-                Yes. We support frontend + backend + database projects with the
-                Full Stack plan.
+                It includes monthly maintenance, hosting, domain support, and
+                direct help when updates are needed.
               </p>
             </article>
             <article className="rounded-xl border border-indigo-100 bg-white p-5">
@@ -679,10 +537,10 @@ export default async function Home({ searchParams }: HomePageProps) {
 
           <div className="mt-10">
             <a
-              href="#start-your-order"
+              href="/start-project"
               className="inline-flex rounded-full bg-indigo-600 px-8 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
-            Start launch request
+              Start website request
             </a>
           </div>
         </div>
@@ -692,23 +550,23 @@ export default async function Home({ searchParams }: HomePageProps) {
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <div className="rounded-3xl border border-indigo-100 bg-white p-8 md:p-10">
             <p className="inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-indigo-900">
-              Managed launch
+              Website build + maintenance
             </p>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-              Ready for a structured production launch?
+              Ready to have your website built for you?
             </h2>
             <p className="mt-4 max-w-3xl text-slate-700">
-              Get deployment, domain setup, security baseline, and support from
-              one team responsible for delivery.
+              We handle website build, launch, domain, and maintenance so you
+              can focus on your business.
             </p>
             <p className="mt-3 text-sm font-medium text-indigo-800">
               Let us be part of your team.
             </p>
             <a
-              href="#start-your-order"
+              href="/start-project"
               className="mt-7 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
-              Start launch request
+              Start website request
             </a>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">

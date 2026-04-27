@@ -33,8 +33,8 @@ export default function HowToHostLovableWebsitePage() {
 
         <p className="mt-8 text-slate-700">
           For managed setup, see{" "}
-          <Link href="/ai-website-hosting" className="font-semibold text-indigo-700 underline">
-            AI website hosting service
+          <Link href="/" className="font-semibold text-indigo-700 underline">
+            website build service
           </Link>{" "}
           or review the{" "}
           <Link href="/website-deployment-service" className="font-semibold text-indigo-700 underline">

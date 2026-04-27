@@ -39,11 +39,11 @@ function firstParam(value: string | string[] | undefined): string | undefined {
 
 function mapPaymentPlanId(
   plan: string,
-): "hosting-9-99" | "full-stack-19-99" {
-  if (plan === "full-stack-19-99") {
-    return "full-stack-19-99";
+): "presentation-20-monthly" {
+  if (plan === "presentation-20-monthly") {
+    return "presentation-20-monthly";
   }
-  return "hosting-9-99";
+  return "presentation-20-monthly";
 }
 
 function serverBackendUrl(): string {

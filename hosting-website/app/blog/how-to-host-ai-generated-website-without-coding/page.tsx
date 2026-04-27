@@ -29,8 +29,8 @@ export default function HowToHostAiGeneratedWebsitePage() {
         </ul>
         <p className="mt-8 text-slate-700">
           Want it done for you? See{" "}
-          <Link href="/ai-website-hosting" className="font-semibold text-indigo-700 underline">
-            AI website hosting service
+          <Link href="/" className="font-semibold text-indigo-700 underline">
+            website build service
           </Link>{" "}
           and start from the order form on the homepage.
         </p>

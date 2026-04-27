@@ -20,8 +20,7 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY ?? "";
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET ?? "";
 const stripeCurrency = "usd";
 const stripePlanPriceIds: Record<string, string | undefined> = {
-  "hosting-9-99": process.env.STRIPE_PRICE_HOSTING_9_99_MONTHLY,
-  "full-stack-19-99": process.env.STRIPE_PRICE_FULL_STACK_19_99_MONTHLY,
+  "presentation-20-monthly": process.env.STRIPE_PRICE_PRESENTATION_20_MONTHLY,
 };
 const stripe = stripeSecretKey
   ? new Stripe(stripeSecretKey, {
@@ -407,7 +406,7 @@ function buildAssistantAnswer(questionRaw: string): string {
 
   if (question.includes("price") || question.includes("cost")) {
     answer =
-      "Hosting starts at $9.99/month. Full stack hosting starts at $19.99/month.";
+      "I build your presentation website and you pay only $20/month for maintenance, hosting, and domain.";
   } else if (question.includes("time") || question.includes("how long")) {
     answer = "Most websites are launched in 1-2 days after receiving your files.";
   } else if (question.includes("domain")) {
@@ -505,11 +504,8 @@ function renderEmailShell(title: string, bodyHtml: string): string {
 }
 
 function formatPlanLabel(paymentPlan: string): string {
-  if (paymentPlan === "full-stack-19-99") {
-    return "Full Stack Plan - $19.99/mo";
-  }
-  if (paymentPlan === "hosting-9-99") {
-    return "Hosting Plan - $9.99/mo";
+  if (paymentPlan === "presentation-20-monthly") {
+    return "Presentation Website Plan - $20/mo";
   }
   return paymentPlan;
 }

@@ -24,7 +24,7 @@ export default function NotFound() {
               Go to homepage
             </Link>
             <Link
-              href="/#start-your-order"
+              href="/start-project"
               className="inline-flex rounded-full border border-indigo-200 bg-white px-6 py-3 text-sm font-semibold text-indigo-900 transition hover:border-indigo-300 hover:bg-indigo-50"
             >
               Start your order
@@ -40,8 +40,8 @@ export default function NotFound() {
           <div className="mt-10 border-t border-slate-200 pt-6">
             <p className="text-sm font-semibold text-slate-800">Popular pages</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-semibold text-indigo-700">
-              <Link href="/ai-website-hosting" className="underline-offset-4 hover:underline">
-                AI website hosting
+              <Link href="/" className="underline-offset-4 hover:underline">
+                Website build service
               </Link>
               <Link
                 href="/website-deployment-service"

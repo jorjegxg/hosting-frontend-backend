@@ -2,10 +2,10 @@
 
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 
-type PlanType = "hosting-9-99" | "full-stack-19-99" | "";
+type PlanType = "presentation-20-monthly";
 
 type StartOrderFormProps = {
-  initialPlan?: "hosting-9-99" | "full-stack-19-99";
+  initialPlan?: "presentation-20-monthly";
 };
 
 export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
@@ -24,11 +24,9 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
     backupDomainIdeas: "gheorghe-demo, gheorghe-online",
   };
   const initialSelectedPlan: PlanType =
-    initialPlan === "hosting-9-99" || initialPlan === "full-stack-19-99"
+    initialPlan === "presentation-20-monthly"
       ? initialPlan
-      : isDevMode
-        ? "hosting-9-99"
-        : "";
+      : "presentation-20-monthly";
   const [selectedPlan, setSelectedPlan] = useState<PlanType>(initialSelectedPlan);
   const backendUrl = useMemo(
     () => process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:4000",
@@ -175,15 +173,6 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
       setIsSubmitting(false);
       return;
     }
-    if (!paymentPlan) {
-      setStatus({
-        type: "error",
-        text: "Please choose a payment plan.",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     if (!uploadedFilePath) {
       setStatus({
         type: "error",
@@ -222,7 +211,7 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
       setUploadedFilePath("");
       setUploadedFileName("");
       setUploadProgress(0);
-      setSelectedPlan(isDevMode ? "hosting-9-99" : "");
+      setSelectedPlan("presentation-20-monthly");
       if (!data.checkoutUrl) {
         throw new Error("Checkout URL is missing.");
       }
@@ -339,47 +328,15 @@ export default function StartOrderForm({ initialPlan }: StartOrderFormProps) {
       </div>
 
       <fieldset className="rounded-xl border border-slate-300 bg-white p-4">
-        <legend className="px-2 text-sm font-semibold text-slate-700">Choose payment plan</legend>
-        <div className="mt-3 grid gap-3 md:grid-cols-2">
-          <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-slate-500">
-            <input
-              type="radio"
-              name="paymentPlan"
-              value="hosting-9-99"
-              required
-              checked={selectedPlan === "hosting-9-99"}
-              onChange={() => setSelectedPlan("hosting-9-99")}
-              className="mt-1 h-4 w-4 accent-indigo-600"
-            />
-            <span>
-              <span className="block text-sm font-semibold text-slate-800">
-                Hosting Plan - $9.99/mo
-              </span>
-              <span className="block text-xs text-slate-600">
-                Ideal for landing pages and business sites.
-              </span>
-            </span>
-          </label>
-
-          <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-slate-300 bg-slate-50 p-3 transition hover:border-slate-500">
-            <input
-              type="radio"
-              name="paymentPlan"
-              value="full-stack-19-99"
-              required
-              checked={selectedPlan === "full-stack-19-99"}
-              onChange={() => setSelectedPlan("full-stack-19-99")}
-              className="mt-1 h-4 w-4 accent-indigo-600"
-            />
-            <span>
-              <span className="block text-sm font-semibold text-slate-800">
-                Full Stack Plan - $19.99/mo
-              </span>
-              <span className="block text-xs text-slate-600">
-                Best for web apps with frontend, backend, and database.
-              </span>
-            </span>
-          </label>
+        <legend className="px-2 text-sm font-semibold text-slate-700">Payment plan</legend>
+        <input type="hidden" name="paymentPlan" value={selectedPlan} />
+        <div className="mt-2 rounded-lg border border-indigo-100 bg-indigo-50 px-4 py-3">
+          <p className="text-sm font-semibold text-slate-800">
+            Presentation Website Plan - $20/mo
+          </p>
+          <p className="mt-1 text-xs text-slate-600">
+            Includes maintenance, hosting, and domain.
+          </p>
         </div>
       </fieldset>
 

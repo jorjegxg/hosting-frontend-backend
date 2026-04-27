@@ -8,12 +8,8 @@ const publicRoutes: Array<{
   priority: number;
 }> = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
-  { path: "/ai-website-hosting", changeFrequency: "weekly", priority: 0.95 },
   { path: "/website-deployment-service", changeFrequency: "weekly", priority: 0.9 },
   { path: "/full-stack-hosting", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/host-lovable-website", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/host-cursor-website", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/host-claude-code-website", changeFrequency: "weekly", priority: 0.85 },
   { path: "/contact", changeFrequency: "weekly", priority: 0.8 },
   { path: "/about-us", changeFrequency: "monthly", priority: 0.7 },
   { path: "/blog", changeFrequency: "weekly", priority: 0.75 },

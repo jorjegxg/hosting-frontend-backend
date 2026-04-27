@@ -49,7 +49,7 @@ export default function WebsiteDeploymentServicePage() {
             integration, SSL activation, and pre-launch verification.
           </p>
           <Link
-            href="/#start-your-order"
+            href="/start-project"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
           >
             Start deployment request
@@ -71,8 +71,8 @@ export default function WebsiteDeploymentServicePage() {
         <div className="mx-auto w-full max-w-5xl px-6 py-12">
           <h2 className="text-2xl font-bold text-indigo-950">Related pages</h2>
           <div className="mt-4 flex flex-wrap gap-3 text-sm font-semibold text-indigo-700">
-            <Link href="/ai-website-hosting" className="underline-offset-4 hover:underline">
-              AI website hosting
+            <Link href="/" className="underline-offset-4 hover:underline">
+              Website build service
             </Link>
             <Link href="/full-stack-hosting" className="underline-offset-4 hover:underline">
               Full stack hosting

@@ -28,12 +28,12 @@ export default function LaunchSmallBusinessWebsitePage() {
         </ol>
         <p className="mt-8 text-slate-700">
           Start here:{" "}
-          <Link href="/#start-your-order" className="font-semibold text-indigo-700 underline">
+          <Link href="/start-project" className="font-semibold text-indigo-700 underline">
             submit your order
           </Link>{" "}
           or review the{" "}
-          <Link href="/ai-website-hosting" className="font-semibold text-indigo-700 underline">
-            AI website hosting page
+          <Link href="/" className="font-semibold text-indigo-700 underline">
+            website service page
           </Link>
           .
         </p>

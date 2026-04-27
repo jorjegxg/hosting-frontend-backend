@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "How Long Does Website Deployment Take?",
   description:
-    "Learn realistic deployment timelines for business and AI-generated websites, and what can speed up launch.",
+    "Learn realistic deployment timelines for business and business websites, and what can speed up launch.",
   alternates: { canonical: "/blog/how-long-does-website-deployment-take" },
 };
 

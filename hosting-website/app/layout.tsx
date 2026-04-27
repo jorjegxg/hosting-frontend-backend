@@ -24,11 +24,11 @@ export const metadata: Metadata = {
     apple: "/hosting-logo.svg",
   },
   title: {
-    default: "Hostera 24 | AI Website Hosting & Deployment Service",
+    default: "Hostera 24 | Presentation Website Build Service",
     template: "%s | Hostera 24",
   },
   description:
-    "US-focused AI website hosting and deployment service for sites built with tools like Claude Code, Cursor, and Lovable.",
+    "We build presentation websites for businesses and provide monthly maintenance, hosting, and domain support.",
   alternates: {
     canonical: "/",
     languages: {
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     siteName: "Hostera 24",
     locale: "en_US",
     url: "/",
-    title: "Hostera 24 | AI Website Hosting & Deployment Service",
+    title: "Hostera 24 | Presentation Website Build Service",
     description:
-      "AI website hosting and deployment with domain setup, SSL, and launch support for AI-built projects.",
+      "Presentation website build service with launch, maintenance, hosting, and domain support.",
     images: [
       {
         url: "/hosting-logo-text.svg",
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hostera 24 | AI Website Hosting & Deployment Service",
+    title: "Hostera 24 | Presentation Website Build Service",
     description:
-      "AI website hosting service for founders who built websites with AI tools and need reliable deployment support.",
+      "Website build service for founders who want a complete presentation site plus monthly maintenance and hosting.",
     images: ["/hosting-logo-text.svg"],
   },
 };
@@ -110,10 +110,10 @@ export default function RootLayout({
               </Link>
             </nav>
             <Link
-              href="/#start-your-order"
+              href="/start-project"
               className="inline-flex rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
             >
-              Start Launch Request
+              Start Project
             </Link>
           </div>
         </header>

@@ -1,16 +1,11 @@
 const PLAN_DETAILS: Record<
-  "hosting-9-99" | "full-stack-19-99",
+  "presentation-20-monthly",
   { title: string; description: string; priceLabel: string }
 > = {
-  "hosting-9-99": {
-    title: "Hosting Plan",
-    description: "Ideal for landing pages and business sites.",
-    priceLabel: "$9.99/mo",
-  },
-  "full-stack-19-99": {
-    title: "Full Stack Plan",
-    description: "Best for web apps with frontend, backend, and database.",
-    priceLabel: "$19.99/mo",
+  "presentation-20-monthly": {
+    title: "Presentation Website Plan",
+    description: "Includes maintenance, hosting, and domain support.",
+    priceLabel: "$20/mo",
   },
 };
 

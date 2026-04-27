@@ -54,7 +54,7 @@ export default function FullStackHostingPage() {
             engineering team as a managed service.
           </p>
           <Link
-            href="/#start-your-order"
+            href="/start-project"
             className="mt-8 inline-flex rounded-full bg-indigo-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500"
           >
             Start full stack request
@@ -85,8 +85,8 @@ export default function FullStackHostingPage() {
             <Link href="/website-deployment-service" className="underline-offset-4 hover:underline">
               Deployment service
             </Link>
-            <Link href="/ai-website-hosting" className="underline-offset-4 hover:underline">
-              AI website hosting
+            <Link href="/" className="underline-offset-4 hover:underline">
+              Website build service
             </Link>
             <Link
               href="/blog/how-long-does-website-deployment-take"

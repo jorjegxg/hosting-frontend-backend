@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Website Hosting Guides",
+  title: "Website Build Guides",
   description:
     "US-focused guides on hosting and deploying websites built with AI tools like Lovable, Cursor, and Claude Code.",
   alternates: { canonical: "/blog" },
@@ -48,7 +48,7 @@ export default function BlogPage() {
     <main className="w-full bg-white text-slate-900">
       <section className="mx-auto w-full max-w-4xl px-6 py-16">
         <h1 className="text-3xl font-bold text-indigo-950 sm:text-5xl">
-          AI website hosting and deployment guides
+          Website build service and deployment guides
         </h1>
         <p className="mt-4 text-slate-700">
           Practical guides for US founders and teams launching websites built

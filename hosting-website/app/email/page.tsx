@@ -25,7 +25,7 @@ export default function EmailTestPage() {
           customerName="Alex Example"
           customerEmail="alex@example.com"
           orderId={1042}
-          paymentPlanId="hosting-9-99"
+          paymentPlanId="presentation-20-monthly"
           preferredDomain="alex-demo-site"
           paymentStatus="success"
           paidAtLabel={paidAtLabel}
@@ -39,7 +39,7 @@ export default function EmailTestPage() {
           customerName="Jamie Sample"
           customerEmail="jamie@example.com"
           orderId={1043}
-          paymentPlanId="full-stack-19-99"
+          paymentPlanId="presentation-20-monthly"
           preferredDomain={null}
           paymentStatus="cancelled"
         />

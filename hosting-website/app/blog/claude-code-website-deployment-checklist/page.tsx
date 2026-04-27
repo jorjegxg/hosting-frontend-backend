@@ -33,11 +33,11 @@ export default function ClaudeCodeWebsiteDeploymentChecklistPage() {
 
         <p className="mt-8 text-slate-700">
           If you want managed execution, start with{" "}
-          <Link href="/ai-website-hosting" className="font-semibold text-indigo-700 underline">
-            AI website hosting
+          <Link href="/" className="font-semibold text-indigo-700 underline">
+            Website build service
           </Link>{" "}
           or submit your project through{" "}
-          <Link href="/#start-your-order" className="font-semibold text-indigo-700 underline">
+          <Link href="/start-project" className="font-semibold text-indigo-700 underline">
             the launch request form
           </Link>
           .
